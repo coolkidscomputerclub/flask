@@ -2,14 +2,12 @@
 layout: layout
 ---
 
-<h1>Flask</h1>
+<ul>
 
-{% for post in site.posts %}
+	{% for post in site.posts %}
 
-	<ul>
+		<li><a class="article-title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 
-		<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+	{% endfor %}
 
-	</ul>
-
-{% endfor %}
+</ul>

@@ -1,20 +1,5 @@
 /* # Reset & Basics
 ================================================== */
-/* # Clearfix
-================================================== */
-.cf:before,
-.cf:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */ }
-
-.cf:after {
-  clear: both; }
-
-.cf {
-  *zoom: 1; }
-
 /* # Reset & Basics (Inspired by E. Meyers)
 ================================================== */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -112,7 +97,66 @@ a {
 a:hover, a:focus {
   color: #000; }
 
+/* # Clearfix
+================================================== */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.cf:after {
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+/* # Magic
+================================================== */
+/* # Misc. variables and shit
+================================================== */
+/* # DOUBLE RAINBOW!!!
+================================================== */
+/* # SASS Mixins
+================================================== */
+.wrap {
+  max-width: 960px;
+  margin: 0 auto; }
+
+a {
+  text-decoration: none;
+  color: #3f3f3f;
+  padding: 0 0 1px 0; }
+  a:visited {
+    color: #3f3f3f; }
+  a:hover {
+    color: #8755ae;
+    border-bottom: 1px solid #8755ae; }
+  a:active {
+    color: #3f3f3f;
+    border-bottom: 1px solid #8755ae; }
+
 /* # Primary Styles
+================================================== */
+/* # Global Header Styles
+================================================== */
+.global-header {
+  padding: 100px;
+  text-align: center;
+  background: black; }
+
+h1 {
+  color: white; }
+
+.main {
+  padding: 60px; }
+
+.article-title {
+  font-size: 20px;
+  font-size: 2rem; }
+
+/* # Global Footer Styles
 ================================================== */
 /* # Single article styles
 ================================================== */

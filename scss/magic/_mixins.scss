@@ -1,0 +1,8 @@
+/* # SASS Mixins
+================================================== */
+
+// Rem fun
+@mixin font-size($sizeValue: 1.6){
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}

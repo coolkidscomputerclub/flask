@@ -5,5 +5,11 @@ layout: layout
 <h1>Flask</h1>
 
 {% for post in site.posts %}
-<h2>{{ post.title }}</h2>
+
+	<ul>
+
+		<li><a href="{{page.url}}">{{ post.title }}</a></li>
+
+	</ul>
+
 {% endfor %}

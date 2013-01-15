@@ -3,5 +3,4 @@ lsi: false
 markdown: rdiscount
 pygments: true
 permalink: /:title
-url: http://sorakasumi.github.com/flask
-baseurl: http://sorakasumi.github.com/flask
+baseurl: /flask

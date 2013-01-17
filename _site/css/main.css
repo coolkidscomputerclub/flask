@@ -191,6 +191,9 @@ h1 {
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-name: colorCycle;
   -webkit-animation-timing-function: ease; }
+  h1 a:hover {
+    border: none;
+    opacity: .5; }
 
 .global-nav {
   margin: 30px 0 0 0; }

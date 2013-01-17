@@ -10,7 +10,7 @@ h1 {
 	display: inline-block;
 	padding: 15px 30px;
 	color: $brand;
-	border: 1px solid $link-hover;
+	border: 1px solid $brand;
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	font-weight: 300;
@@ -20,6 +20,12 @@ h1 {
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-name: colorCycle;
 	-webkit-animation-timing-function: ease;
+
+	a:hover {
+		border:none;
+		opacity: .5;
+
+	}
 }
 
 .global-nav {

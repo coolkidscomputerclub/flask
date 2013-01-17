@@ -6,3 +6,71 @@
   font-size: ($sizeValue * 10) + px;
   font-size: $sizeValue + rem;
 }
+
+// Prefixer
+
+@mixin prefixer ($property, $value, $prefixes) {
+
+	@each $prefix in $prefixes {
+
+		@if $prefix == webkit {
+			-webkit-#{$property}: $value;
+		}
+
+		@else if $prefix == moz {
+			-moz-#{$property}: $value;
+		}
+
+		@else if $prefix == ms {
+			-ms-#{$property}: $value;
+		}
+
+		@else if $prefix == o {
+			-o-#{$property}: $value;
+		}
+
+		@else if $prefix == spec {
+			#{$property}: $value;
+		}
+
+		@else  {
+			@warn "Unrecognized prefix: #{$prefix}";
+		}
+
+	}
+
+}
+
+@-webkit-keyframes colorCycle {
+
+	  0% {
+	  	color: $meter-a;
+	  	border: 1px solid $meter-a;
+	  }
+
+	 20% {
+	 	color: $meter-b;
+	 	border: 1px solid $meter-b;
+	 }
+
+	 40% {
+	 	color: $meter-c;
+	 	border: 1px solid $meter-c;
+	 }
+
+	 60% {
+	 	color: $meter-d;
+	 	border: 1px solid $meter-d;
+	 }
+
+	 80% {
+	 	color: $meter-e;
+	 	border: 1px solid $meter-e;
+	 }
+
+	 100% {
+	 	color: $meter-a;
+	 	border: 1px solid $meter-a;
+	 }
+
+}

@@ -1,0 +1,33 @@
+.post {
+	margin: 0 0 50px 0;
+
+	.title {
+		font-weight: 300;
+		@include font-size(2);
+		padding: 0;
+	}
+
+	.date {
+		color: $copy;
+	}
+
+	.words {
+		width: 85%;
+		font-family: "minion-pro";
+		margin: 30px auto 0 auto;
+		text-align: left;
+		color: lighten($copy, 10%);
+		@include font-size(1.2);
+
+		a {
+			padding: 0;
+			color: $white;
+			background: lighten($brand, 20%);
+			&:hover {
+				background: lighten($brand, 40%);
+				border: none;
+			}
+		}
+	}
+
+}

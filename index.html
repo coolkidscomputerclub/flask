@@ -6,7 +6,23 @@ layout: layout
 
 	{% for post in site.posts %}
 
-		<li><a class="article-title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+		<article class="post">
+
+			<header>
+
+				<h2><a class="title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+
+				<span class="date">{{ post.date | date: "%d %B %Y" }}</span>
+
+			</header>
+
+			<section class="words">
+
+				{{ post.content }}
+
+			</section>
+
+		</article>
 
 	{% endfor %}
 

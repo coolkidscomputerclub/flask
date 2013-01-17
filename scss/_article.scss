@@ -29,6 +29,24 @@
 				border: none;
 			}
 		}
+
+		p {
+			margin: 0 0 5px 0;
+		}
+
+		h2, h3, h4, h5, h6 {
+			font-family: "freight-sans-pro";
+			color: $brand;
+			font-weight: 300;
+			padding: 15px 0;
+		}
+
+		h2 { @include font-size(1.8); }
+
+		h3 { @include font-size(1.4); }
+
+		h4 { @include font-size(1); }
+
 	}
 
 }

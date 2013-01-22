@@ -25,6 +25,44 @@
     background-size: cover; }
     .reveal .slides section:nth-of-type(1) {
       background-image: url(../../img/1.jpg); }
+    .reveal .slides section:nth-of-type(2) {
+      background-image: url(../../img/2.jpg); }
+    .reveal .slides section:nth-of-type(3) {
+      background-image: url(../../img/3.jpg); }
+    .reveal .slides section:nth-of-type(4) {
+      background-image: url(../../img/4.jpg); }
+    .reveal .slides section:nth-of-type(5) {
+      background-image: url(../../img/5.jpg); }
+    .reveal .slides section:nth-of-type(6) {
+      background-image: url(../../img/6.jpg); }
+    .reveal .slides section:nth-of-type(7) {
+      background-image: url(../../img/7.jpg); }
+    .reveal .slides section:nth-of-type(8) {
+      background-image: url(../../img/8.jpg); }
+    .reveal .slides section:nth-of-type(9) {
+      background-image: url(../../img/9.jpg); }
+    .reveal .slides section:nth-of-type(10) {
+      background-image: url(../../img/10.jpg); }
+    .reveal .slides section:nth-of-type(11) {
+      background-image: url(../../img/11.jpg); }
+    .reveal .slides section:nth-of-type(12) {
+      background-image: url(../../img/12.jpg); }
+    .reveal .slides section:nth-of-type(13) {
+      background-image: url(../../img/13.jpg); }
+    .reveal .slides section:nth-of-type(14) {
+      background-image: url(../../img/14.jpg); }
+    .reveal .slides section:nth-of-type(15) {
+      background-image: url(../../img/15.jpg); }
+    .reveal .slides section:nth-of-type(16) {
+      background-image: url(../../img/16.jpg); }
+    .reveal .slides section:nth-of-type(17) {
+      background-image: url(../../img/17.jpg); }
+    .reveal .slides section:nth-of-type(18) {
+      background-image: url(../../img/18.jpg); }
+    .reveal .slides section:nth-of-type(19) {
+      background-image: url(../../img/19.jpg); }
+    .reveal .slides section:nth-of-type(20) {
+      background-image: url(../../img/20.jpg); }
 
 /*********************************************
  * GLOBAL STYLES

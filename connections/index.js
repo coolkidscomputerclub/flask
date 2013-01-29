@@ -84,6 +84,22 @@ var connections = {
 
             console.log("Client joined: ", client.id);
 
+            if (client.id === "arduinoClient") {
+
+                setTimeout(function () {
+
+                    self.mqttClient.publish({
+
+                        topic: "response",
+
+                        payload: "Hi, Arduino!"
+
+                    });
+
+                }, 1000);
+
+            }
+
         });
 
         client.on("publish", function (packet) {

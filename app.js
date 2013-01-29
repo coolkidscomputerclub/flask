@@ -1,21 +1,26 @@
 /* Dependencies */
 
 var express = require("express"),
+    mqtt = require("mqttjs"),
     http = require("http"),
     path = require("path"),
     routes = require("./routes"),
     helpers = require("./helpers");
 
+/* Config */
+
+var port = 1883;
+
 /* App */
 
 var app = express(),
     server = http.createServer(app),
-    io = require("socket.io").listen(server),
-    connections = require("./connections")(io);
+    io = require("socket.io").listen(server, {log: false}),
+    connections = require("./connections")(io, mqtt, port);
 
 app.configure(function () {
 
-    app.set("port", process.env.PORT || 3000);
+    app.set("port", process.env.PORT || 8080);
 
     app.set("views", __dirname + "/views");
 

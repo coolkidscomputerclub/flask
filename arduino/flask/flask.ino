@@ -7,7 +7,7 @@
 #define DIO_PIN     7
 #define STATUS_LED  2
 
-byte ip[] = {10, 5, 91, 8};
+byte ip[] = {192, 168, 0, 4};
 
 WiFlyClient wiFlyClient;
 PubSubClient client(ip, 1883, callback, wiFlyClient);
@@ -213,6 +213,8 @@ void setup() {
 
 	Serial.begin(115200);
 
+	// Give the serial some time...
+
 	setupWiFly();
 
 	setupPubSub();
@@ -266,6 +268,6 @@ void loop() {
 
 	client.publish(pubTopic, values);
 
-	delay(100);  // loop every 10 times per sec.
+	delay(200);
 
 }

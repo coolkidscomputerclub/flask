@@ -10,4 +10,4 @@ wood
 curved oled screens
 arduino
  - wi-fi
- - acceleromiter
+ - accelerometer

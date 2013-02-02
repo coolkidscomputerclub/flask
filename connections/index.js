@@ -12,7 +12,9 @@ var connections = {
 
         var self = connections;
 
-        self.io = io.sockets.on("connection", function (socket) {
+        self.io = io;
+
+        io.sockets.on("connection", function (socket) {
 
             self.sayHello(socket);
 
@@ -204,6 +206,8 @@ var connections = {
         client.on("publish", function (packet) {
 
             console.log("Payload received: ", packet.topic, packet.payload);
+
+            connections.io.sockets.emit("data", packet.payload);
 
         });
 

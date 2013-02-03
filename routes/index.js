@@ -18,7 +18,7 @@ var routes = {
 
             routes.render(res, "index");
 
-        },
+        }
 
     },
 

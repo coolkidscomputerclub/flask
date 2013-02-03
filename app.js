@@ -18,6 +18,12 @@ var app = express(),
     io = require("socket.io").listen(server, {log: false}),
     connections = require("./connections")(io, mqtt, port);
 
+// Controllers
+
+require("./controllers/index")(app);
+require("./controllers/instagram")(app);
+
+
 app.configure(function () {
 
     app.set("port", process.env.PORT || 8080);

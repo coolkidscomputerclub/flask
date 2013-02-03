@@ -1,0 +1,132 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'supervisor', '-g' ]
+2 info using npm@1.1.65
+3 info using node@v0.8.14
+4 verbose read json /usr/local/lib/package.json
+5 verbose read json /usr/local/lib/package.json
+6 verbose cache add [ 'supervisor', null ]
+7 silly cache add name=undefined spec="supervisor" args=["supervisor",null]
+8 verbose parsed url { pathname: 'supervisor',
+8 verbose parsed url   path: 'supervisor',
+8 verbose parsed url   href: 'supervisor' }
+9 silly lockFile 0f4d09e4-supervisor supervisor
+10 verbose lock supervisor /Users/Ben/.npm/0f4d09e4-supervisor.lock
+11 silly lockFile 0f4d09e4-supervisor supervisor
+12 verbose addNamed [ 'supervisor', '' ]
+13 verbose addNamed [ null, '' ]
+14 silly lockFile b28163ae-supervisor supervisor@
+15 verbose lock supervisor@ /Users/Ben/.npm/b28163ae-supervisor.lock
+16 silly addNameRange { name: 'supervisor', range: '', hasData: false }
+17 verbose url raw supervisor
+18 verbose url resolving [ 'https://registry.npmjs.org/', './supervisor' ]
+19 verbose url resolved https://registry.npmjs.org/supervisor
+20 info trying registry request attempt 1 at 13:56:40
+21 verbose etag "15G9YGE632ZX58ECSD5FGN6Y0"
+22 http GET https://registry.npmjs.org/supervisor
+23 http 200 https://registry.npmjs.org/supervisor
+24 silly registry.get cb [ 200,
+24 silly registry.get   { vary: 'Accept',
+24 silly registry.get     server: 'CouchDB/1.2.1 (Erlang OTP/R15B)',
+24 silly registry.get     etag: '"DV03U94S0TPT3GFJC3WVIH4QP"',
+24 silly registry.get     date: 'Sun, 03 Feb 2013 13:54:55 GMT',
+24 silly registry.get     'content-type': 'application/json',
+24 silly registry.get     'content-length': '53088' } ]
+25 silly addNameRange number 2 { name: 'supervisor', range: '', hasData: true }
+26 silly addNameRange versions [ 'supervisor',
+26 silly addNameRange   [ '0.0.4',
+26 silly addNameRange     '0.0.5',
+26 silly addNameRange     '0.0.6',
+26 silly addNameRange     '0.1.0',
+26 silly addNameRange     '0.1.1',
+26 silly addNameRange     '0.1.2',
+26 silly addNameRange     '0.1.3',
+26 silly addNameRange     '0.2.0',
+26 silly addNameRange     '0.3.0',
+26 silly addNameRange     '0.3.1',
+26 silly addNameRange     '0.3.2',
+26 silly addNameRange     '0.3.3',
+26 silly addNameRange     '0.3.4',
+26 silly addNameRange     '0.3.5',
+26 silly addNameRange     '0.3.6',
+26 silly addNameRange     '0.4.0',
+26 silly addNameRange     '0.4.1',
+26 silly addNameRange     '0.5.0' ] ]
+27 verbose addNamed [ 'supervisor', '0.5.0' ]
+28 verbose addNamed [ '0.5.0', '0.5.0' ]
+29 silly lockFile 75b47f34-supervisor-0-5-0 supervisor@0.5.0
+30 verbose lock supervisor@0.5.0 /Users/Ben/.npm/75b47f34-supervisor-0-5-0.lock
+31 verbose read json /Users/Ben/.npm/supervisor/0.5.0/package/package.json
+32 silly lockFile 75b47f34-supervisor-0-5-0 supervisor@0.5.0
+33 silly lockFile b28163ae-supervisor supervisor@
+34 silly resolved [ { name: 'supervisor',
+34 silly resolved     version: '0.5.0',
+34 silly resolved     description: 'A supervisor program for running nodejs programs',
+34 silly resolved     author: { name: 'Isaac Z. Schlueter', email: 'i@izs.me' },
+34 silly resolved     contributors:
+34 silly resolved      [ [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object],
+34 silly resolved        [Object] ],
+34 silly resolved     repository:
+34 silly resolved      { type: 'git',
+34 silly resolved        url: 'git://github.com/isaacs/node-supervisor.git' },
+34 silly resolved     bugs: 'https://github.com/isaacs/node-supervisor/issues',
+34 silly resolved     homepage: 'https://github.com/isaacs/node-supervisor/',
+34 silly resolved     main: 'lib/supervisor.js',
+34 silly resolved     bin:
+34 silly resolved      { 'node-supervisor': 'lib/cli-wrapper.js',
+34 silly resolved        supervisor: 'lib/cli-wrapper.js' },
+34 silly resolved     engines: { node: '>=0.3.7' },
+34 silly resolved     preferGlobal: true,
+34 silly resolved     readme: '# node-supervisor\n\nA little supervisor script for nodejs. It runs your program, and\nwatches for code changes, so you can have hot-code reloading-ish\nbehavior, without worrying about memory leaks and making sure you\nclean up all the inter-module references, and without a whole new\n`require` system.\n\n## node-supervisor -?\n\n\n    Node Supervisor is used to restart programs when they crash.\n    It can also be used to restart programs when a *.js file changes.\n\n    Usage:\n      supervisor [options] <program>\n      supervisor [options] -- <program> [args ...]\n\n    Required:\n      <program>\n        The program to run.\n\n    Options:\n      -w|--watch <watchItems>\n        A comma-delimited list of folders or js files to watch for changes.\n        When a change to a js file occurs, reload the program\n        Default is \'.\'\n\n      -e|--extensions <extensions>\n        Specific file extensions to watch in addition to defaults.\n        Used when --watch option includes folders\n        Default is \'node|js\'\n\n      -x|--exec <executable>\n        The executable that runs the specified program.\n        Default is \'node\'\n\n      --debug\n        Start node with --debug flag.\n\n      --debug-brk\n        Start node with --debug-brk flag.\n\n      -n|--no-restart-on error|exit\n        Don\'t automatically restart the supervised program if it ends.\n        Supervisor will wait for a change in the source files.\n        If "error", an exit code of 0 will still restart.\n        If "exit", no restart regardless of exit code.\n\n      -h|--help|-?\n        Display these usage instructions.\n\n      -q|--quiet\n        Suppress DEBUG messages\n\n    Examples:\n      supervisor myapp.js\n      supervisor myapp.coffee\n      supervisor -w scripts -e myext -x myrunner myapp\n      supervisor -w lib,server.js,config.js server.js\n      supervisor -- server.js -h host -p port\n\n\n## Simple Install\n\nInstall npm, and then do this:\n\n    npm install supervisor -g\n\nYou don\'t even need to download or fork this repo at all.\n\n## Fancy Install\n\nGet this code, install npm, and then do this:\n\n    npm link\n\n## todo\n\n1. Re-attach to a process by pid. If the supervisor is\nbackgrounded, and then disowned, the child will keep running. At\nthat point, the supervisor may be killed, but the child will keep\non running. It\'d be nice to have two supervisors that kept each\nother up, and could also perhaps run a child program.\n2. Run more types of programs than just "node blargh.js".\n3. Be able to run more than one program, so that you can have two\nsupervisors supervise each other, and then also keep some child\nserver up.\n4. When watching, it\'d be good to perhaps bring up a new child\nand then kill the old one gently, rather than just crashing the\nchild abruptly.\n5. Keep the pid in a safe place, so another supervisor can pull\nit out if told to supervise the same program.\n6. It\'d be pretty cool if this program could be run just like\ndoing `node blah.js`, but could somehow "know" which files had\nbeen loaded, and restart whenever a touched file changes.\n',
+34 silly resolved     readmeFilename: 'README.md',
+34 silly resolved     _id: 'supervisor@0.5.0',
+34 silly resolved     _from: 'supervisor' } ]
+35 info install supervisor@0.5.0 into /usr/local/lib
+36 info installOne supervisor@0.5.0
+37 verbose from cache /Users/Ben/.npm/supervisor/0.5.0/package/package.json
+38 info /usr/local/lib/node_modules/supervisor unbuild
+39 verbose read json /usr/local/lib/node_modules/supervisor/package.json
+40 info preuninstall supervisor@0.5.0
+41 info uninstall supervisor@0.5.0
+42 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild supervisor@0.5.0
+43 verbose /usr/local/bin,[object Object] binRoot
+44 info /usr/local/lib/node_modules/supervisor unbuild
+45 verbose read json /usr/local/lib/node_modules/supervisor/package.json
+46 info preuninstall supervisor@0.5.0
+47 info uninstall supervisor@0.5.0
+48 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild supervisor@0.5.0
+49 verbose /usr/local/bin,[object Object] binRoot
+50 error error rolling back Error: EPERM, chmod '/usr/local/bin/node-supervisor'
+50 error error rolling back  supervisor@0.5.0 { [Error: EPERM, chmod '/usr/local/bin/node-supervisor']
+50 error error rolling back   errno: 50,
+50 error error rolling back   code: 'EPERM',
+50 error error rolling back   path: '/usr/local/bin/node-supervisor' }
+51 error Error: EPERM, chmod '/usr/local/bin/node-supervisor'
+51 error  { [Error: EPERM, chmod '/usr/local/bin/node-supervisor']
+51 error   errno: 50,
+51 error   code: 'EPERM',
+51 error   path: '/usr/local/bin/node-supervisor' }
+52 error Please try running this command again as root/Administrator.
+53 error System Darwin 12.2.0
+54 error command "node" "/usr/local/bin/npm" "install" "supervisor" "-g"
+55 error cwd /Users/Ben/Documents/Sites/flask
+56 error node -v v0.8.14
+57 error npm -v 1.1.65
+58 error path /usr/local/bin/node-supervisor
+59 error code EPERM
+60 error errno 50
+61 error stack Error: EPERM, chmod '/usr/local/bin/node-supervisor'
+62 verbose exit [ 50, true ]

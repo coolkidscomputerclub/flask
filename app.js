@@ -18,11 +18,14 @@ var app = express(),
     io = require("socket.io").listen(server, {log: false}),
     connections = require("./connections")(io, mqtt, port);
 
-// Controllers
-
+// Root
 require("./controllers/index")(app);
+
+// Instagram API
 require("./controllers/instagram")(app);
 
+// Twitter streaming API
+require("./controllers/twitter")(app);
 
 app.configure(function () {
 

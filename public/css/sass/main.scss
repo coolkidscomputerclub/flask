@@ -40,6 +40,7 @@ body {
 
     margin: 0;
     padding: 0;
+    background: #EBEBEB;
 
 }
 
@@ -53,6 +54,17 @@ a {
 
   color: #00B7FF;
 
+}
+
+.polaroid {
+    display: inline-block;
+    padding: 10px;
+    margin: 20px;
+    background: #FFFFFF;
+
+    .details {
+        margin: 15px 0;
+    }
 }
 
 @import "helpers";

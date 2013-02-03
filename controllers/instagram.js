@@ -1,17 +1,21 @@
-/* # Initialize w / dependencies
+/* # Dependencies & initialize
 ================================================== */
 
 Instagram = require("instagram-node-lib");
 
 console.log("Instagram init");
 
-var clientID = "dcb5bc2a4e1747e8a22b1559a260cd63",
-	clientSecret = "6120190cbf914e59914dd615d0f4c5c8",
-	callback = "http://localhost:8080/callback";
+var credentials = {
 
-Instagram.set("client_id", 	clientID);
-Instagram.set("client_secret", clientSecret);
-Instagram.set("callback_url", callback);
+	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
+	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
+	callback: "http://localhost:8080/callback"
+
+}
+
+Instagram.set("client_id", 	credentials.clientID);
+Instagram.set("client_secret", credentials.clientSecret);
+Instagram.set("callback_url", credentials.callback);
 
 
 /* # Routes
@@ -46,7 +50,9 @@ function index (req, res) {
 
 				title: "Instagram",
 
-				media: data
+				media: data,
+
+				flaskLocation: latitude + ", " + longitude
 
 			});
 
@@ -67,20 +73,14 @@ function realtime (req, res) {
 
 	Instagram.media.subscribe({
 
+		object: "geography",
 		lat: latitude,
 		lng: longitude,
 		radius: radius,
 		callback_url: callback,
-
-		complete: function (data) {
-
-			console.log(data);
-
-		}
+		type: "subscription"
 
 	});
-
-
 
 }
 

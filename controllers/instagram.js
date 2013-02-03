@@ -70,6 +70,7 @@ function realtime (req, res) {
 		lat: latitude,
 		lng: longitude,
 		radius: radius,
+		callback_url: callback,
 
 		complete: function (data) {
 

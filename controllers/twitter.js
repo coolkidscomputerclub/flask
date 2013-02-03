@@ -37,7 +37,7 @@ module.exports = function (app) {
 
 function index (req, res) {
 
-	var locationBounds = "-122.75,36.8,-121.75,37.8";
+	var locationBounds = "50.371302,-4.133696, 50.367367,-4.153362";
 
 	res.send("Streaming tweets from " + locationBounds);
 

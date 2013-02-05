@@ -37,9 +37,13 @@ module.exports = function (app) {
 
 function index (req, res) {
 
-	var locationBounds = "50.371302,-4.133696, 50.367367,-4.153362";
+	var plymouth = "-4.151608,50.367216,-4.127404,50.378493";
 
-	res.send("Streaming tweets from " + locationBounds);
+	var locationBounds = plymouth;
+
+	//res.send("Streaming tweets from: " + locationBounds);
+
+	console.log("***Streaming tweets from:", locationBounds + "***");
 
 	t.stream(
 
@@ -53,7 +57,13 @@ function index (req, res) {
 
 			stream.on('data', function (tweet) {
 
-				console.log(tweet.text);
+				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
+
+				res.render("twitter_index", {
+
+					flaskLocation: locationBounds
+
+				});
 
 			});
 

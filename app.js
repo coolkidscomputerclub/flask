@@ -1,31 +1,26 @@
-/* Dependencies */
+/* # Dependencies & initialize
+================================================== */
 
 var express = require("express"),
     mqtt = require("mqttjs"),
     http = require("http"),
     path = require("path"),
-    routes = require("./routes"),
     helpers = require("./helpers");
 
-/* Config */
+/* # Database
+================================================== */
+
+
+
+/* # App config
+================================================== */
 
 var port = 1883;
-
-/* App */
 
 var app = express(),
     server = http.createServer(app),
     io = require("socket.io").listen(server, {log: false}),
     connections = require("./connections")(io, mqtt, port);
-
-// Root
-require("./controllers/index")(app);
-
-// Instagram API
-require("./controllers/instagram")(app);
-
-// Twitter streaming API
-require("./controllers/twitter")(app);
 
 app.configure(function () {
 
@@ -55,7 +50,10 @@ app.configure("development", function () {
 
 });
 
-app.get("/", routes.index);
+require("./routes.js")(app);
+
+/* # Go time!
+================================================== */
 
 server.listen(app.get("port"), function () {
 

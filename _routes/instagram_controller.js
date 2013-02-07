@@ -3,13 +3,13 @@
 
 Instagram = require("instagram-node-lib");
 
-console.log("Instagram init");
+console.log("Instagram routes init");
 
 var credentials = {
 
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://localhost:8080/callback"
+	callback: "http://localhost:8080/instagram/realtime"
 
 }
 
@@ -34,8 +34,8 @@ module.exports = function (app) {
 
 function index (req, res) {
 
-	var latitude = 50.366233;
-	var longitude = -4.134134;
+	var latitude = 50.366233,
+		longitude = -4.134134;
 
 	Instagram.media.search({
 
@@ -62,23 +62,20 @@ function index (req, res) {
 
 }
 
-/* # /instagram/realtime: Real-time geo
+/* # /instagram/realtime: Real-time geo search
 ================================================== */
 
 function realtime (req, res) {
 
-	var latitude = 50.366233;
-	var longitude = -4.134134;
-	var radius = 100;
+	var latitude = 50.366233,
+		longitude = -4.134134,
+		radius = 1000
 
 	Instagram.media.subscribe({
 
-		object: "geography",
 		lat: latitude,
 		lng: longitude,
-		radius: radius,
-		callback_url: callback,
-		type: "subscription"
+		radius: radius
 
 	});
 

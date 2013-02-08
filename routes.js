@@ -1,4 +1,4 @@
-/* # Imports
+/* # Import controllers
 ================================================== */
 
 var root = require("./controllers/RootController"),
@@ -11,6 +11,12 @@ var root = require("./controllers/RootController"),
 module.exports = function(app) {
 
 	app.get("/", root.index);
+
+	app.get("/save/:type", root.save);
+
+	app.get("/show/:type", root.show);
+
+	app.get("/count/:type", root.count);
 
 	app.get("/instagram", instagram.index);
 

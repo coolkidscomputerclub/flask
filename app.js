@@ -2,6 +2,7 @@
 ================================================== */
 
 var express = require("express"),
+    db = require("./models/db"),
     mqtt = require("mqttjs"),
     http = require("http"),
     path = require("path"),
@@ -9,7 +10,6 @@ var express = require("express"),
 
 /* # Database
 ================================================== */
-
 
 
 /* # App config

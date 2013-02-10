@@ -1,6 +1,24 @@
 
-/* # Accelerometer Functions
+/* # Accelerometer
 ================================================== */
+
+void gyroSetup() {
+
+	Serial.begin(115200);
+
+	pinMode(CS_PIN,  OUTPUT);
+	pinMode(CLK_PIN, OUTPUT);
+	pinMode(DIO_PIN, OUTPUT);
+
+	digitalWrite(CS_PIN, LOW);
+	digitalWrite(CLK_PIN,LOW);
+
+	delayMicroseconds(1);
+
+	digitalWrite(CS_PIN, HIGH);
+	digitalWrite(CLK_PIN,HIGH);
+
+}
 
 void StartBit() {
 

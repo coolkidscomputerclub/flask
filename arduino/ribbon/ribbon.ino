@@ -13,7 +13,7 @@ int clockPin = 3;
 
 int ledVal, prevLedVal;
 
-int bottleCirc = 9;
+int bottleCirc = 5;
 
 LPD8806 strip = LPD8806(nLEDs, dataPin, clockPin);
 
@@ -23,26 +23,14 @@ uint32_t const blue = strip.Color(0, 0, 1);
 
 
 void setup() {
+
+	gyroSetup();
   
 	strip.begin();
 
 	strip.show();
 
-	turnItOff();
-
-	Serial.begin(115200);
-
-	pinMode(CS_PIN,  OUTPUT);
-	pinMode(CLK_PIN, OUTPUT);
-	pinMode(DIO_PIN, OUTPUT);
-
-	digitalWrite(CS_PIN, LOW);
-	digitalWrite(CLK_PIN,LOW);
-
-	delayMicroseconds(1);
-
-	digitalWrite(CS_PIN, HIGH);
-	digitalWrite(CLK_PIN,HIGH);
+	//turnItOff();
 	 
 }
 	
@@ -53,6 +41,10 @@ void loop() {
 	doRing(red,0);
 	doRing(green,1);
 	doRing(blue,2);
+
+	// loopStripe(red, blue, 1);
+
+	// doStripe(red, 0);
 
 
 }
@@ -80,7 +72,7 @@ void doStripe(uint32_t c, int offset){
 
 	int i;
 
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < (nLEDs / bottleCirc) + 1; i++) {
 
 		strip.setPixelColor(i * bottleCirc + offset, c);
 
@@ -90,15 +82,15 @@ void doStripe(uint32_t c, int offset){
 
 }
 
-void loopStripe(uint32_t c) {
+void loopStripe(uint32_t c, uint32_t c2, int speed) {
 	
 	int i;
 
-	for (i = 0; i < 9; i++) {
+	for (i = 0; i < bottleCirc; i++) {
 
 		doStripe(c , i);
-		doStripe(strip.Color(0, 0, 255), i-5);
-		delay(100);
+		doStripe(c2, i - ( bottleCirc/2 ));
+		delay(speed * 100);
 		turnItOff();
 
 	}
@@ -141,11 +133,11 @@ void doChart(int theAmount) {
 
 	for (i=0; i < theAmount; i++) {
 	
-		strip.setPixelColor(i, strip.Color(255,   0,   0));
+		strip.setPixelColor(i, red);
 
 	}
 
-	strip.setPixelColor(theAmount, strip.Color(0,   255,   0));
+	strip.setPixelColor(theAmount, green);
 
 	strip.show();
 

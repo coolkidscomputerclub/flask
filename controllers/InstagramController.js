@@ -3,13 +3,13 @@
 
 Instagram = require("instagram-node-lib");
 
-console.log("Instagram init");
+console.log("Instagram Initialize!");
 
 var credentials = {
 
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://localhost:8080/instagram/realtime"
+	callback: "http://3meh.localtunnel.com/instagram/realtime"
 
 }
 
@@ -53,11 +53,11 @@ exports.index = function (req, res) {
 /* # /instagram/realtime: Real-time geo search
 ================================================== */
 
-exports.realtime = function (req, res) {
+exports.subscribe = function (req, res) {
 
 	var latitude = 50.366233,
 		longitude = -4.134134,
-		radius = 1000
+		radius = 1000;
 
 	Instagram.media.subscribe({
 
@@ -68,4 +68,27 @@ exports.realtime = function (req, res) {
 	});
 
 }
+
+exports.realtime = function (req, res) {
+
+	// Keep Instagram happy
+
+	res.send(req.query["hub.challenge"]);
+
+}
+
+exports.unsubscribe = function (req, res) {
+
+	Instagram.media.unsubscribe_all({ object: "all" });
+
+	res.send("Unsubscribed.");
+
+}
+
+
+
+
+
+
+
 

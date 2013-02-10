@@ -1,9 +1,10 @@
 /* # Import controllers
 ================================================== */
 
-var root = require("./controllers/RootController"),
-	instagram = require("./controllers/InstagramController"),
-	twitter = require("./controllers/TwitterController");
+var root = require("./controllers/rootController"),
+	instagram = require("./controllers/instagramController"),
+	twitter = require("./controllers/twitterController"),
+	api = require("./controllers/apiController");
 
 /* # Routes
 ================================================== */
@@ -20,8 +21,16 @@ module.exports = function(app) {
 
 	app.get("/instagram", instagram.index);
 
+	app.get("/instagram/subscribe", instagram.subscribe);
+
 	app.get("/instagram/realtime", instagram.realtime);
 
+	app.get("/instagram/unsubscribe", instagram.unsubscribe);
+
 	app.get("/twitter", twitter.index);
+
+	app.get("/api", api.index);
+
+	app.get("/api/:type", api.show);
 
 }

@@ -3,7 +3,7 @@
 
 var twitter = require("ntwitter");
 
-console.log("Twitter init");
+console.log("Twitter Initialize!");
 
 var credentials = {
 

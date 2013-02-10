@@ -3,6 +3,7 @@
 
 var Post = require("../models/post.js");
 
+// Home
 exports.index = function (req, res) {
 
 	res.render("index", {
@@ -13,9 +14,8 @@ exports.index = function (req, res) {
 
 }
 
+// Save a test record with specified type
 exports.save = function (req, res) {
-
-	// Save test post to database
 
 	var post = new Post ({
 
@@ -38,9 +38,8 @@ exports.save = function (req, res) {
 
 }
 
+// Show all records matching specified type
 exports.show = function (req, res) {
-
-	// Show all posts
 
 	Post.find({ postType: req.params.type }, function (err, posts) {
 
@@ -56,9 +55,8 @@ exports.show = function (req, res) {
 
 }
 
+// Return count of records matching specified type
 exports.count = function (req, res) {
-
-	// Count records
 
 	Post.count({ postType: req.params.type }, function (err, count) {
 

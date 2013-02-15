@@ -33,6 +33,7 @@ void setup() {
   strip.show();
 }
 
+int brightness = 0;
 
 void loop() {
 
@@ -46,9 +47,17 @@ void loop() {
   // colorChase(strip.Color(127,   0, 127), 50); // Violet
 
   // Fill the entire strip with...
-  colorWipe(strip.Color(1,   0,   0), 50);  // Red
-  colorWipe(strip.Color(  0, 1,   0), 50);  // Green
-  colorWipe(strip.Color(  0,   0, 1), 50);  // Blue
+  colorWipe(strip.Color(60,   0,   0), 50);  // Red
+  colorWipe(strip.Color(  0, 60,   0), 50);  // Green
+  colorWipe(strip.Color(  0,   0, 60), 50);  // Blue
+
+  brightness += 10;
+
+  if (brightness >= 127) {
+
+    brightness = 0;
+
+  }
 
   // rainbow(10);
   // rainbowCycle(0);  // make it go through the cycle fairly fast

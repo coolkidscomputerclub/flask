@@ -4,8 +4,6 @@
 
 void setupGyro() {
 
-	Serial.begin(115200);
-
 	pinMode(CS_PIN,  OUTPUT);
 	pinMode(CLK_PIN, OUTPUT);
 	pinMode(DIO_PIN, OUTPUT);

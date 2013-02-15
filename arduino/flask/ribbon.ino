@@ -1,53 +1,13 @@
-#include "LPD8806.h"
-#include "SPI.h"
-
-#define CS_PIN      5
-#define CLK_PIN     6
-#define DIO_PIN     7
-#define STATUS_LED  2
-
-int nLEDs = 32;
-
-int dataPin  = 2;
-int clockPin = 3;
-
-int ledVal, prevLedVal;
-
-int bottleCirc = 5;
-
-LPD8806 strip = LPD8806(nLEDs, dataPin, clockPin);
-
-uint32_t const red = strip.Color(1, 0, 0);
-uint32_t const green = strip.Color(0, 1, 0);
-uint32_t const blue = strip.Color(0, 0, 1);
-
-
-void setup() {
-
-	gyroSetup();
+void setupRibbon() {
   
 	strip.begin();
 
 	strip.show();
 
-	//turnItOff();
+	turnItOff();
 	 
 }
-	
-void loop() {
 
-	// makeChart();
-
-	doRing(red,0);
-	doRing(green,1);
-	doRing(blue,2);
-
-	// loopStripe(red, blue, 1);
-
-	// doStripe(red, 0);
-
-
-}
 
 void makeChart() {
 

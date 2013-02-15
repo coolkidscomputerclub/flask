@@ -2,7 +2,7 @@
 /* # Accelerometer
 ================================================== */
 
-void gyroSetup() {
+void setupGyro() {
 
 	Serial.begin(115200);
 

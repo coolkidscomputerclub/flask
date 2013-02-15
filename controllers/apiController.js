@@ -10,33 +10,49 @@ var Post = require("../models/post.js");
 
 exports.index = function (req, res) {
 
-	return Post.find(function (err, posts) {
+	Post.find(
 
-		if (err) {
+		{},
 
-			return console.log(err);
+		{ __v: false },
+
+		function (err, posts) {
+
+			if (err) {
+
+				console.log(err)
+
+			}
+
+			res.send(posts);
 
 		}
 
-		return res.send(posts);
-
-	});
+	);
 
 }
 
 exports.show = function (req, res) {
 
-	return Post.find({ postType: req.params.type }, function (err, posts) {
+	Post.find(
 
-		if (err) {
+		{ postType: req.params.type },
 
-			return console.log(err);
+		{ __v: false },
+
+		function (err, posts) {
+
+			if (err) {
+
+				console.log(err);
+
+			}
+
+			res.send(posts);
 
 		}
 
-		return res.send(posts);
-
-	});
+	);
 
 }
 

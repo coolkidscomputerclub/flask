@@ -28,7 +28,7 @@ var connections = {
 
         self.mqttClient = mqtt.createClient(port, "127.0.0.1", self.bindMqttClientEvents);
 
-        console.log("Connections initialised!");
+        console.log("Connections initialized!");
 
         return self;
 

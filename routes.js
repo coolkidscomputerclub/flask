@@ -23,7 +23,9 @@ module.exports = function(app) {
 
 	app.get("/instagram/subscribe", instagram.subscribe);
 
-	app.get("/instagram/realtime", instagram.realtime);
+	app.get("/instagram/realtime", instagram.realtime_get);
+
+	app.post("/instagram/realtime", instagram.realtime_post);
 
 	app.get("/instagram/unsubscribe", instagram.unsubscribe);
 

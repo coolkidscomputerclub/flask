@@ -8,10 +8,6 @@ var express = require("express"),
     path = require("path"),
     helpers = require("./helpers");
 
-/* # Database
-================================================== */
-
-
 /* # App config
 ================================================== */
 

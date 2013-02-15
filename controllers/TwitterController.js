@@ -3,7 +3,9 @@
 
 var twitter = require("ntwitter");
 
-console.log("Twitter Initialize!");
+var Post = require("../models/post.js");
+
+console.log("Twitter Initialized!");
 
 var credentials = {
 
@@ -49,6 +51,27 @@ exports.index = function (req, res) {
 			stream.on('data', function (tweet) {
 
 				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
+
+				// Save to database
+
+				var post = new Post ({
+
+					content: tweet.text,
+					postType: "tweet"
+
+				});
+
+				post.save(function (err) {
+
+					if (err) {
+
+						console.log(err);
+
+					}
+
+					console.log("Tweet saved to database");
+
+				});
 
 				res.render("twitter_index", {
 

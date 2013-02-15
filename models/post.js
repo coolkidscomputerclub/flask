@@ -6,9 +6,10 @@ var mongoose = require("mongoose"),
 	ObjectId = Schema.ObjectId;
 
 var postSchema = new Schema ({
-	content: String,
-	postDate: { type: String, default: Date.now },
-	postType: String
+	content: 	String,
+	postType: 	String,
+	postDate: 	{ type: String, default: Date.now },
+	viewed: 	{ type: Boolean, default: false }
 });
 
 module.exports = mongoose.model("Post", postSchema);

@@ -13,21 +13,11 @@ var websocket = {
         var ws = io.attach(server),
             self = this;
 
-        mediator.subscribe("mqtt.publish", function (payload) {
+        mediator.subscribe("websocket:broadcast", function (data) {
 
-            console.log(payload);
+            console.log("Socket broadcast: ", data);
 
-            // send payload (from mqtt) to connected WebSockets
-            self.broadcast(JSON.stringify(payload));
-
-        });
-
-        mediator.subscribe("mqtt.joined", function (payload) {
-
-            console.log(payload);
-
-            // inform connected WebSocket clients when an MQTT client joins
-            self.broadcast(JSON.stringify(payload.data));
+            self.broadcast(JSON.stringify(data));
 
         });
 

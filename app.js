@@ -3,6 +3,8 @@
 
 global._ = require("underscore");
 
+global.fluid = [];
+
 /* # Dependencies & initialize
 ================================================== */
 
@@ -18,7 +20,8 @@ var express = require("express"),
 var port = 8080,
     app = express(),
     server = http.createServer(app),
-    connections = require("./connections")(server, port);
+    connections = require("./connections")(server, port),
+    instagram = require("./instagram");
 
 app.configure(function () {
 
@@ -47,10 +50,6 @@ app.configure("development", function () {
     app.use(express.errorHandler());
 
 });
-
-// Flask contents
-
-global.fluid = [];
 
 // Load all controllers
 

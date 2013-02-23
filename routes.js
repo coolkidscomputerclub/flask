@@ -13,15 +13,11 @@ module.exports = function(app) {
 
 	app.get("/", root.index);
 
-	app.get("/instagram", instagram.index);
-
-	app.get("/instagram/subscribe", instagram.subscribe);
-
 	app.get("/instagram/realtime", instagram.realtime_get);
 
 	app.post("/instagram/realtime", instagram.realtime_post);
 
-	app.get("/instagram/unsubscribe", instagram.unsubscribe);
+	// app.get("/instagram/unsubscribe", instagram.unsubscribe);
 
 	app.get("/twitter", twitter.index);
 

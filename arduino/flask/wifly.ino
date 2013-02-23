@@ -13,6 +13,8 @@ void setupWiFly() {
 
 		Serial.println("Could not connect to " + String(ssid));
 
+        errorLights();
+
 	}
 
 }

@@ -9,24 +9,24 @@ void setupRibbon() {
 }
 
 
-void makeChart() {
+// void makeChart() {
 
-	ledVal = map(GetValue(B1000), 0, 500, 0, 32);
+// 	ledVal = map(GetValue(B1000), 0, 500, 0, 32);
 
-    delay(50);
+//     delay(50);
 
-	turnItOff();
+// 	turnItOff();
 
-	if(ledVal != prevLedVal) {
+// 	if(ledVal != prevLedVal) {
 
-		doChart(ledVal);
+// 		doChart(ledVal);
 	
-		//Serial.println("ledVal is " + String(ledVal) + " true value is " + String(GetValue(B1000)));
-	}
+// 		//Serial.println("ledVal is " + String(ledVal) + " true value is " + String(GetValue(B1000)));
+// 	}
 
-	prevLedVal = ledVal;
+// 	prevLedVal = ledVal;
 	
-}
+// }
 
 void doStripe(uint32_t c, int offset){
 
@@ -125,4 +125,20 @@ void colorWipe(uint32_t c, uint8_t wait) {
 		strip.show();
 		delay(wait);
 	}
+
 }
+
+void errorLights(){
+	int i;
+
+	for (i=0; i < nLEDs; i++) {
+	
+		strip.setPixelColor(i, red);
+
+	}
+
+	strip.show();
+
+}
+
+

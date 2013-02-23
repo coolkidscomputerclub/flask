@@ -1,3 +1,8 @@
+/* # Globals
+================================================== */
+
+global._ = require("underscore");
+
 /* # Dependencies & initialize
 ================================================== */
 
@@ -33,7 +38,7 @@ app.configure(function () {
 
     app.use(app.router);
 
-    app.use(express.static(path.join(__dirname, "public")));
+    app.use(express["static"](path.join(__dirname, "public")));
 
 });
 

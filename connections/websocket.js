@@ -11,13 +11,22 @@ var websocket = {
     init: function (server) {
 
         var ws = io.attach(server),
-            self = websocket;
+            self = this;
 
         mediator.subscribe("mqtt.publish", function (payload) {
 
             console.log(payload);
 
             // send payload (from mqtt) to connected WebSockets
+            self.broadcast(JSON.stringify(payload));
+
+        });
+
+        mediator.subscribe("mqtt.joined", function (payload) {
+
+            console.log(payload);
+
+            // inform connected WebSocket clients when an MQTT client joins
             self.broadcast(JSON.stringify(payload));
 
         });
@@ -71,7 +80,7 @@ var websocket = {
 
     bindEvents: function (socket) {
 
-        var self = websocket;
+        var self = this;
 
         socket.on("close", function () {
 
@@ -91,7 +100,7 @@ var websocket = {
 
     broadcast: function (payload) {
 
-        var self = websocket;
+        var self = this;
 
         for (var i in self.sockets) {
 
@@ -107,6 +116,6 @@ var websocket = {
 
 };
 
-/* Expose init method */
+/* 'return' websocket */
 
-module.exports.init = websocket.init;
+module.exports = websocket;

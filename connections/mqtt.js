@@ -39,6 +39,14 @@ var mqtt = {
 
             });
 
+            mediator.publish("mqtt.joined", {
+
+                topic: "mqtt.joined",
+
+                data: packet.client + " joined!"
+
+            });
+
             console.log("Client joined: ", client.id);
 
         });

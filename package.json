@@ -10,6 +10,7 @@
     "jade": "*",
     "mqttjs": "*",
     "websocket.io": "*",
-    "mediator-js": "*"
+    "mediator-js": "*",
+    "underscore": "*"
   }
 }

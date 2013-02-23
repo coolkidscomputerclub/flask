@@ -8,7 +8,7 @@ console.log("Instagram Initialized!");
 var credentials = {
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://3wye.localtunnel.com/instagram/realtime"
+	callback: "http://3x5a.localtunnel.com/instagram/realtime"
 };
 
 Instagram.set("client_id", credentials.clientID);
@@ -54,11 +54,13 @@ var instagram = {
 				console.log("New photo posted: ", imageURL);
 				console.log("Photo taken at: " + latitude + ", " + longitude);
 
-				mediator.publish("instagram:post", {
+				var post = {
 					type: "photo",
 					author: username,
 					content: imageURL
-				});
+				};
+
+				mediator.publish("websocket:broadcast", post);
 
 			}
 

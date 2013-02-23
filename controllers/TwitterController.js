@@ -37,28 +37,6 @@ exports.index = function (req, res) {
 
 				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
 
-				// Save tweet data
-
-				var post = {
-					type: "tweet",
-					author: tweet.user.screen_name,
-					content: tweet.text
-				};
-
-				// Push to flask
-
-				global.fluid.push(post);
-
-				console.log(global.fluid);
-
-				res.render("twitter_index", {
-
-					flaskLocation: locationBounds,
-
-					data: JSON.stringify(global.fluid)
-
-				});
-
 			});
 
 		}

@@ -4,8 +4,6 @@
 global._ = require("underscore");
 global.mediator = new require("mediator-js").Mediator();
 
-global.fluid = [];
-
 /* # Dependencies & initialize
 ================================================== */
 
@@ -20,8 +18,9 @@ var express = require("express"),
 var port = 8080,
     app = express(),
     server = http.createServer(app),
-    connections = require("./connections")(server, port),
-    instagram = require("./instagram");
+    connections = require("./connections")(server),
+    instagram = require("./instagram"),
+    twitter = require("./twitter");
 
 app.configure(function () {
 

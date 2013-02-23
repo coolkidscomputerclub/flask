@@ -25,47 +25,8 @@ var t = new twitter({
 
 exports.index = function (req, res) {
 
-	// Stream tweets
-	var plymouth = "-4.151608,50.367216,-4.127404,50.378493";
-	var locationBounds = plymouth;
-
-	console.log("***Streaming tweets from:", locationBounds + "***");
-
-	t.stream(
-
-		'statuses/filter',
-
-		{ locations: locationBounds },
-
-		function (stream) {
-
-			stream.on('data', function (tweet) {
-
-				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
-
-				// Save tweet data
-				var post = {
-					type: "tweet",
-					author: tweet.user.screen_name,
-					content: tweet.text
-				};
-
-				// Push to Flask
-				global.fluid.push(post);
-
-				console.log(global.fluid);
-
-			});
-
-		}
-
-	);
-
-	// Render view
 	res.render("index", {
-		title: "Flask",
-		twitterStatus: locationBounds,
-		instagramStatus: false
+		title: "Flask"
 	});
 
 };

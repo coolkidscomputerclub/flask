@@ -13,13 +13,9 @@ var websocket = {
         var ws = io.attach(server),
             self = this;
 
-        mediator.subscribe("websocket:broadcast", function (data) {
+        _.bindAll(this);
 
-            console.log("Socket broadcast: ", data);
-
-            self.broadcast(JSON.stringify(data));
-
-        });
+        this.bindMediatorEvents();
 
         ws.on("connection", function (socket) {
 
@@ -29,7 +25,7 @@ var websocket = {
 
             self.sockets[id] = socket;
 
-            self.bindEvents(socket);
+            self.bindSocketEvents(socket);
 
             self.sayHello(socket);
 
@@ -42,6 +38,14 @@ var websocket = {
             console.log("Message: ", message.data);
 
         });
+
+    },
+
+    bindMediatorEvents: function () {
+
+        console.log("WebSocket mediator events bound.");
+
+        mediator.subscribe("websocket:broadcast", this.broadcast);
 
     },
 
@@ -68,7 +72,7 @@ var websocket = {
 
     },
 
-    bindEvents: function (socket) {
+    bindSocketEvents: function (socket) {
 
         var self = this;
 
@@ -88,15 +92,19 @@ var websocket = {
 
     },
 
-    broadcast: function (payload) {
+    broadcast: function (data) {
 
-        var self = this;
+        var i;
 
-        for (var i in self.sockets) {
+        console.log("WebSocket broadcast: ", data);
 
-            if (self.sockets.hasOwnProperty(i)) {
+        data = JSON.stringify(data);
 
-                self.sockets[i].send(payload);
+        for (i in this.sockets) {
+
+            if (this.sockets.hasOwnProperty(i)) {
+
+                this.sockets[i].send(data);
 
             }
 

@@ -12,7 +12,7 @@ exports.realtime_post = function (req, res) {
 
 	req.body.forEach(function(notification) {
 
-		mediator.publish("instagram:post", notification);
+		mediator.publish("instagram:notification", notification);
 
 	});
 

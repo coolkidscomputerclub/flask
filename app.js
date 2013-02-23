@@ -48,6 +48,12 @@ app.configure("development", function () {
 
 });
 
+// Flask contents
+
+global.fluid = [];
+
+// Load all controllers
+
 require("./routes.js")(app);
 
 /* # Go time!

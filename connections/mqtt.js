@@ -39,11 +39,11 @@ var mqtt = {
 
             });
 
-            mediator.publish("mqtt.joined", {
+            mediator.publish("websocket:broadcast", {
 
-                topic: "mqtt.joined",
+                topic: "mqtt:joined",
 
-                data: packet.client + " joined!"
+                payload: packet.client + " joined!"
 
             });
 
@@ -66,11 +66,11 @@ var mqtt = {
 
                     });
 
-                    mediator.publish("mqtt.publish", {
+                    mediator.publish("websocket:broadcast", {
 
                         topic: packet.topic,
 
-                        data: packet.payload
+                        payload: packet.payload
 
                     });
 

@@ -1,12 +1,7 @@
 /* Dependencies */
 
-var mediator = new require("mediator-js").Mediator(),
-    websocket = require("./websocket"),
+var websocket = require("./websocket"),
     mqtt = require("./mqtt");
-
-/* Make mediator global (pubsub event mediation) */
-
-global.mediator = mediator;
 
 /* Connections */
 

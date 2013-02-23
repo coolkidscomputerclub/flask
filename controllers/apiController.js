@@ -1,10 +1,3 @@
-/* # Dependencies & initialize
-================================================== */
-
-console.log("API Initialized!");
-
-var Post = require("../models/post.js");
-
 /* # Endpoints
 ================================================== */
 
@@ -20,7 +13,7 @@ exports.index = function (req, res) {
 
 			if (err) {
 
-				console.log(err)
+				console.log(err);
 
 			}
 
@@ -30,7 +23,7 @@ exports.index = function (req, res) {
 
 	);
 
-}
+};
 
 exports.show = function (req, res) {
 
@@ -54,6 +47,6 @@ exports.show = function (req, res) {
 
 	);
 
-}
+};
 
-
+console.log("API Initialized!");

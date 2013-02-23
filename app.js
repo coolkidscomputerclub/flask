@@ -2,6 +2,7 @@
 ================================================== */
 
 global._ = require("underscore");
+global.mediator = new require("mediator-js").Mediator();
 
 global.fluid = [];
 
@@ -9,7 +10,6 @@ global.fluid = [];
 ================================================== */
 
 var express = require("express"),
-    db = require("./models/db"),
     http = require("http"),
     path = require("path"),
     helpers = require("./helpers");
@@ -50,8 +50,6 @@ app.configure("development", function () {
     app.use(express.errorHandler());
 
 });
-
-// Load all controllers
 
 require("./routes.js")(app);
 

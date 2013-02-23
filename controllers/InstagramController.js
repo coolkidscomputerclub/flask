@@ -1,5 +1,3 @@
-
-
 exports.realtime_get = function (req, res) {
 
 	res.send(req.query["hub.challenge"]);
@@ -32,10 +30,4 @@ exports.realtime_post = function (req, res) {
 
 };*/
 
-
-
-
-
-
-
-
+console.log("Instagram Initialized!");

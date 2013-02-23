@@ -2,6 +2,8 @@
 #include <WiFly.h>
 #include <PubSubClient.h>
 #include <LPD8806.h>
+#include <SimpleTimer.h>
+#include "credentials.h"
 
 #define CS_PIN      5
 #define CLK_PIN     6
@@ -12,49 +14,34 @@
 
 byte ip[] = {192, 168, 0, 4};
 
-	WiFlyClient wiFlyClient;
-	PubSubClient client(ip, 1883, callback, wiFlyClient);
+SimpleTimer timer;
+
+WiFlyClient wiFlyClient;
+PubSubClient client(ip, 1883, callback, wiFlyClient);
+
+int dataPin  = 2;
+int clockPin = 3;
+int nLEDs = 32;
+LPD8806 strip = LPD8806(nLEDs, dataPin, clockPin);
 
 char* pubTopic = "message";
 char* subTopic = "response";
 
-#include "credentials.h"
+long aX  = 0;
+long aY  = 0;
+long aZ  = 0;
 
-String strValues = "";
-int strLength = 0;
-
-int aX  = 0;
-int aY  = 0;
-int aZ  = 0;
-
-
-bool sending = true;
-
-unsigned long previousMillis;
-
-/* led */
-
-int nLEDs = 32;
-
-int dataPin  = 2;
-int clockPin = 3;
+int ldr = 0;
 int ldrPin = A0;
 
-int ledVal, prevLedVal;
-
 int bottleCirc = 5;
-
-int targetBrightness = 1;
-int brightness = 0;
-
-LPD8806 strip = LPD8806(nLEDs, dataPin, clockPin);
+bool corkIn = true;
+char corkStatus[2] = {'a', '\0'};
 
 uint32_t red = strip.Color(60, 0, 0);
 uint32_t green = strip.Color(0, 60, 0);
 uint32_t blue = strip.Color(0, 0, 60);
 uint32_t white = strip.Color(60, 60, 60);
-
-/* 	
 
 
 /* # Flask
@@ -66,13 +53,13 @@ void setup() {
 
 	setupRibbon();
 
-	// setupGyro();
+	setupGyro();
 
-	// setupLDR();
+	setupWiFly();
 
-	// setupWiFly();
+	setupPubSub();
 
-	// setupPubSub();
+	timer.setInterval(100, checkSensors);
 
 }
 
@@ -80,60 +67,68 @@ void loop() {
 
 	// makeChart();
 
-	getBrightness();
-
 	// doAll(strip.Color(brightness, brightness, brightness));
 
-	colorWipe(strip.Color(60,   0,   0), 50);  // Red
-	colorWipe(strip.Color(  0, 60,   0), 50);  // Green
-	colorWipe(strip.Color(  0,   0, 60), 50);  // Blue
-
-	// doRing(red,0);
-	// doRing(green,1);
-	// doRing(blue,2);
+	// colorWipe(strip.Color(10,   0,   0), 50);  // Red
+	// colorWipe(strip.Color(  0, 10,   0), 50);  // Green
+	// colorWipe(strip.Color(  0,   0, 10), 50);  // Blue
 
 	// loopStripe(red, blue, 1);
 
-	// doStripe(red, 0);
-
-	// -------------------
-
-	// sendGyro();
+	timer.run();
 
 }
 
-void sendGyro(){
+// int theChange, lastAX;
 
-	if (sending){
+void checkSensors(){
 
-		aX = GetValue(B1000);
-		aY = GetValue(B1001);
-		aZ = GetValue(B1010);
+	aX = GetValue(B1000);
+	aY = GetValue(B1001);
+	aZ = GetValue(B1010);
+	// theChange = abs(aX) - abs(lastAX);
 
-		Serial.print("X: ");
-		Serial.print(aX);
-		Serial.print(" Y: ");
-		Serial.print(aY);
-		Serial.print(" Z: ");
-		Serial.println(aZ);
+	ldr = analogRead(ldrPin);
 
-		// Serial.println('X: ' + aX + 'Y: ' + aY + 'Z: ' + aZ);
+	// Serial.println("x:" + String(aX) + " y:" + String(aY) + " l:" + String(ldr));	
+	// Serial.println(" l:" + String(ldr));	
+	// Serial.println(String(lastAX) + " " + aX + " " + theChange);	
+	// if (theChange > 500){
+	
+	// 	Serial.println("shake!");
 
-		// Serial.println("Payload sent: {topic: " + String(pubTopic) + ", payload: " + values + "}");
+	// }
 
-		// client.publish(pubTopic, values);
+	// lastAX = aX;
 
-		sending = false;
+	putACorkInIt();
+	
+}
 
-		previousMillis = millis();
+void putACorkInIt() {
+	bool corkIsIn;
 
-	} else {
+	if (ldr > 300) {
 
-		if (millis() - previousMillis > delayInterval) {
+		corkIsIn = false;
 
-			sending = true;
+	} else if (ldr < 300) {
 
-		}
+		corkIsIn = true;
+
+	}
+
+	if(corkIn != corkIsIn) {
+
+		Serial.println("cork is " + String(corkIsIn));
+
+		corkStatus[0] = corkIsIn;
+
+		pubTopic = "cork";
+
+		client.publish(pubTopic, corkStatus);
+
+		corkIn = corkIsIn;
 
 	}
 

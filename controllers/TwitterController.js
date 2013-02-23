@@ -1,27 +1,12 @@
-/* # Dependencies & initialize
+/* # Dependencies & Initialisation
 ================================================== */
 
-var twitter = require("ntwitter");
+var twitter = new require("ntwitter")({
 
-var Post = require("../models/post.js");
-
-console.log("Twitter Initialized!");
-
-var credentials = {
-
-	consumerKey: "YGY6Kd2DORZTiK5qIKq4Og",
-	consumerSecret: "wP1nHxjQ5gDdM16OB0zeIB8MRvRPoZpF4TKMuei4",
-	accessTokenKey: "24029639-GGfEmCUJk6n5yzrunh1EP34HjT8mcNAOLpq9iu260",
-	accessTokenSecret: "cC5jhxyPrVT8PXv6MVVi2rIEBeKqvc1duDgUtsZOk"
-
-};
-
-var t = new twitter({
-
-	consumer_key: credentials.consumerKey,
-	consumer_secret: credentials.consumerSecret,
-	access_token_key: credentials.accessTokenKey,
-	access_token_secret: credentials.accessTokenSecret
+	consumer_key: "YGY6Kd2DORZTiK5qIKq4Og",
+	consumer_secret: "wP1nHxjQ5gDdM16OB0zeIB8MRvRPoZpF4TKMuei4",
+	access_token_key: "24029639-GGfEmCUJk6n5yzrunh1EP34HjT8mcNAOLpq9iu260",
+	access_token_secret: "cC5jhxyPrVT8PXv6MVVi2rIEBeKqvc1duDgUtsZOk"
 
 });
 
@@ -38,7 +23,7 @@ exports.index = function (req, res) {
 
 	console.log("***Streaming tweets from:", locationBounds + "***");
 
-	t.stream(
+	twitter.stream(
 
 		'statuses/filter',
 
@@ -82,5 +67,4 @@ exports.index = function (req, res) {
 
 };
 
-
-
+console.log("Twitter Initialized!");

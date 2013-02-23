@@ -12,8 +12,6 @@
     "websocket.io": "*",
     "mediator-js": "*",
     "underscore": "*",
-    "mongodb": "*",
-    "mongoose": "*",
     "instagram-node-lib": "*",
     "ntwitter": "*"
   }

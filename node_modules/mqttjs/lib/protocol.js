@@ -8,7 +8,7 @@ module.exports.types = {
   3: 'publish',
   4: 'puback',
   5: 'pubrec',
-  6: 'pubrel', 
+  6: 'pubrel',
   7: 'pubcomp',
   8: 'subscribe',
   9: 'suback',
@@ -31,7 +31,7 @@ for(var k in module.exports.types) {
 module.exports.CMD_SHIFT = 4;
 module.exports.CMD_MASK = 0xF0;
 module.exports.DUP_MASK = 0x08;
-module.exports.QOS_MASK = 0x06;
+module.exports.QOS_MASK = 0x03;
 module.exports.QOS_SHIFT = 1;
 module.exports.RETAIN_MASK = 0x01;
 

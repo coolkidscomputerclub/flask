@@ -131,6 +131,13 @@ exports.deepEqual = function deepEqual (a, b) {
     return a.toString() === b.toString();
   }
 
+  if (a instanceof RegExp && b instanceof RegExp) {
+    return a.source == b.source &&
+           a.ignoreCase == b.ignoreCase &&
+           a.multiline == b.multiline &&
+           a.global == b.global;
+  }
+
   if (typeof a !== 'object' && typeof b !== 'object')
     return a == b;
 
@@ -223,8 +230,13 @@ exports.clone = function clone (obj, options) {
   if ('Date' === obj.constructor.name)
     return new obj.constructor(+obj);
 
-  if ('RegExp' === obj.constructor.name)
-    return new RegExp(obj.source);
+  if ('RegExp' === obj.constructor.name) {
+    var flags = [];
+    if (obj.global) flags.push('g');
+    if (obj.multiline) flags.push('m');
+    if (obj.ignoreCase) flags.push('i');
+    return new RegExp(obj.source, flags.join(''));
+  }
 
   if (obj instanceof ObjectId)
     return new ObjectId(obj.id);

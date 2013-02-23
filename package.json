@@ -6,11 +6,15 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.0.6",
+    "express": "~3.x",
     "jade": "*",
     "mqttjs": "*",
     "websocket.io": "*",
     "mediator-js": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "instagram-node-lib": "*",
+    "ntwitter": "*"
   }
 }

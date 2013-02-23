@@ -27,7 +27,7 @@ var websocket = {
             console.log(payload);
 
             // inform connected WebSocket clients when an MQTT client joins
-            self.broadcast(JSON.stringify(payload));
+            self.broadcast(JSON.stringify(payload.data));
 
         });
 

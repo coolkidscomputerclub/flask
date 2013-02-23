@@ -2,6 +2,7 @@
 ================================================== */
 
 global._ = require("underscore");
+global.mediator = new require("mediator-js").Mediator();
 
 /* # Dependencies & initialize
 ================================================== */
@@ -47,12 +48,6 @@ app.configure("development", function () {
     app.use(express.errorHandler());
 
 });
-
-// Flask contents
-
-global.fluid = [];
-
-// Load all controllers
 
 require("./routes.js")(app);
 

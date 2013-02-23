@@ -1,55 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-<title>{% if page.title %} {{ page.title }} | {% endif %} Flask</title>
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
-<script type="text/javascript" src="//use.typekit.net/vts7ppd.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <meta charset="utf-8">
+    <title>{% if page.title %} {{ page.title }} | Flask{% else %}Flask{% endif %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript" src="//use.typekit.net/vts7ppd.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
 
-	<header class="global-header" role="banner">
+    <span class="gradient"></span>
 
-		<div class="wrap">
+    <header class="global-header" role="banner">
 
-			<h1><a href="{{ site.url }}">Flask</a></h1>
+        <div class="wrap">
 
-			<nav class="global-nav">
+        <h1><a href="{{ site.url }}">Flask</a></h1>
 
-				<ul>
-					<li><a class="currentpage" href="#">Devblog</a></li>
-					<li>/</li>
-					<li><a href="#">About</a></li>
-				</ul>
+            <nav class="global-nav">
 
-			</nav>
+                <ul>
 
-			<div class="deco"></div>
+                    {% assign current = 'false' %}
 
-		</div>
+                    {% for post in site.posts %}
 
-	</header>
+                        {% if post.layout == "single" and page.title == post.title %}
 
-	<section class="main wrap" role="main">
+                            {% assign current = 'true' %}
 
-		{{ content }}
+                        {% endif %}
 
-	</section>
+                    {% endfor %}
 
-	<footer class="global-footer" role="contentinfo">
+                    <li><a class="{% if current == 'false' %}currentpage{% endif %}" href="{{ site.url }}{{ site.baseUrl }}" title="Follow the team's journey from start to finish">Blog</a></li>
 
-		<div class="wrap">
+                    {% for post in site.posts %}
 
-		</div>
+                        {% if post.layout == "single" %}
 
-	</footer>
+                            <li><a href="{{ site.url }}{{ site.baseUrl }}{{ post.url }}" title="{{ post.description }}" class="{% if page.title == post.title %}currentpage{% endif %}">{{ post.title }}</a></li>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="{{ site.baseurl}}/js/app.js"></script>
+                        {% endif %}
+
+                    {% endfor %}
+
+                </ul>
+
+            </nav>
+
+            <div class="deco"></div>
+
+        </div>
+
+    </header>
+
+    <section class="main wrap" role="main">
+
+        {{ content }}
+
+    </section>
+
+    <footer class="global-footer" role="contentinfo">
+
+        <div class="wrap">
+
+        </div>
+
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

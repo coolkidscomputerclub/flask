@@ -8,8 +8,9 @@
 		padding: 0;
 	}
 
-	.date {
-		color: $copy;
+	.details {
+		margin: 10px 0 0 0;
+
 	}
 
 	.words {
@@ -41,9 +42,9 @@
 			padding: 15px 0;
 		}
 
-		h2 { @include font-size(1.8); }
+		h2 { @include font-size(1.5); }
 
-		h3 { @include font-size(1.4); }
+		h3 { @include font-size(1.25); }
 
 		h4 { @include font-size(1); }
 

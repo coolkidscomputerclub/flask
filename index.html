@@ -6,13 +6,21 @@ layout: layout
 
 	{% for post in site.posts %}
 
+        {% if post.layout != "single" %}
+
 		<article class="post">
 
 			<header>
 
-				<h2><a class="title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+				<h2 class="title"><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
 
-				<span class="date">{{ post.date | date: "%d %B %Y" }}</span>
+				<ul class="details">
+
+                    <li><time datetime="{{ post.date | date: '%Y-%m-%d' }}" class="date">{{ post.date | date: "%d %B %Y" }}</time></li>
+
+                    <li>by <a href="http://twitter.com/{{ post.twitter }}" title="Click to hear more from {{ post.author }}" class="author" rel="author">{{ post.author }}</a></li>
+
+                </ul>
 
 			</header>
 
@@ -23,6 +31,8 @@ layout: layout
 			</section>
 
 		</article>
+
+        {% endif %}
 
 	{% endfor %}
 

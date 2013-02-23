@@ -44,33 +44,39 @@
 @-webkit-keyframes colorCycle {
 
 	  0% {
-	  	color: $meter-a;
-	  	border: 1px solid $meter-a;
+	  	// color: $meter-a;
+	  	// border: 1px solid $meter-a;
+	  	background-color: $meter-a;
 	  }
 
 	 20% {
-	 	color: $meter-b;
-	 	border: 1px solid $meter-b;
+	 	// color: $meter-b;
+	 	// border: 1px solid $meter-b;
+	 	background-color: $meter-b;
 	 }
 
 	 40% {
-	 	color: $meter-c;
-	 	border: 1px solid $meter-c;
+	 	// color: $meter-c;
+	 	// border: 1px solid $meter-c;
+	 	background-color: $meter-c;
 	 }
 
 	 60% {
-	 	color: $meter-d;
-	 	border: 1px solid $meter-d;
+	 	// color: $meter-d;
+	 	// border: 1px solid $meter-d;
+	 	background-color: $meter-d;
 	 }
 
 	 80% {
-	 	color: $meter-e;
-	 	border: 1px solid $meter-e;
+	 	// color: $meter-e;
+	 	// border: 1px solid $meter-e;
+	 	background-color: $meter-e;
 	 }
 
 	 100% {
-	 	color: $meter-a;
-	 	border: 1px solid $meter-a;
+	 	// color: $meter-a;
+	 	// border: 1px solid $meter-a;
+	 	background-color: $meter-a;
 	 }
 
 }

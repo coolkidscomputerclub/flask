@@ -8,7 +8,13 @@ layout: layout
 
 		<h2 class="title">{{ page.title }}</h2>
 
-		<span class="date">{{ page.date | date: "%d %B %Y" }}</span>
+        <ul class="details">
+
+            <li><time datetime="{{ page.date | date: '%Y-%m-%d' }}" class="date">{{ page.date | date: "%d %B %Y" }}</time></li>
+
+            <li>by <a href="http://twitter.com/{{ page.twitter }}" title="Click to hear more from {{ page.author }}" class="author" rel="author">{{ page.author }}</a></li>
+
+        </ul>
 
 	</header>
 

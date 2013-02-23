@@ -29,4 +29,4 @@ module.exports = function(app) {
 
 	app.get("/api/:type", api.show);
 
-}
+};

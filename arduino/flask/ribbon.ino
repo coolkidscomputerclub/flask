@@ -21,7 +21,7 @@ void makeChart() {
 
 		doChart(ledVal);
 	
-		Serial.println("ledVal is " + String(ledVal) + " true value is " + String(GetValue(B1000)));
+		//Serial.println("ledVal is " + String(ledVal) + " true value is " + String(GetValue(B1000)));
 	}
 
 	prevLedVal = ledVal;
@@ -73,6 +73,20 @@ void doRing(uint32_t c, int height) {
 
 }
 
+void doAll(uint32_t c) {
+
+	int i;
+
+	for (i = 0; i < nLEDs; i++) {
+
+		strip.setPixelColor(i, c);
+
+	}
+
+	strip.show();
+
+}
+
 void singleColour(uint32_t c,int i) {
 
 	strip.setPixelColor(i, c);
@@ -101,4 +115,14 @@ void doChart(int theAmount) {
 
 	strip.show();
 
+}
+
+void colorWipe(uint32_t c, uint8_t wait) {
+	int i;
+
+	for (i=0; i < strip.numPixels(); i++) {
+		strip.setPixelColor(i, c);
+		strip.show();
+		delay(wait);
+	}
 }

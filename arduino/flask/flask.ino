@@ -8,12 +8,12 @@
 #define DIO_PIN     7
 #define STATUS_LED  2
 
-#define delayInterval 5000
+#define delayInterval 1000
 
 byte ip[] = {192, 168, 0, 4};
 
-WiFlyClient wiFlyClient;
-PubSubClient client(ip, 1883, callback, wiFlyClient);
+	WiFlyClient wiFlyClient;
+	PubSubClient client(ip, 1883, callback, wiFlyClient);
 
 char* pubTopic = "message";
 char* subTopic = "response";
@@ -27,6 +27,7 @@ int aX  = 0;
 int aY  = 0;
 int aZ  = 0;
 
+
 bool sending = true;
 
 unsigned long previousMillis;
@@ -37,16 +38,21 @@ int nLEDs = 32;
 
 int dataPin  = 2;
 int clockPin = 3;
+int ldrPin = A0;
 
 int ledVal, prevLedVal;
 
 int bottleCirc = 5;
 
+int targetBrightness = 1;
+int brightness = 0;
+
 LPD8806 strip = LPD8806(nLEDs, dataPin, clockPin);
 
-uint32_t const red = strip.Color(1, 0, 0);
-uint32_t const green = strip.Color(0, 1, 0);
-uint32_t const blue = strip.Color(0, 0, 1);
+uint32_t red = strip.Color(60, 0, 0);
+uint32_t green = strip.Color(0, 60, 0);
+uint32_t blue = strip.Color(0, 0, 60);
+uint32_t white = strip.Color(60, 60, 60);
 
 /* 	
 
@@ -56,21 +62,31 @@ uint32_t const blue = strip.Color(0, 0, 1);
 
 void setup() {
 
-	// Give the serial some time...
+	Serial.begin(115200);
 
 	setupRibbon();
 
-	setupGyro();
+	// setupGyro();
 
-	setupWiFly();
+	// setupLDR();
 
-	setupPubSub();
+	// setupWiFly();
+
+	// setupPubSub();
 
 }
 
 void loop() {
 
-	makeChart();
+	// makeChart();
+
+	getBrightness();
+
+	// doAll(strip.Color(brightness, brightness, brightness));
+
+	colorWipe(strip.Color(60,   0,   0), 50);  // Red
+	colorWipe(strip.Color(  0, 60,   0), 50);  // Green
+	colorWipe(strip.Color(  0,   0, 60), 50);  // Blue
 
 	// doRing(red,0);
 	// doRing(green,1);
@@ -82,7 +98,7 @@ void loop() {
 
 	// -------------------
 
-	sendGyro();
+	// sendGyro();
 
 }
 
@@ -90,33 +106,22 @@ void sendGyro(){
 
 	if (sending){
 
-		strValues = "";
-
-		strValues = strValues + GetValue(B1000);
-		strValues = strValues + "," + GetValue(B1001);
-		strValues = strValues + "," + GetValue(B1010);
-
 		aX = GetValue(B1000);
 		aY = GetValue(B1001);
 		aZ = GetValue(B1010);
 
-		Serial.println("X: " + strValues);
+		Serial.print("X: ");
+		Serial.print(aX);
+		Serial.print(" Y: ");
+		Serial.print(aY);
+		Serial.print(" Z: ");
+		Serial.println(aZ);
 
-		strLength = strValues.length();
+		// Serial.println('X: ' + aX + 'Y: ' + aY + 'Z: ' + aZ);
 
-		char values[strLength + 1];
+		// Serial.println("Payload sent: {topic: " + String(pubTopic) + ", payload: " + values + "}");
 
-		for (int i = 0; i < strLength; i++) {
-
-			values[i] = strValues.charAt(i);
-
-		}
-
-		values[strLength] = '\0';
-
-		Serial.println("Payload sent: {topic: " + String(pubTopic) + ", payload: " + values + "}");
-
-		client.publish(pubTopic, values);
+		// client.publish(pubTopic, values);
 
 		sending = false;
 

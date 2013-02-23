@@ -1,13 +1,39 @@
 /* # Sockets
 ================================================== */
 
-var socket = io.connect("http://localhost:8080");
+if (Modernizr.websockets === true) {
 
-socket.on("data", function (data) {
+	console.log("WebSockets enabled!");
 
-	parseAccelReadings(data);
+	var socket = new WebSocket("ws://" + location.host);
 
-});
+	socket.onopen = function () {
+
+		console.log("Socket connected.");
+
+		socket.send("Hello server!");
+
+	};
+
+	socket.onmessage = function (message) {
+
+		// parseAccelReadings(data);
+
+		console.log("Message: ", JSON.parse(message.data));
+
+	};
+
+	socket.onclose = function () {
+
+		console.log("Socket closed.");
+
+	};
+
+} else {
+
+	console.log("WebSockets not enabled!");
+
+}
 
 /* # Accelerometer shit
 ================================================== */
@@ -106,6 +132,6 @@ document.onkeydown = function (e) {
 
 	}
 
-}
+};
 
 

@@ -1,9 +1,13 @@
+/* # Globals
+================================================== */
+
+global._ = require("underscore");
+
 /* # Dependencies & initialize
 ================================================== */
 
 var express = require("express"),
     db = require("./models/db"),
-    mqtt = require("mqttjs"),
     http = require("http"),
     path = require("path"),
     helpers = require("./helpers");
@@ -11,16 +15,14 @@ var express = require("express"),
 /* # App config
 ================================================== */
 
-var port = 1883;
-
-var app = express(),
+var port = 8080,
+    app = express(),
     server = http.createServer(app),
-    io = require("socket.io").listen(server, {log: false}),
-    connections = require("./connections")(io, mqtt, port);
+    connections = require("./connections")(server, port);
 
 app.configure(function () {
 
-    app.set("port", process.env.PORT || 8080);
+    app.set("port", process.env.PORT || port);
 
     app.set("views", __dirname + "/views");
 
@@ -36,7 +38,7 @@ app.configure(function () {
 
     app.use(app.router);
 
-    app.use(express.static(path.join(__dirname, "public")));
+    app.use(express["static"](path.join(__dirname, "public")));
 
 });
 

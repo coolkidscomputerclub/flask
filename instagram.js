@@ -8,7 +8,7 @@ console.log("Instagram Initialized!");
 var credentials = {
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://3x5a.localtunnel.com/instagram/realtime"
+	callback: "http://45dw.localtunnel.com/instagram/realtime"
 };
 
 Instagram.set("client_id", credentials.clientID);
@@ -22,11 +22,25 @@ var instagram = {
 
 	init: function () {
 
-		Instagram.media.subscribe({
+		locationID = 69922970;
 
-			lat: 50.381994,
-			lng: -4.138091,
-			radius: 5000
+		Instagram.locations.subscribe({
+
+			object_id: locationID,
+
+			complete: function (data) {
+
+				console.log("subscribed successfully");
+
+			},
+
+			error: function (errorMessage, errorObject, caller) {
+
+				console.log("Error Message", errorMessage);
+				console.log("This caused it: ", errorObject);
+				console.log("This is where it occured: ", caller);
+
+			}
 
 		});
 
@@ -40,9 +54,9 @@ var instagram = {
 
 		// console.log(notification.object_id);
 
-		Instagram.geographies.recent({
+		Instagram.locations.recent({
 
-			geography_id: notification.object_id,
+			location_id: notification.object_id,
 
 			complete: function (data) {
 
@@ -61,6 +75,14 @@ var instagram = {
 				};
 
 				mediator.publish("websocket:broadcast", post);
+
+			},
+
+			error: function (errorMessage, errorObject, caller) {
+
+				console.log("Error Message", errorMessage);
+				console.log("This caused it: ", errorObject);
+				console.log("This is where it occured: ", caller);
 
 			}
 

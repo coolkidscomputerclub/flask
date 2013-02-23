@@ -8,7 +8,6 @@ global.mediator = new require("mediator-js").Mediator();
 ================================================== */
 
 var express = require("express"),
-    db = require("./models/db"),
     http = require("http"),
     path = require("path"),
     helpers = require("./helpers");

@@ -1,9 +1,7 @@
 /* # Dependencies & initialize
 ================================================== */
 
-Instagram = require("instagram-node-lib");
-
-console.log("Instagram Initialized!");
+var Instagram = require("instagram-node-lib");
 
 var credentials = {
 
@@ -16,8 +14,6 @@ var credentials = {
 Instagram.set("client_id", credentials.clientID);
 Instagram.set("client_secret", credentials.clientSecret);
 Instagram.set("callback_url", credentials.callback);
-
-var Post = require("../models/post.js");
 
 /* # /instagram: Location-based media search
 ================================================== */
@@ -149,10 +145,4 @@ exports.unsubscribe = function (req, res) {
 
 };
 
-
-
-
-
-
-
-
+console.log("Instagram Initialized!");

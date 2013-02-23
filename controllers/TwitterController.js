@@ -14,7 +14,7 @@ var credentials = {
 	accessTokenKey: "24029639-GGfEmCUJk6n5yzrunh1EP34HjT8mcNAOLpq9iu260",
 	accessTokenSecret: "cC5jhxyPrVT8PXv6MVVi2rIEBeKqvc1duDgUtsZOk"
 
-}
+};
 
 var t = new twitter({
 
@@ -52,30 +52,25 @@ exports.index = function (req, res) {
 
 				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
 
-				// Save to database
+				// Save tweet data
 
-				var post = new Post ({
+				var post = {
+					type: "tweet",
+					author: tweet.user.screen_name,
+					content: tweet.text
+				};
 
-					content: tweet.text,
-					postType: "tweet"
+				// Push to flask
 
-				});
+				global.fluid.push(post);
 
-				post.save(function (err) {
-
-					if (err) {
-
-						console.log(err);
-
-					}
-
-					console.log("Tweet saved to database");
-
-				});
+				console.log(global.fluid);
 
 				res.render("twitter_index", {
 
-					flaskLocation: locationBounds
+					flaskLocation: locationBounds,
+
+					data: JSON.stringify(global.fluid)
 
 				});
 
@@ -85,7 +80,7 @@ exports.index = function (req, res) {
 
 	);
 
-}
+};
 
 
 

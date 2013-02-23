@@ -9,11 +9,11 @@ var credentials = {
 
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://3cr9.localtunnel.com/instagram/realtime"
+	callback: "http://3d8v.localtunnel.com/instagram/realtime"
 
 };
 
-Instagram.set("client_id", 	credentials.clientID);
+Instagram.set("client_id", credentials.clientID);
 Instagram.set("client_secret", credentials.clientSecret);
 Instagram.set("callback_url", credentials.callback);
 
@@ -49,7 +49,7 @@ exports.index = function (req, res) {
 
 	});
 
-}
+};
 
 /* # /instagram/realtime: Real-time geo search
 ================================================== */
@@ -72,7 +72,7 @@ exports.subscribe = function (req, res) {
 
 	res.send("subscribed");
 
-}
+};
 
 exports.realtime_get = function (req, res) {
 
@@ -84,7 +84,7 @@ exports.realtime_get = function (req, res) {
 
 	res.send("realtime");
 
-}
+};
 
 exports.realtime_post = function (req, res) {
 
@@ -101,8 +101,11 @@ exports.realtime_post = function (req, res) {
 				// Get new image
 
 				var imageURL = data[0].images.standard_resolution.url;
+				var latitude = data[0].location.latitude;
+				var longitude = data[0].location.longitude;
 
 				console.log("New photo posted: ", imageURL);
+				console.log("Photo taken at: " + latitude + ", " + longitude);
 
 				// Save to database
 
@@ -130,13 +133,13 @@ exports.realtime_post = function (req, res) {
 
 		});
 
-	})
+	});
 
 	// Prevent hangups
 
 	res.send("Notification recieved");
 
-}
+};
 
 exports.unsubscribe = function (req, res) {
 
@@ -144,7 +147,7 @@ exports.unsubscribe = function (req, res) {
 
 	res.send("Unsubscribed.");
 
-}
+};
 
 
 

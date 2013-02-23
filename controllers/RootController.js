@@ -1,75 +1,70 @@
-/* # Routes
+/* # Twitter credentials
 ================================================== */
 
-var Post = require("../models/post.js");
+var twitter = require("ntwitter");
 
-// Home
+console.log("Twitter Initialized!");
+
+var credentials = {
+	consumerKey: "YGY6Kd2DORZTiK5qIKq4Og",
+	consumerSecret: "wP1nHxjQ5gDdM16OB0zeIB8MRvRPoZpF4TKMuei4",
+	accessTokenKey: "24029639-GGfEmCUJk6n5yzrunh1EP34HjT8mcNAOLpq9iu260",
+	accessTokenSecret: "cC5jhxyPrVT8PXv6MVVi2rIEBeKqvc1duDgUtsZOk"
+};
+
+var t = new twitter({
+	consumer_key: credentials.consumerKey,
+	consumer_secret: credentials.consumerSecret,
+	access_token_key: credentials.accessTokenKey,
+	access_token_secret: credentials.accessTokenSecret
+});
+
+/* # Entry point
+================================================== */
+
 exports.index = function (req, res) {
 
+	// Stream tweets
+	var plymouth = "-4.151608,50.367216,-4.127404,50.378493";
+	var locationBounds = plymouth;
+
+	console.log("***Streaming tweets from:", locationBounds + "***");
+
+	t.stream(
+
+		'statuses/filter',
+
+		{ locations: locationBounds },
+
+		function (stream) {
+
+			stream.on('data', function (tweet) {
+
+				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
+
+				// Save tweet data
+				var post = {
+					type: "tweet",
+					author: tweet.user.screen_name,
+					content: tweet.text
+				};
+
+				// Push to Flask
+				global.fluid.push(post);
+
+				console.log(global.fluid);
+
+			});
+
+		}
+
+	);
+
+	// Render view
 	res.render("index", {
-
-		title: "Flask"
-
+		title: "Flask",
+		twitterStatus: locationBounds,
+		instagramStatus: false
 	});
 
-}
-
-// Save a test record with specified type
-exports.save = function (req, res) {
-
-	var post = new Post ({
-
-		content: "http://distilleryimage7.s3.amazonaws.com/ac74c78610b011e292a022000a1e8849_7.jpg",
-		postType: req.params.type
-
-	});
-
-	post.save(function (err) {
-
-		if (err) {
-
-			console.log("Error saving post");
-
-		}
-
-		res.send("Post successfully saved with type:" + req.params.type);
-
-	});
-
-}
-
-// Show all records matching specified type
-exports.show = function (req, res) {
-
-	Post.find({ postType: req.params.type }, function (err, posts) {
-
-		if (err) {
-
-			console.log("Error displaying posts");
-
-		}
-
-		res.send(posts);
-
-	});
-
-}
-
-// Return count of records matching specified type
-exports.count = function (req, res) {
-
-	Post.count({ postType: req.params.type }, function (err, count) {
-
-		if (err) {
-
-			console.log("Couldn't count posts");
-
-		}
-
-		res.send("No. of records matching " + req.params.type + ": " + count);
-
-	});
-
-}
-
-
+};

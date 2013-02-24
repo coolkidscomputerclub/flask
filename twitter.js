@@ -33,8 +33,6 @@ var twitter = {
 
 				stream.on('data', function (tweet) {
 
-					// console.log("@" + tweet.user.screen_name + ": " + tweet.text);
-
 					// Save tweet data
 					var post = {
 						type: "tweet",

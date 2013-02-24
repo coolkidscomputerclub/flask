@@ -8,7 +8,7 @@ console.log("Instagram Initialized!");
 var credentials = {
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://5a6c.localtunnel.com/instagram/realtime"
+	callback: "http://4ti2.localtunnel.com/instagram/realtime"
 };
 
 Instagram.set("client_id", credentials.clientID);

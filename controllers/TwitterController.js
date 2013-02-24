@@ -35,7 +35,7 @@ exports.index = function (req, res) {
 
 			stream.on('data', function (tweet) {
 
-				console.log("@" + tweet.user.screen_name + ": " + tweet.text);
+				// console.log("@" + tweet.user.screen_name + ": " + tweet.text);
 
 			});
 

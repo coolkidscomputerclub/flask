@@ -96,7 +96,7 @@ var websocket = {
 
         var i;
 
-        console.log("WebSocket broadcast: ", data);
+        // console.log("WebSocket broadcast: ", data);
 
         data = JSON.stringify(data);
 

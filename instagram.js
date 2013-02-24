@@ -8,7 +8,7 @@ console.log("Instagram Initialized!");
 var credentials = {
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
 	clientSecret: "6120190cbf914e59914dd615d0f4c5c8",
-	callback: "http://45dw.localtunnel.com/instagram/realtime"
+	callback: "http://5a6c.localtunnel.com/instagram/realtime"
 };
 
 Instagram.set("client_id", credentials.clientID);
@@ -20,13 +20,27 @@ Instagram.set("callback_url", credentials.callback);
 
 var instagram = {
 
+	photos: [],
+
 	init: function () {
 
-		locationID = 69922970;
+		Instagram.media.unsubscribe_all({
+			object_id: "all"
+		});
 
-		Instagram.locations.subscribe({
+		Instagram.subscriptions.list({
+			complete: function (subscriptions) {
+				console.log("subscriptions: ", subscriptions);
+			}
+		});
 
-			object_id: locationID,
+		Instagram.geographies.subscribe({
+
+			lat: 50.381994,
+
+			lng: -4.138091,
+
+			radius: 5000,
 
 			complete: function (data) {
 
@@ -46,35 +60,41 @@ var instagram = {
 
 		console.log("Subscribing...");
 
+		_.bindAll(this);
+
 		mediator.subscribe("instagram:notification", instagram.geographies);
 
 	},
 
 	geographies: function (notification) {
 
-		// console.log(notification.object_id);
+		var self = this;
 
-		Instagram.locations.recent({
+		Instagram.geographies.recent({
 
-			location_id: notification.object_id,
+			geography_id: notification.object_id,
 
 			complete: function (data) {
 
-				var imageURL = data[0].images.standard_resolution.url,
-					username = data[0].user.username,
-					latitude = data[0].location.latitude,
-					longitude = data[0].location.longitude;
+				data.forEach(function (item) {
 
-				console.log("New photo posted: ", imageURL);
-				console.log("Photo taken at: " + latitude + ", " + longitude);
+					var photo;
 
-				var post = {
-					type: "photo",
-					author: username,
-					content: imageURL
-				};
+					if (self.photos.indexOf(item.id) === -1) {
 
-				mediator.publish("websocket:broadcast", post);
+						self.photos.push(item.id);
+
+						photo = {
+							type: "photo",
+							author: item.user.username,
+							content: item.images.standard_resolution.url
+						};
+
+						mediator.publish("websocket:broadcast", photo);
+
+					}
+
+				});
 
 			},
 

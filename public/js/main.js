@@ -19,7 +19,22 @@ if (Modernizr.websockets === true) {
 
 		// parseAccelReadings(data);
 
-		console.log("Message: ", JSON.parse(message.data));
+		var data = JSON.parse(message.data),
+			$img;
+
+		console.log("Data: ", data);
+
+		if (data.type === "photo") {
+
+			$img = $("<img/>", {
+				"src": data["content"],
+				"alt": data.author,
+				"class": data["type"]
+			});
+
+			$("body").append($img);
+
+		}
 
 	};
 

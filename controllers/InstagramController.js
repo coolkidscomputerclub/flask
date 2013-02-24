@@ -10,24 +10,15 @@ exports.realtime_get = function (req, res) {
 
 exports.realtime_post = function (req, res) {
 
-	req.body.forEach(function(notification) {
+	req.body.forEach(function (notification) {
 
 		mediator.publish("instagram:notification", notification);
 
 	});
 
 	// Prevent hangups
-
-	res.send("Notification recieved");
+	res.send(200, { response: "Thanks Instagram!" });
 
 };
-
-/*exports.unsubscribe = function (req, res) {
-
-	Instagram.media.unsubscribe_all({ object: "all" });
-
-	res.send("Unsubscribed.");
-
-};*/
 
 console.log("Instagram Initialized!");

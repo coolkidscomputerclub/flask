@@ -33,14 +33,21 @@ var twitter = {
 
 				stream.on('data', function (tweet) {
 
-					// Save tweet data
-					var post = {
-						type: "tweet",
-						author: tweet.user.screen_name,
-						content: tweet.text
-					};
+					if (typeof tweet.user !== "undefined") {
 
-					mediator.publish("websocket:broadcast", post);
+						var post = {
+							type: "tweet",
+							author: tweet.user.screen_name,
+							content: tweet.text
+						};
+
+						mediator.publish("websocket:broadcast", post);
+
+					} else {
+
+						console.log("Problem Tweet: ", tweet);
+
+					}
 
 				});
 

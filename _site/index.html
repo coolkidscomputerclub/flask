@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/flask/css/main.css">
     <script type="text/javascript" src="//use.typekit.net/vts7ppd.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -19,7 +19,7 @@
 
         <div class="wrap">
 
-        <h1><a href="http://localhost:4000">Flask</a></h1>
+        <h1><a href="http://sorakasumi.github.com">Flask</a></h1>
 
             <nav class="global-nav">
 
@@ -49,7 +49,7 @@
 
                     
 
-                    <li><a class="currentpage" href="http://localhost:4000" title="Follow the team's journey from start to finish">Blog</a></li>
+                    <li><a class="currentpage" href="http://sorakasumi.github.com" title="Follow the team's journey from start to finish">Blog</a></li>
 
                     
 
@@ -67,7 +67,7 @@
 
                         
 
-                            <li><a href="http://localhost:4000/abstract" title="A concise explanation of what Flask is and why it was made" class="">Abstract</a></li>
+                            <li><a href="http://sorakasumi.github.com/abstract" title="A concise explanation of what Flask is and why it was made" class="">Abstract</a></li>
 
                         
 
@@ -75,7 +75,7 @@
 
                         
 
-                            <li><a href="http://localhost:4000/team" title="Find out more about who made Flask" class="">Team</a></li>
+                            <li><a href="http://sorakasumi.github.com/team" title="Find out more about who made Flask" class="">Team</a></li>
 
                         
 
@@ -103,7 +103,126 @@
 
 			<header>
 
-				<h2 class="title"><a href="http://localhost:4000/building-things">Building Things</a></h2>
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/inspiration">Inspiration</a></h2>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-25" class="date">25 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/benashman" title="Click to hear more from Ben Ashman" class="author" rel="author">Ben Ashman</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>When formulating the initial idea for Flask, we took to the Web to see if there were any similar projects out there. Here are some thoughts on a few of the more interesting pieces:</p>
+
+<h3>Transparency Grenade</h3>
+
+<p><a href="http://transparencygrenade.com/">The Transparency Grenade </a> is a project by Julian Oliver which aims to promote governmental and corporate transparency. Taking the form of a Soviet F1 grenade, the Transparency Grenade provides an 'iconic cure' to the back-room dealings and other questionable activity otherwise shrouded in secrecy.</p>
+
+<p>When the pin is pulled, the Transparency Grenade begins to capture network traffic and audio at the site, and proceeds to securely and anonymously stream the data to a dedicated server where it is publicly accessible.</p>
+
+<ul>
+<li>network monitoring</li>
+</ul>
+
+
+<h3>Re:Sound Bottle</h3>
+
+<p>Another source of inspiration on this project was Jun Fujiwara's Re:Sound Bottle. <a href="http://vimeo.com/42921558">Re:Sound Bottle</a> is an art piece that is designed to capture and reproduce recorded voice and other audio as music. When uncorked, Re:Sound Bottle begins recording via. a built-in microphone and processes the audio when it is re-corked, creating a remixed version of the original input, mapped to a funky beat.</p>
+
+<p>The idea of capturing sound in a bottle is an interesting one. From Kevin Costner movies to The Police, the idea of conveying a message in a bottle — whether it be written text or an audio recording — has been imagined time and time again.</p>
+
+<p>At first glance this seems to be the idea that Re:Sound Bottle is playing to. Upon second glance, however, the 'message in a bottle' metaphor begins to fade with the idea of remixing all audio that finds its way inside Re:Sound Bottle.</p>
+
+<p>Personally, I think it feels as though Jun took the project just that little bit too far over the line with the remix functionality, losing the well-executed simplicity of the 'message in a bottle' metaphor and the magic that comes along with capturing it in a physical object.</p>
+
+<p>There's nothing wrong with performing <em>one function well</em>, and that's exactly what we intend to do with Flask.</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/data">Tweets keep falling on my head</a></h2>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-25" class="date">25 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/benashman" title="Click to hear more from Ben Ashman" class="author" rel="author">Ben Ashman</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>One aspect of our last project, <a href="http://vimeo.com/56106551">Inhabit</a>, was the ability to approximately locate a user within a physical geographical space. However, we quickly came to realize that, being the über-nerds we are and considering we spend 16+ hours a day at a computer, maybe it would be more interesting to know where our peers where in cyberspace rather than physical.</p>
+
+<h2>Sniff, sniff</h2>
+
+<p>Our initial thoughts were to sniff network traffic around the home, revealing all sorts of wondrous activities, ranging from HTTP requests to file transfers and downloads. However, network traffic is pretty messy. Amongst the good, fun, meaningful stuff there usually lies a ton of nonsensical packets that hold no value in such a context.</p>
+
+<p>The idea of making something from the traffic-riddled air that surrounds us seemed exciting at first, and we even began to brainstorm ways in which to physically manifest the harvested data. One idea that floated around for a while was to create an automated typewriter that would act in a Courtroom Scribe-link manner, continuously transcribing and printing all network activity that is occurring throughout the home.</p>
+
+<p><img src="../img/typewriter.png" alt="Typewriter" /></p>
+
+<p>Ultimately, we decided against sniffing network traffic as it would prove to be an impractical method of valuable data harvesting; the ratio of signal vs. noise made the process impractical <em>at best</em>. There were better ways.</p>
+
+<h2>Geotagged media</h2>
+
+<p><strong>Why focus on the polluted air that surrounds us when a pristine cloud lies above?</strong>
+Rather than filtering out the content we wanted, we decided to go straight to the source, looking at publicly available media sources that would provide a collective 'voice' of the area surrounding the upload source.</p>
+
+<p>To do this, we would need need access to geotagged data that we can effectively map to a geographical location. Luckily, <a href="https://dev.twitter.com/docs/streaming-apis">Twitter</a> and <a href="http://instagram.com/developer/realtime/">Instagram</a> both provide real-time streaming APIs that were perfect for this job — streaming geotagged media of varying formats <strong>as it happens.</strong></p>
+
+<p>After a bit of tinkering, we found ourselves with a stable stream of tweets and photographs that we could begin to fill our Flask with.</p>
+
+<h2>Usage</h2>
+
+<ul>
+<li>Usage at special events. Conferences, degree shows etc.</li>
+</ul>
+
+
+<h2>Expansion</h2>
+
+<ul>
+<li>Vines?</li>
+<li>Foursquare checkins?</li>
+</ul>
+
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/building-things">Building Things</a></h2>
 
 				<ul class="details">
 
@@ -118,88 +237,6 @@
 			<section class="words">
 
 				<p>We want to build something real – don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; it’s been Unity this, WebSockets that. So we’re putting on our hardhats, applying some elbow grease, and making a real, physical thing. But ‘things’ are a whole different ball-game, and despite being pretty handy with an axe, none of us could be described as the crafty type. Is this going to stop us? <strong>Nope</strong>. Will we regret it? <strong>Maybe</strong>.</p>
-
-
-			</section>
-
-		</article>
-
-        
-
-	
-
-        
-
-		<article class="post">
-
-			<header>
-
-				<h2 class="title"><a href="http://localhost:4000/test">This is a second test post</a></h2>
-
-				<ul class="details">
-
-                    <li><time datetime="2013-01-15" class="date">15 January 2013</time></li>
-
-                    <li>by <a href="http://twitter.com/" title="Click to hear more from " class="author" rel="author"></a></li>
-
-                </ul>
-
-			</header>
-
-			<section class="words">
-
-				<p>Chambray keffiyeh twee delectus. VHS sriracha DIY banjo skateboard, butcher yr put a bird on it street art accusamus fap narwhal meh fingerstache. Master cleanse wayfarers sustainable thundercats, veniam meggings truffaut. Letterpress fashion axe fap, accusamus pariatur cardigan consequat. Pitchfork authentic proident flannel ugh butcher street art, exercitation ullamco banh mi vinyl iphone fugiat nihil. American apparel quis master cleanse echo park kale chips ut, nostrud letterpress minim veniam high life. Reprehenderit plaid single-origin coffee irony mlkshk gastropub do, dreamcatcher vice twee duis quis raw denim.</p>
-
-<h2>This is an h2</h2>
-
-<p>Kale chips adipisicing tumblr, cupidatat exercitation proident try-hard flannel. Sriracha id meh umami ullamco butcher cliche high life sunt. Elit viral selvage american apparel narwhal vice. Plaid synth incididunt PBR. Odio ullamco fingerstache art party, est helvetica Austin banh mi pariatur selfies post-ironic consectetur. Blue bottle eiusmod keffiyeh nulla nesciunt cupidatat occupy. Scenester cray iphone non ugh odd future.</p>
-
-<h3>This is an h3</h3>
-
-<p>Plaid food truck disrupt try-hard scenester locavore, letterpress mumblecore duis. Delectus vero jean shorts, deep v viral pork belly actually. Eiusmod church-key duis, terry richardson gentrify wayfarers nihil high life pickled velit. Sriracha neutra thundercats synth, PBR lo-fi aesthetic 3 wolf moon. Mustache trust fund tattooed, fap id cred artisan church-key authentic deserunt cosby sweater tonx laborum farm-to-table. Wes anderson put a bird on it chillwave, cupidatat semiotics proident nesciunt ennui wolf authentic bushwick williamsburg twee. Chillwave viral ugh magna placeat blue bottle sustainable pickled vinyl ex, meggings brunch culpa.</p>
-
-<h3>This is another h3</h3>
-
-<p>Voluptate gentrify Austin whatever, nisi authentic delectus aute pop-up etsy vinyl. Try-hard viral ethnic, cosby sweater aliquip wolf id brunch disrupt. Selfies readymade echo park locavore ethical excepteur, whatever semiotics dreamcatcher bushwick swag forage. 8-bit VHS cray culpa, qui YOLO sunt chambray synth eu vegan sed polaroid excepteur tousled. YOLO ea meh ut farm-to-table assumenda. Keffiyeh do cillum carles aliqua. Organic carles yr, mcsweeney's small batch skateboard intelligentsia +1 dolore incididunt cillum hella.</p>
-
-<p>Do you need some dummy text? <em>sigh</em> Of course you do.</p>
-
-<p>I bet you still use Helvetica too…</p>
-
-
-			</section>
-
-		</article>
-
-        
-
-	
-
-        
-
-		<article class="post">
-
-			<header>
-
-				<h2 class="title"><a href="http://localhost:4000/proposal">A Modest Proposal</a></h2>
-
-				<ul class="details">
-
-                    <li><time datetime="2013-01-15" class="date">15 January 2013</time></li>
-
-                    <li>by <a href="http://twitter.com/" title="Click to hear more from " class="author" rel="author"></a></li>
-
-                </ul>
-
-			</header>
-
-			<section class="words">
-
-				<p>Flask is a tangible interface between an individual and the multimedia content that <em>flows</em> throughout every aspect of their life.</p>
-
-<h2>More than just a bottle</h2>
-
-<p>Taking the form of an interactive, pourable bottle, Flask allows blah blah blah…</p>
 
 
 			</section>
@@ -231,6 +268,6 @@
     </footer>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="/flask/js/app.js"></script>
 </body>
 </html>

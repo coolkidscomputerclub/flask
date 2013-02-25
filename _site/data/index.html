@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title> Tweets keep falling on my head | Flask</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="/flask/css/main.css">
+    <script type="text/javascript" src="//use.typekit.net/vts7ppd.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+    <span class="gradient"></span>
+
+    <header class="global-header" role="banner">
+
+        <div class="wrap">
+
+        <h1><a href="http://sorakasumi.github.com">Flask</a></h1>
+
+            <nav class="global-nav">
+
+                <ul>
+
+                    
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                    <li><a class="currentpage" href="http://sorakasumi.github.com" title="Follow the team's journey from start to finish">Blog</a></li>
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                            <li><a href="http://sorakasumi.github.com/abstract" title="A concise explanation of what Flask is and why it was made" class="">Abstract</a></li>
+
+                        
+
+                    
+
+                        
+
+                            <li><a href="http://sorakasumi.github.com/team" title="Find out more about who made Flask" class="">Team</a></li>
+
+                        
+
+                    
+
+                </ul>
+
+            </nav>
+
+            <div class="deco"></div>
+
+        </div>
+
+    </header>
+
+    <section class="main wrap" role="main">
+
+        <article class="post">
+
+	<header>
+
+		<h2 class="title">Tweets keep falling on my head</h2>
+
+        <ul class="details">
+
+            <li><time datetime="2013-02-25" class="date">25 February 2013</time></li>
+
+            <li>by <a href="http://twitter.com/benashman" title="Click to hear more from Ben Ashman" class="author" rel="author">Ben Ashman</a></li>
+
+        </ul>
+
+	</header>
+
+	<section class="words">
+
+		<p>One aspect of our last project, <a href="http://vimeo.com/56106551">Inhabit</a>, was the ability to approximately locate a user within a physical geographical space. However, we quickly came to realize that, being the über-nerds we are and considering we spend 16+ hours a day at a computer, maybe it would be more interesting to know where our peers where in cyberspace rather than physical.</p>
+
+<h2>Sniff, sniff</h2>
+
+<p>Our initial thoughts were to sniff network traffic around the home, revealing all sorts of wondrous activities, ranging from HTTP requests to file transfers and downloads. However, network traffic is pretty messy. Amongst the good, fun, meaningful stuff there usually lies a ton of nonsensical packets that hold no value in such a context.</p>
+
+<p>The idea of making something from the traffic-riddled air that surrounds us seemed exciting at first, and we even began to brainstorm ways in which to physically manifest the harvested data. One idea that floated around for a while was to create an automated typewriter that would act in a Courtroom Scribe-link manner, continuously transcribing and printing all network activity that is occurring throughout the home.</p>
+
+<p><img src="../img/typewriter.png" alt="Typewriter" /></p>
+
+<p>Ultimately, we decided against sniffing network traffic as it would prove to be an impractical method of valuable data harvesting; the ratio of signal vs. noise made the process impractical <em>at best</em>. There were better ways.</p>
+
+<h2>Geotagged media</h2>
+
+<p><strong>Why focus on the polluted air that surrounds us when a pristine cloud lies above?</strong>
+Rather than filtering out the content we wanted, we decided to go straight to the source, looking at publicly available media sources that would provide a collective 'voice' of the area surrounding the upload source.</p>
+
+<p>To do this, we would need need access to geotagged data that we can effectively map to a geographical location. Luckily, <a href="https://dev.twitter.com/docs/streaming-apis">Twitter</a> and <a href="http://instagram.com/developer/realtime/">Instagram</a> both provide real-time streaming APIs that were perfect for this job — streaming geotagged media of varying formats <strong>as it happens.</strong></p>
+
+<p>After a bit of tinkering, we found ourselves with a stable stream of tweets and photographs that we could begin to fill our Flask with.</p>
+
+<h2>Usage</h2>
+
+<ul>
+<li>Usage at special events. Conferences, degree shows etc.</li>
+</ul>
+
+
+<h2>Expansion</h2>
+
+<ul>
+<li>Vines?</li>
+<li>Foursquare checkins?</li>
+</ul>
+
+
+
+	</section>
+
+</article>
+
+    </section>
+
+    <footer class="global-footer" role="contentinfo">
+
+        <div class="wrap">
+
+        </div>
+
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/flask/js/app.js"></script>
+</body>
+</html>

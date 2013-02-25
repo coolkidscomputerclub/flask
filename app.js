@@ -1,7 +1,6 @@
 /* # Globals
 ================================================== */
 
-global._ = require("underscore");
 global.mediator = new require("mediator-js").Mediator();
 
 /* # Dependencies & initialize

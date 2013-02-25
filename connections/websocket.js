@@ -1,3 +1,7 @@
+/* Utilities */
+
+var _ = require("underscore");
+
 /* Dependencies */
 
 var io = require("websocket.io");
@@ -33,19 +37,42 @@ var websocket = {
 
         });
 
-        ws.on("message", function (message) {
-
-            console.log("Message: ", message.data);
-
-        });
-
     },
 
     bindMediatorEvents: function () {
 
-        console.log("WebSocket mediator events bound.");
+        var self = this,
+            channels = ["content:update", "flow:update"];
 
-        mediator.subscribe("websocket:broadcast", this.broadcast);
+        channels.forEach(function (channel) {
+
+            mediator.subscribe(channel, function (data, channel) {
+
+                if (self.cork === false) {
+
+                    self.broadcast({
+
+                        topic: channel.namespace,
+
+                        payload: data
+
+                    });
+
+                }
+
+            });
+
+        });
+
+        mediator.subscribe("cork:update", function (data) {
+
+            console.log("Cork set: ", data);
+
+            self.cork = (data === "0") ? false : true;
+
+        });
+
+        console.log("WebSocket mediator events bound.");
 
     },
 
@@ -81,6 +108,12 @@ var websocket = {
             delete self.sockets[socket.id];
 
             console.log("Socket disconnected: ", socket.id);
+
+        });
+
+        socket.on("message", function (message) {
+
+            console.log("WebSocket [%s] message received: ", socket.id, message);
 
         });
 

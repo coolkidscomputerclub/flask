@@ -41,7 +41,7 @@ var twitter = {
 							content: tweet.text
 						};
 
-						mediator.publish("websocket:broadcast", post);
+						mediator.publish("content:update", post);
 
 					} else {
 

@@ -1,152 +1,65 @@
-/* # Sockets
-================================================== */
+var app = {
 
-if (Modernizr.websockets === true) {
+	init: function () {
 
-	console.log("WebSockets enabled!");
+		if (Modernizr.websockets === true) {
 
-	var socket = new WebSocket("ws://" + location.host);
+			console.log("WebSockets enabled!");
 
-	socket.onopen = function () {
+			this.setupSocket();
 
-		console.log("Socket connected.");
+		} else {
 
-		socket.send("Hello server!");
-
-	};
-
-	socket.onmessage = function (message) {
-
-		// parseAccelReadings(data);
-
-		var data = JSON.parse(message.data),
-			$img;
-
-		console.log("Data: ", data);
-
-		if (data.type === "photo") {
-
-			$img = $("<img/>", {
-				"src": data["content"],
-				"alt": data.author,
-				"class": data["type"]
-			});
-
-			$("body").append($img);
+			console.log("WebSockets not enabled!");
 
 		}
 
-	};
+	},
 
-	socket.onclose = function () {
+	setupSocket: function () {
 
-		console.log("Socket closed.");
+		this.socket = new WebSocket("ws://" + location.host);
 
-	};
+		this.bindSocketEvents();
 
-} else {
+	},
 
-	console.log("WebSockets not enabled!");
+	bindSocketEvents: function () {
 
-}
+		this.socket.onopen = function () {
 
-/* # Accelerometer shit
-================================================== */
+			console.log("WebSocket connected.");
 
-var accX, accY, accZ;
+			this.send(JSON.stringify("Hello server!"));
 
-function parseAccelReadings (values) {
+		};
 
-	var splitValues = values.split(",");
+		this.socket.onmessage = function (message) {
 
-	accX = splitValues[0];
-	accY = splitValues[1];
-	accZ = splitValues[2];
+			var data = JSON.parse(message.data);
 
-}
+			if (data.topic === "flow:update") {
 
+				// data.payload gives values 0, 1 or 2
 
-/* # Three.js
-================================================== */
+			} else if (data.topic === "content:update") {
 
-var camera, scene, renderer, geometry, material, mesh;
+				// data.payload gives obj with type, author, content
 
-var cnvs = document.getElementById('cnvs') ;
+			}
 
-init();
+			console.log("Data: ", data);
 
-animate();
+		};
 
-function init() {
+		this.socket.onclose = function () {
 
-	// Scene
+			console.log("WebSocket closed.");
 
-	scene = new THREE.Scene();
-
-	// Camera
-
-	camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 10000 );
-
-	camera.position.z = 250;
-
-	scene.add(camera);
-
-	// Geometry
-
-	geometry = new THREE.CubeGeometry(20, 60, 20);
-
-	mesh = new THREE.Mesh(geometry);
-
-	scene.add(mesh);
-
-	// Renderer
-
-	renderer = new THREE.WebGLRenderer(cnvs);
-
-	renderer.setSize( window.innerWidth, window.innerHeight );
-
-	document.body.appendChild( renderer.domElement );
-
-}
-
-function animate () {
-
-	requestAnimationFrame(animate);
-
-	render();
-
-}
-
-function render () {
-
-	//console.log(accX);
-
-	var rotX = accX / 6 * (Math.PI / 180);
-	var rotY = accY / 6 * (Math.PI / 180);
-	var rotZ = accZ / 6 * (Math.PI / 180);
-
-	//mesh.rotation.z += 1 * (Math.PI / 180);
-	//mesh.rotation.y += 1 * (Math.PI / 180);
-	//mesh.rotation.x += 1 * (Math.PI / 180);
-
-	//renderer.render(scene, camera);
-
-}
-
-document.onkeydown = function (e) {
-
-	switch (e.keyCode) {
-
-		case 37:
-			pourBottle("left");
-			break;
-
-		case 39:
-			pourBottle("right");
-			break;
+		};
 
 	}
 
 };
 
-
+app.init();

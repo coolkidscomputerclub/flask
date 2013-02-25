@@ -39,7 +39,7 @@ var mqtt = {
 
             });
 
-            mediator.publish("websocket:broadcast", {
+            mediator.publish("mqtt:joined", {
 
                 topic: "mqtt:joined",
 
@@ -53,32 +53,35 @@ var mqtt = {
 
         client.on("publish", function (packet) {
 
-            // publish message to all clients
-            for (var i in self.clients) {
+            console.log("MQTT publish: ", packet);
 
-                if (self.clients.hasOwnProperty(i)/* && i !== client.id*/) {
+            if (packet.topic === "cork") {
 
-                    self.clients[i].publish({
+                mediator.publish("cork:update", packet.payload);
 
-                        topic: packet.topic,
+            } else if (packet.topic === "flow") {
 
-                        payload: packet.payload
-
-                    });
-
-                    mediator.publish("websocket:broadcast", {
-
-                        topic: packet.topic,
-
-                        payload: packet.payload
-
-                    });
-
-                    console.log("Publishing received: ", self.clients[i].id, packet);
-
-                }
+                mediator.publish("flow:update", packet.payload);
 
             }
+
+            // for (var i in self.clients) {
+
+            //     if (self.clients.hasOwnProperty(i)/* && i !== client.id*/) {
+
+            //         self.clients[i].publish({
+
+            //             topic: packet.topic,
+
+            //             payload: packet.payload
+
+            //         });
+
+            //         console.log("Publishing received: ", self.clients[i].id, packet);
+
+            //     }
+
+            // }
 
         });
 

@@ -12,10 +12,14 @@ var websocket = {
 
     sockets: {},
 
+    cork: false,
+
     init: function (server) {
 
         var ws = io.attach(server),
             self = this;
+
+        console.log("Cork: ", this.cork);
 
         _.bindAll(this);
 

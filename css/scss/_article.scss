@@ -14,7 +14,7 @@
 	}
 
 	.words {
-		width: 85%;
+		width: 75%;
 		font-family: "minion-pro";
 		margin: 30px auto 0 auto;
 		text-align: left;
@@ -23,16 +23,20 @@
 
 		a {
 			padding: 0;
-			color: $white;
-			background: lighten($brand, 20%);
+			color: lighten($brand, 15%);
+			border-bottom: 1px solid lighten($brand, 15%);
 			&:hover {
-				background: lighten($brand, 40%);
-				border: none;
+				color: $brand;
+				border-bottom: 1px solid $brand;
 			}
 		}
 
 		p {
-			margin: 0 0 5px 0;
+			margin: 0 0 20px 0;
+		}
+
+		img {
+			max-width: 100%;
 		}
 
 		h2, h3, h4, h5, h6 {

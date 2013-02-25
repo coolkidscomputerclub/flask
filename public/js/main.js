@@ -46,7 +46,25 @@ var app = {
 
 				// data.payload gives obj with type, author, content
 
-				if (data.payload.type === "photo") console.log("Content: ", data.payload.content);
+				if (data.payload.type === "photo") {
+
+					var $photo = $("<img>", {
+
+						src: "//" + location.host + data.payload.content,
+						width: 100,
+						height: 100
+
+					});
+
+					$("#content").append($photo);
+
+				} else if (data.payload.type === "tweet") {
+
+					var $tweet = $("<span/>").text("@" + data.payload.author);
+
+					$("#content").append($tweet);
+
+				}
 
 			}
 

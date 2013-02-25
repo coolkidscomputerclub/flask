@@ -14,6 +14,12 @@ var websocket = {
 
     cork: false,
 
+    ledCount: 0,
+
+    updateCount: 0,
+
+    ledIncrement: 2,
+
     init: function (server) {
 
         var ws = io.attach(server),
@@ -52,7 +58,23 @@ var websocket = {
 
             mediator.subscribe(channel, function (data, channel) {
 
-                if (self.cork === false) {
+                if (self.cork === false && self.ledCount < 32) {
+
+                    self.updateCount++;
+
+                    console.log("updateCount/ledIncrement: ", self.updateCount + "/" + self.ledIncrement);
+
+                    if (self.updateCount === self.ledIncrement) {
+
+                        self.updateCount = 0;
+
+                        self.ledCount++;
+
+                        console.log("ledCount: ", self.ledCount);
+
+                        mediator.publish("fluid:update", self.ledCount);
+
+                    }
 
                     self.broadcast({
 

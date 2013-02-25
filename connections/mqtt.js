@@ -1,3 +1,7 @@
+/* Utilities */
+
+var _ = require("underscore");
+
 /* Dependencies */
 
 var mqttjs = require("mqttjs"),
@@ -11,17 +15,17 @@ var mqtt = {
 
     init: function () {
 
-        var self = mqtt;
+        _.bindAll(this);
 
-        self.mqttServer = mqttjs.createServer(self.bindEvents).listen(port);
+        this.mqttServer = mqttjs.createServer(this.bindEvents).listen(port);
 
     },
 
     bindEvents: function (client) {
 
-        console.log("Binding mqtt server events.");
+        console.log("Binding MQTT client events.");
 
-        var self = mqtt;
+        var self = this;
 
         client.on("connect", function (packet) {
 
@@ -36,6 +40,22 @@ var mqtt = {
                 topic: "response",
 
                 payload: "Hi, " + client.id + "!"
+
+            });
+
+            mediator.subscribe("fluid:update", function (data) {
+
+                var packet = {
+
+                    topic: "fluid",
+
+                    payload: "" + data
+
+                };
+
+                console.log("fluid:update received: ", packet);
+
+                client.publish(packet);
 
             });
 
@@ -87,17 +107,19 @@ var mqtt = {
 
         client.on("subscribe", function (packet) {
 
-            var granted = [];
+            var granted = [],
+                i,
+                j;
 
-            for (var i = 0; i < packet.subscriptions.length; i++) {
+            for (i = 0, j = packet.subscriptions.length; i < j; i++) {
 
-                granted.push(packet.subscriptions[i].qos);
+                granted.push(packet.qos);
 
             }
 
             client.suback({granted: granted});
 
-            console.log("Subscribe received: ", packet);
+            console.log("Subscribe received: ", packet, granted);
 
         });
 
@@ -133,4 +155,4 @@ var mqtt = {
 
 /* Expose init method */
 
-module.exports.init = mqtt.init;
+module.exports = mqtt;

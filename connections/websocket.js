@@ -14,6 +14,8 @@ var websocket = {
 
     cork: false,
 
+    pouring: false,
+
     ledCount: 0,
 
     updateCount: 0,
@@ -51,42 +53,61 @@ var websocket = {
 
     bindMediatorEvents: function () {
 
-        var self = this,
-            channels = ["content:update", "flow:update"];
+        var self = this;
 
-        channels.forEach(function (channel) {
+        mediator.subscribe("content:update", function (data, channel) {
 
-            mediator.subscribe(channel, function (data, channel) {
+            if (self.cork === false && self.ledCount < 32 && self.pouring === false) {
 
-                if (self.cork === false && self.ledCount < 32) {
+                self.updateCount++;
 
-                    self.updateCount++;
+                if (self.updateCount === self.ledIncrement) {
 
-                    console.log("updateCount/ledIncrement: ", self.updateCount + "/" + self.ledIncrement);
+                    self.updateCount = 0;
 
-                    if (self.updateCount === self.ledIncrement) {
+                    self.ledCount++;
 
-                        self.updateCount = 0;
+                    console.log("ledCount: ", self.ledCount);
 
-                        self.ledCount++;
-
-                        console.log("ledCount: ", self.ledCount);
-
-                        mediator.publish("fluid:update", self.ledCount);
-
-                    }
-
-                    self.broadcast({
-
-                        topic: channel.namespace,
-
-                        payload: data
-
-                    });
+                    mediator.publish("fluid:update", self.ledCount);
 
                 }
 
-            });
+                self.broadcast({
+
+                    topic: channel.namespace,
+
+                    payload: data
+
+                });
+
+            }
+
+        });
+
+        mediator.subscribe("flow:update", function (data, channel) {
+
+            if (self.cork === false) {
+
+                if (data > 0) {
+
+                    self.pouring = true;
+
+                } else {
+
+                    self.pouring = false;
+
+                }
+
+                self.broadcast({
+
+                    topic: channel.namespace,
+
+                    payload: data
+
+                });
+
+            }
 
         });
 
@@ -139,7 +160,33 @@ var websocket = {
 
         socket.on("message", function (message) {
 
-            console.log("WebSocket [%s] message received: ", socket.id, message);
+            message = JSON.parse(message);
+
+            if (message.topic === "content:consumed") {
+
+                if (self.cork === false && self.ledCount >= 0) {
+
+                    self.updateCount--;
+
+                    if (self.updateCount < 0) {
+
+                        self.updateCount = self.ledIncrement - 1;
+
+                        self.ledCount--;
+
+                        console.log("ledCount: ", self.ledCount);
+
+                        mediator.publish("fluid:update", self.ledCount);
+
+                    }
+
+                }
+
+            } else {
+
+                console.log("WebSocket [%s] message received: ", socket.id, message);
+
+            }
 
         });
 

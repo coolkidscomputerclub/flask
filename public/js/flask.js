@@ -18,11 +18,11 @@ Droplet.prototype = {
 	init: function() {
 		this.x = 0;
 		this.y = 0;
-		this.width = 100;
-		this.height = 100;
+		this.width = 25;
+		this.height = 25;
 		this.dX = Math.random() - 0.5;
 		this.dY = Math.random() - 0.5;
-		this.vel = 5.0;
+		this.vel = 8;
 		this.dropping = true;
 		this.dropScale = 0;
 		if ( this.type === "photo" ) {
@@ -55,7 +55,7 @@ Droplet.prototype = {
 			ctx.fillStyle = "white";
 			ctx.textAlign = "center";
     		ctx.font = "24pt Helvetica";
-    		ctx.fillText(this.src, 256, 232, 500);
+    		ctx.fillText(this.src, 256, 270, 500);
     		this.image = new Image();
 		}
 		this.image.src = c.toDataURL("image/png");
@@ -80,41 +80,48 @@ Droplet.prototype = {
 
     	var self = this;
     	
-    	//if (this.dropping) {
-    		this.width -= 1;
-    		this.height -= 1;
-    		this.vel -= (this.vel > 0) ? 0.01 : 0;
-    		if (this.width < 20) {
-    			this.x += this.dX * this.vel;
-    			this.y += this.dY * this.vel;
-    			//if (this.vel <= 0.1) {
-    				this.dropping = false;
-    			//}
-    			self.dropScale += 0.1;
-    		}
-    	/*
-    	} else {
-    		this.x += this.dX * this.vel;
-    		this.y += this.dY * this.vel;
-    		this.width += 1;
-    		this.height += 1;
-    	}*/
+		if (!self.dropping) {
+			if (self.width < 512) {
+				self.width += 1;
+				self.height += 1;
+			}
+		}
+		else {
+			self.width -= 1;
+			self.height -= 1;
+			if (self.width <= 20) {
+				self.dropping = false;
+				self.vel = 2.0;
+			}
+		}
+
+		self.dropScale += 0.1;
+		self.x += self.dX * self.vel;
+		self.y += self.dY * (self.vel / 2);
+
     },
 
     draw: function( ctx ) {
     	var self = this;
     	if (this.isReady()) {
 	        ctx.globalAlpha = 0.8;
+	        ctx.fillStyle = this.color;
+        	
 	        if (!self.dropping) {
+	        	ctx.beginPath();
+				ctx.arc( self.x, self.y, self.width/2, 0, TWO_PI );
+				ctx.closePath();
+				ctx.fill();
 	        	ctx.drawImage(self.image, self.x - (self.width / 2), self.y - (self.height / 2), self.width, self.height);
 	        }
 	        else {
-	        	//ctx.beginPath();
-	        	//ctx.arc( this.x, this.y, 50, 0, TWO_PI );
-	        	ctx.fillStyle = this.color;
-	        	ctx.fillRect( self.x - (self.width/2), self.y - (self.width/2), self.width, self.height);
-	        	ctx.fill();
-	    	}
+	        	//ctx.fillRect( self.x - (self.width/2), self.y - (self.width/2), self.width, self.height);
+	        	ctx.beginPath();
+				ctx.arc( self.x, self.y, self.width/2, 0, TWO_PI );
+				ctx.closePath();
+				ctx.fill();
+	        }
+
 	    	ctx.globalCompositeOperation = 'lighter';
 	        ctx.globalAlpha = 1.0;
 	    }
@@ -166,8 +173,9 @@ var main = {
 		}
 
 		this.flask.pour = function() {
+			self.releaseDrop();
 			self.flowStart = self.flask.now;
-			console.log("Beginning to pour: " + self.flowStart);
+			// console.log("Beginning to pour: " + self.flowStart);
 		}
 
 		this.flask.draw = function() {
@@ -175,15 +183,24 @@ var main = {
 			
 			for (d in self.pool) {
 				var d = self.pool[d];
+				// draw ripple behind drop
 				if (d.dropScale > 0 && d.dropScale < 10) {
 					flask.save();
 					flask.translate(flask.width / 2, flask.height / 2);
-					flask.fillStyle = 'rgba(200,200,200,'+ (1.0 - (d.dropScale / 10)) + ')';
+					flask.strokeStyle = 'rgba(200,200,200,'+ (1.0 - (d.dropScale / 10)) + ')';
 					flask.scale(d.dropScale, d.dropScale);
 					flask.globalCompositeOperation = 'lighter';
-					flask.fillRect(-50, -50, 100, 100);
-					//flask.beginPath();
-	        		//flask.arc( -50, -50, 100, 0, TWO_PI );
+
+					//draw a circle at original scale
+					flask.lineWidth = 1;
+					flask.fillStyle = "transparent";
+					flask.beginPath();
+					flask.arc( 0, 0, 25, 0, TWO_PI );
+					flask.closePath();
+					flask.stroke();
+					
+					//flask.fillRect(-50, -50, 100, 100);
+					
 					flask.restore();
 				}
 				flask.save();

@@ -30,3 +30,11 @@ exports.index = function (req, res) {
 	});
 
 };
+
+exports.flo = function (req, res) {
+
+	res.render("flo", {
+		title: "Flask"
+	});
+
+};

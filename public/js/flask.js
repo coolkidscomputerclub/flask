@@ -105,7 +105,6 @@ Droplet.prototype = {
     	var self = this;
     	if (this.isReady()) {
 	        ctx.globalAlpha = 0.8;
-	        console.log(self.dropping);
 	        if (!self.dropping) {
 	        	ctx.drawImage(self.image, self.x - (self.width / 2), self.y - (self.height / 2), self.width, self.height);
 	        }
@@ -140,7 +139,8 @@ var main = {
 		this.spillRate = 0;
 
 		this.socket;
-		this.flowRate = 1;
+		this.flowRate = 0;
+		this.flowStart = 0;
 		this.dropCount = 0;
 
 		this.flask = Sketch.create({
@@ -152,9 +152,22 @@ var main = {
 		}
 
 		this.flask.update = function() {
+			if (self.flowRate > 0) {
+				var dT = self.flask.now - self.flowStart;
+				//console.log("Time elapsed: " + dT);
+				if (dT > (1000 / self.flowRate)) {
+					self.releaseDrop();
+					self.flowStart = self.flask.now;
+				}
+			}
 			for (d in self.pool) {
 				self.pool[d].move();
 			}
+		}
+
+		this.flask.pour = function() {
+			self.flowStart = self.flask.now;
+			console.log("Beginning to pour: " + self.flowStart);
 		}
 
 		this.flask.draw = function() {
@@ -192,14 +205,36 @@ var main = {
 
 	enqueueDrop: function(params) {
 		var drop = new Droplet(this.dropCount, params.type, params.content);
-		this.pool.push(drop);
-		this.dropCount++;
+		this.queue.push(drop);
 		flog((params.type === "photo") ? "P" : "T");
 	},
 
 	releaseDrop: function() {
-		// take first drop out of queue and put into pool
-		flog((d.type === "photo") ? "(P)" : "(T)");
+		if (this.queue.length > 0) {
+			// take first drop out of queue and put into pool
+			var d = this.queue.shift();
+			this.pool.push(d);
+			this.dropCount++;
+			flog((d.type === "photo") ? "(P)" : "(T)");
+		}
+	},
+
+	setFlowRate: function(rate) {
+		
+		var self = this;
+
+		if (self.flowRate != rate) {
+			if (rate == 2) {
+				flog("FLOWWWING");
+				self.flask.pour();
+			} else if (rate == 1) {
+				flog("FLOWING");
+				self.flask.pour();
+			} else {
+				flog("STOPPING");
+			}
+		}
+		self.flowRate = rate;
 	},
 
 	//
@@ -227,7 +262,7 @@ var main = {
 			var data = JSON.parse(message.data);
 			if (data.topic === "flow:update") {
 				// data.payload gives values 0, 1 or 2
-				self.flowRate = data.payload;
+				self.setFlowRate(data.payload);
 
 			} else if (data.topic === "content:update") {
 				// data.payload gives obj with type, author, content
@@ -249,7 +284,7 @@ var main = {
 		
 		$(window).on('keyup', function(event) {
 			
-			//console.log(event.keyCode);
+			// console.log(event.keyCode);
 
 			if (event.keyCode == 192)
 				toggleDebug();
@@ -260,6 +295,18 @@ var main = {
 			if (event.keyCode == 84) 
 				self.enqueueDrop({type:"tweet", content:"blargh"});		
 			
+			if (event.keyCode == 32)
+				self.releaseDrop();
+
+			if (event.keyCode == 48)
+				self.setFlowRate(0);
+
+			if (event.keyCode == 49)
+				self.setFlowRate(1);
+
+			if (event.keyCode == 50)
+				self.setFlowRate(2);
+
 		});
 	}
 

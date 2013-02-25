@@ -9,7 +9,7 @@ We want to build something real. Don’t get me wrong, software’s flippin’ c
 
 But ‘things’ are a far-cry from lines of code and despite being pretty handy with an axe, none of us could be described as the crafty type. Is this going to stop us? **Nope**. Will we regret it? **Maybe**.
 
-The concept *seems* fairly simple on the surface – cut the bottom off a bottle, ‘frost’ it, construct a base to house the Arduino and a suitable power source, scaffold an LED matrix within the cavity, and finally fix the base in place. OK, even as I type this out I’m beginning to see where we might run into problems. I mean, how do you even cut glass? Alas, we’re obviously getting bogged down in the details – we’d best acquire the component parts before deciding how to bodge them together.
+On the surface the concept *seems* fairly simple – cut the bottom off a bottle, ‘frost’ it, construct a base to house the Arduino and a suitable power source, scaffold an LED matrix within the cavity, and finally fix the base in place. OK, even as I type this out I’m beginning to see where we might run into problems. I mean, how do you even cut glass? Alas, we’re obviously getting bogged down in the details – we’d best acquire the component parts before deciding how to bodge them together.
 
 ## A Recipe for Disaster
 

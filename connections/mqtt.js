@@ -15,9 +15,25 @@ var mqtt = {
 
     init: function () {
 
+        var self = this;
+
         _.bindAll(this);
 
         this.mqttServer = mqttjs.createServer(this.bindEvents).listen(port);
+
+        mediator.subscribe("fluid:update", function (data) {
+
+            var packet = {
+
+                topic: "fluid",
+
+                payload: "" + data
+
+            };
+
+            self.broadcast(packet);
+
+        });
 
     },
 
@@ -35,6 +51,7 @@ var mqtt = {
 
             self.clients[client.id] = client;
 
+            // say hi
             client.publish({
 
                 topic: "response",
@@ -43,21 +60,8 @@ var mqtt = {
 
             });
 
-            mediator.subscribe("fluid:update", function (data) {
-
-                var packet = {
-
-                    topic: "fluid",
-
-                    payload: "" + data
-
-                };
-
-                console.log("fluid:update received: ", packet);
-
-                client.publish(packet);
-
-            });
+            // tell them what state the bottle should be in
+            mediator.publish("fluid:update", flask.ledCount);
 
             mediator.publish("mqtt:joined", {
 
@@ -67,13 +71,13 @@ var mqtt = {
 
             });
 
-            console.log("Client joined: ", client.id);
+            console.log("MQTT client joined: ", client.id);
 
         });
 
         client.on("publish", function (packet) {
 
-            console.log("MQTT publish: ", packet);
+            console.log("MQTT publish received: ", client.id, packet.topic, packet.payload);
 
             if (packet.topic === "cork") {
 
@@ -83,25 +87,11 @@ var mqtt = {
 
                 mediator.publish("flow:update", packet.payload);
 
+            } else if (packet.topic === "fluid") {
+
+                self.broadcast(packet);
+
             }
-
-            // for (var i in self.clients) {
-
-            //     if (self.clients.hasOwnProperty(i)/* && i !== client.id*/) {
-
-            //         self.clients[i].publish({
-
-            //             topic: packet.topic,
-
-            //             payload: packet.payload
-
-            //         });
-
-            //         console.log("Publishing received: ", self.clients[i].id, packet);
-
-            //     }
-
-            // }
 
         });
 
@@ -139,6 +129,8 @@ var mqtt = {
 
             delete self.clients[client.id];
 
+            console.log("MQTT client left: ", client.id);
+
         });
 
         client.on("error", function (error) {
@@ -148,6 +140,22 @@ var mqtt = {
             console.log("Error: ", error);
 
         });
+
+    },
+
+    broadcast: function (packet) {
+
+        for (var i in this.clients) {
+
+            if (this.clients.hasOwnProperty(i)) {
+
+                this.clients[i].publish(packet);
+
+            }
+
+        }
+
+        console.log("MQTT broadcast: ", packet.topic, packet.payload);
 
     }
 

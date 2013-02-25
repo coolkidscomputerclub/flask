@@ -12,22 +12,12 @@ var websocket = {
 
     sockets: {},
 
-    cork: false,
-
-    pouring: false,
-
-    ledCount: 0,
-
-    updateCount: 0,
-
-    ledIncrement: 2,
+    socketCount: 0,
 
     init: function (server) {
 
         var ws = io.attach(server),
             self = this;
-
-        console.log("Cork: ", this.cork);
 
         _.bindAll(this);
 
@@ -40,6 +30,10 @@ var websocket = {
             socket.id = id;
 
             self.sockets[id] = socket;
+
+            self.socketCount++;
+
+            mediator.publish("websocket:joined");
 
             self.bindSocketEvents(socket);
 
@@ -55,67 +49,9 @@ var websocket = {
 
         var self = this;
 
-        mediator.subscribe("content:update", function (data, channel) {
+        mediator.subscribe("websocket:broadcast", function (data) {
 
-            if (self.cork === false && self.ledCount < 32 && self.pouring === false) {
-
-                self.updateCount++;
-
-                if (self.updateCount === self.ledIncrement) {
-
-                    self.updateCount = 0;
-
-                    self.ledCount++;
-
-                    console.log("ledCount: ", self.ledCount);
-
-                    mediator.publish("fluid:update", self.ledCount);
-
-                }
-
-                self.broadcast({
-
-                    topic: channel.namespace,
-
-                    payload: data
-
-                });
-
-            }
-
-        });
-
-        mediator.subscribe("flow:update", function (data, channel) {
-
-            if (self.cork === false) {
-
-                if (data > 0) {
-
-                    self.pouring = true;
-
-                } else {
-
-                    self.pouring = false;
-
-                }
-
-                self.broadcast({
-
-                    topic: channel.namespace,
-
-                    payload: data
-
-                });
-
-            }
-
-        });
-
-        mediator.subscribe("cork:update", function (data) {
-
-            console.log("Cork set: ", data);
-
-            self.cork = (data === "0") ? false : true;
+            self.broadcast(data);
 
         });
 
@@ -154,6 +90,10 @@ var websocket = {
 
             delete self.sockets[socket.id];
 
+            self.socketCount--;
+
+            mediator.publish("websocket:left");
+
             console.log("Socket disconnected: ", socket.id);
 
         });
@@ -162,25 +102,9 @@ var websocket = {
 
             message = JSON.parse(message);
 
-            if (message.topic === "content:consumed") {
+            if (typeof message.topic !== "undefined") {
 
-                if (self.cork === false && self.ledCount >= 0) {
-
-                    self.updateCount--;
-
-                    if (self.updateCount < 0) {
-
-                        self.updateCount = self.ledIncrement - 1;
-
-                        self.ledCount--;
-
-                        console.log("ledCount: ", self.ledCount);
-
-                        mediator.publish("fluid:update", self.ledCount);
-
-                    }
-
-                }
+                mediator.publish(message.topic, message.payload);
 
             } else {
 

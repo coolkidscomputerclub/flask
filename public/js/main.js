@@ -46,6 +46,8 @@ var app = {
 
 				// data.payload gives obj with type, author, content
 
+				if (data.payload.type === "photo") console.log("Content: ", data.payload.content);
+
 			}
 
 			console.log("Data: ", data);

@@ -116,7 +116,9 @@ Droplet.prototype = {
 			self.dO += 0.01;
 			if (self.dO >= 0.8)
 				self.dO = 0.8;
-		} else if (self.lifeTime > 1800) {
+		}
+		if (self.lifeTime > 1800) {
+			// console.log(self.id + " REACHED END OF ITS LIFETIME..");
 			self.dead = true;
 		}
 
@@ -199,10 +201,10 @@ var main = {
 				if (!d.dead) {
 					d.move();
 				} else {	
-					console.log("DEAD!");
+					// console.log(d.id + " DEAD!");
 					$('#c'+d.id).remove();
 					self.pool.splice(i,1);
-					self.dropCount--;
+					// self.dropCount--;
 				}
 			}
 
@@ -255,6 +257,7 @@ var main = {
 		var drop = new Droplet(this.dropCount, params.type, params.content, author);
 		drop.dummy = isDummy;
 		this.queue.push(drop);
+		this.dropCount++;
 		flog((params.type === "photo") ? "P" : "T");
 	},
 
@@ -269,7 +272,6 @@ var main = {
 			if (!d.dummy) {
 				self.socket.send(JSON.stringify({topic:"content:consumed", payload: null}));
 			}
-			this.dropCount++;
 			flog((d.type === "photo") ? "(P)" : "(T)");
 		}
 	},

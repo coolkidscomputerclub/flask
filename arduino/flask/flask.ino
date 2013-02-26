@@ -12,7 +12,7 @@
 
 #define delayInterval 1000
 
-byte ip[] = {192, 168, 0, 2};
+byte ip[] = {192, 168, 0, 5};
 
 Timer t;
 
@@ -88,7 +88,27 @@ void loop() {
 		
 	}
 
-	Serial.println(client.connected());
+	// delay(3000);
+
+	// client.disconnect();
+
+	// delay(3000);
+
+	// client.connected()
+
+	if (!client.connected() && pubSubRun) {
+
+		Serial.println("lost connection");
+
+		pubSubRun = false;
+
+		client.disconnect();
+
+		delay(5000);
+
+		setupPubSub();
+
+	}
 
 }
 

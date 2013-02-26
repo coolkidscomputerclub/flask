@@ -1,8 +1,8 @@
 /* # Import controllers
 ================================================== */
 
-var root = require("./controllers/rootController"),
-	instagram = require("./controllers/instagramController");
+var root = require("./controllers/RootController"),
+	instagram = require("./controllers/InstagramController");
 
 /* # Routes
 ================================================== */

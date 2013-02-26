@@ -267,7 +267,7 @@ var main = {
 			var d = this.queue.shift();
 			this.pool.push(d);
 			if (!d.dummy) {
-				self.socket.send(JSON.stringify({topic:"flow:update", payload: null}));
+				self.socket.send(JSON.stringify({topic:"content:consumed", payload: null}));
 			}
 			this.dropCount++;
 			flog((d.type === "photo") ? "(P)" : "(T)");
@@ -321,7 +321,13 @@ var main = {
 
 			} else if (data.topic === "content:update") {
 				// data.payload gives obj with type, author, content
-				self.enqueueDrop(data.payload), false;
+				self.enqueueDrop(data.payload, false);
+
+			} else if (data.topic === "content:archive") {
+				var content = data.payload;
+				for (i in content) {
+					self.enqueueDrop(content[i], false);
+				}
 			}
 		};
 

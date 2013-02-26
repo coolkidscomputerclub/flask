@@ -20,11 +20,21 @@ Droplet.prototype = {
 		this.y = 0;
 		this.width = 25;
 		this.height = 25;
-		this.dX = Math.random() - 0.5;
-		this.dY = Math.random() - 0.5;
+		this.maxSize = 256 + (Math.random() * 256);
+		this.dX = 0.1 + Math.random() - 0.5;
+		this.dY = 0.1 + Math.random() - 0.5;
+		this.dO = 0;
+		//this.rotation = 0;
+		// this.spin = Math.random() * (Math.PI/2);
+		// this.spin *= (Math.random() > 0.5) ? 1 : -1;
+		// this.spin /= 1000;
 		this.vel = 8;
 		this.dropping = true;
 		this.dropScale = 0;
+		this.lifeTime = 0;
+		this.dead = false;
+		this.dummy = false;
+
 		if ( this.type === "photo" ) {
 			this.color = 'orange';
 			this.image = new Image();
@@ -81,10 +91,11 @@ Droplet.prototype = {
     	var self = this;
     	
 		if (!self.dropping) {
-			if (self.width < 512) {
+			if (self.width < self.maxSize) {
 				self.width += 1;
 				self.height += 1;
 			}
+			// self.rotation += self.spin;
 		}
 		else {
 			self.width -= 1;
@@ -98,31 +109,42 @@ Droplet.prototype = {
 		self.dropScale += 0.1;
 		self.x += self.dX * self.vel;
 		self.y += self.dY * (self.vel / 2);
+		self.lifeTime += 1;
+		if (self.lifeTime > 1200) {
+			self.dO += 0.01;
+			if (self.dO >= 0.8)
+				self.dO = 0.8;
+		} else if (self.lifeTime > 1800) {
+			self.dead = true;
+		}
 
     },
 
     draw: function( ctx ) {
     	var self = this;
     	if (this.isReady()) {
-	        ctx.globalAlpha = 0.8;
 	        ctx.fillStyle = this.color;
-        	
+
 	        if (!self.dropping) {
 	        	ctx.beginPath();
-				ctx.arc( self.x, self.y, self.width/2, 0, TWO_PI );
+				ctx.arc( self.x, self.y, self.width/2 - 2, 0, TWO_PI );
 				ctx.closePath();
-				ctx.fill();
+				ctx.globalAlpha = 0.8 - self.dO;
+				if (self.type == "tweet") {
+					ctx.fill();
+				}
+				ctx.clip();
 	        	ctx.drawImage(self.image, self.x - (self.width / 2), self.y - (self.height / 2), self.width, self.height);
+	        	ctx.globalAlpha = 1.0;
 	        }
 	        else {
 	        	//ctx.fillRect( self.x - (self.width/2), self.y - (self.width/2), self.width, self.height);
+	        	ctx.fillStyle = this.color;
 	        	ctx.beginPath();
 				ctx.arc( self.x, self.y, self.width/2, 0, TWO_PI );
 				ctx.closePath();
 				ctx.fill();
 	        }
-
-	    	ctx.globalCompositeOperation = 'lighter';
 	        ctx.globalAlpha = 1.0;
 	    }
     }
@@ -159,6 +181,7 @@ var main = {
 		}
 
 		this.flask.update = function() {
+
 			if (self.flowRate > 0) {
 				var dT = self.flask.now - self.flowStart;
 				//console.log("Time elapsed: " + dT);
@@ -167,9 +190,20 @@ var main = {
 					self.flowStart = self.flask.now;
 				}
 			}
-			for (d in self.pool) {
-				self.pool[d].move();
+
+			var d;
+			for (i in self.pool) {
+				d = self.pool[i];
+				if (!d.dead) {
+					d.move();
+				} else {	
+					console.log("DEAD!");
+					$('#c'+d.id).remove();
+					self.pool.splice(i,1);
+					self.dropCount--;
+				}
 			}
+
 		}
 
 		this.flask.pour = function() {
@@ -181,22 +215,23 @@ var main = {
 		this.flask.draw = function() {
 			var flask = self.flask;
 			
-			for (d in self.pool) {
-				var d = self.pool[d];
+			for (i in self.pool) {
+				var d = self.pool[i];
+				
 				// draw ripple behind drop
 				if (d.dropScale > 0 && d.dropScale < 10) {
 					flask.save();
 					flask.translate(flask.width / 2, flask.height / 2);
 					flask.strokeStyle = 'rgba(200,200,200,'+ (1.0 - (d.dropScale / 10)) + ')';
 					flask.scale(d.dropScale, d.dropScale);
-					flask.globalCompositeOperation = 'lighter';
 
 					//draw a circle at original scale
 					flask.lineWidth = 1;
 					flask.fillStyle = "transparent";
 					flask.beginPath();
-					flask.arc( 0, 0, 25, 0, TWO_PI );
+					flask.arc( 0, 0, d.width / 2, 0, TWO_PI );
 					flask.closePath();
+					flask.globalCompositeOperation = 'lighter';
 					flask.stroke();
 					
 					//flask.fillRect(-50, -50, 100, 100);
@@ -209,28 +244,28 @@ var main = {
 				flask.restore();
 			}
 
-			// for (d in self.pool) {
-			// 	flask.save();
-			// 	flask.translate(flask.width / 2, flask.height / 2);
-			// 	self.pool[d].draw(flask);
-			// 	flask.restore();
-			// }
-
 		}
 
 	},
 
-	enqueueDrop: function(params) {
+	enqueueDrop: function(params, isDummy) {
 		var drop = new Droplet(this.dropCount, params.type, params.content);
+		drop.dummy = isDummy;
 		this.queue.push(drop);
 		flog((params.type === "photo") ? "P" : "T");
 	},
 
 	releaseDrop: function() {
+
+		var self = this;
+
 		if (this.queue.length > 0) {
 			// take first drop out of queue and put into pool
 			var d = this.queue.shift();
 			this.pool.push(d);
+			if (!d.dummy) {
+				self.socket.send(JSON.stringify({topic:"flow:update", payload: null}));
+			}
 			this.dropCount++;
 			flog((d.type === "photo") ? "(P)" : "(T)");
 		}
@@ -283,7 +318,7 @@ var main = {
 
 			} else if (data.topic === "content:update") {
 				// data.payload gives obj with type, author, content
-				self.enqueueDrop(data.payload);
+				self.enqueueDrop(data.payload), false;
 			}
 		};
 
@@ -307,10 +342,10 @@ var main = {
 				toggleDebug();
 
 			if (event.keyCode == 80) 
-				self.enqueueDrop({type:"photo", content:"/img/test.jpg"});
+				self.enqueueDrop({type:"photo", content:"/img/test.jpg"}, true);
 
 			if (event.keyCode == 84) 
-				self.enqueueDrop({type:"tweet", content:"blargh"});		
+				self.enqueueDrop({type:"tweet", content:"blargh"}, true);		
 			
 			if (event.keyCode == 32)
 				self.releaseDrop();

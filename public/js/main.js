@@ -56,6 +56,10 @@ var app = {
 
 				self.content.push(data.payload);
 
+			} else if (data.topic === "content:archive") {
+
+				self.content = data.payload;
+
 			}
 
 			console.log("Data: ", data);

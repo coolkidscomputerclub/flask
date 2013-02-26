@@ -1,5 +1,7 @@
 var flask = {
 
+    content: [],
+
     cork: false,
 
     pouring: false,
@@ -9,8 +11,6 @@ var flask = {
     updateCount: 0,
 
     ledIncrement: 2,
-
-    sockets: 0,
 
     init: function () {
 
@@ -26,7 +26,11 @@ var flask = {
 
         mediator.subscribe("content:update", function (data, channel) {
 
-            if (self.cork === false && self.ledCount < 32 && self.pouring === false && self.sockets > 0) {
+            if (self.cork === false && self.ledCount < 32 && self.pouring === false) {
+
+                self.content.push(data);
+
+                console.log("Content added: ", self.content.length);
 
                 self.updateCount++;
 
@@ -100,6 +104,8 @@ var flask = {
 
             if (self.cork === false && self.ledCount >= 0) {
 
+                self.content.shift();
+
                 self.updateCount--;
 
                 if (self.updateCount < 0) {
@@ -120,13 +126,13 @@ var flask = {
 
         mediator.subscribe("websocket:joined", function () {
 
-            self.sockets++;
+            mediator.publish("websocket:broadcast", {
 
-        });
+                topic: "content:archive",
 
-        mediator.subscribe("websocket:left", function () {
+                payload: self.content
 
-            self.sockets--;
+            });
 
         });
 

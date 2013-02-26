@@ -307,10 +307,24 @@ body, html {
       width: 200px;
       border-radius: 50% 50%;
       overflow: hidden; }
+      .makers .maker .avatar:hover img {
+        border: 5px solid #411b75;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s; }
       .makers .maker .avatar img {
         height: 200px;
         width: 200px;
-        margin: 0 100px 100px 0; }
+        margin: 0 100px 100px 0;
+        border-radius: 50% 50%;
+        border: none;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s; }
     .makers .maker .name {
       margin: 20px 0 0 0;
       text-align: center;

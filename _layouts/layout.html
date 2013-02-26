@@ -41,7 +41,7 @@
 
                     {% for post in site.posts %}
 
-                        {% if post.layout == "single" %}
+                        {% if post.isSingle %}
 
                             <li><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="{{ post.description }}" class="{% if page.title == post.title %}currentpage{% endif %}">{{ post.title }}</a></li>
 

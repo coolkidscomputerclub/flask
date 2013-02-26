@@ -12,7 +12,7 @@
 
 #define delayInterval 1000
 
-byte ip[] = {192, 168, 0, 5};
+byte ip[] = {178, 79, 187, 163};
 
 Timer t;
 
@@ -35,7 +35,7 @@ int ldr = 0;
 int ldrPin = A0;
 
 int bottleCirc = 5;
-char flowStatus[2] = "0"; 
+char flowStatus[2] = "0";
 
 int currentFluid = 0;
 int newFluid = 20;
@@ -84,8 +84,8 @@ void loop() {
 
 	if (pubSubRun) {
 
-		client.loop();	
-		
+		client.loop();
+
 	}
 
 	// delay(3000);
@@ -113,7 +113,7 @@ void loop() {
 }
 
 void fadeBetween(int cPos, int nPos){
-	
+
 	int i;
 
 	if (nPos - cPos > 0) {
@@ -123,14 +123,14 @@ void fadeBetween(int cPos, int nPos){
 			fadeTo(i, 2, 0, 30);
 
 		}
-		
+
 	} else {
 
 		for (i = cPos; i > nPos; i--){
 
 			fadeTo(i, 0, 0, 0);
 
-		} 
+		}
 
 	}
 
@@ -153,11 +153,11 @@ void checkSensors(){
 	// Serial.print(",");
 	// Serial.println(aZ);
 
-	// Serial.println("x:" + String(aX) + " y:" + String(aY) + " l:" + String(ldr));	
-	// Serial.println(" l:" + String(ldr));	
-	// Serial.println(String(lastAX) + " " + aX + " " + theChange);	
+	// Serial.println("x:" + String(aX) + " y:" + String(aY) + " l:" + String(ldr));
+	// Serial.println(" l:" + String(ldr));
+	// Serial.println(String(lastAX) + " " + aX + " " + theChange);
 	// if (theChange > 500){
-	
+
 	// 	Serial.println("shake!");
 
 	// }
@@ -193,10 +193,10 @@ void checkSensors(){
 		sendFlow();
 
 	}
-	
+
 }
 
-void sendCork() {	
+void sendCork() {
 
 	if (pubSubRun) client.publish("cork", newCork);
 
@@ -216,7 +216,7 @@ void sendCork() {
 
 }
 
-void sendFlow() {	
+void sendFlow() {
 
 	if (pubSubRun) client.publish("flow", newFlow);
 

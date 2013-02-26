@@ -31,6 +31,16 @@
 			}
 		}
 
+		ul {
+			margin: 20px 0;
+
+			li:before {
+				content: "— ";
+				color: $brand;
+			}
+
+		}
+
 		p {
 			margin: 0 0 20px 0;
 		}

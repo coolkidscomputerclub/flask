@@ -29,7 +29,7 @@
 
                     {% for post in site.posts %}
 
-                        {% if post.layout == "single" and page.title == post.title %}
+                        {% if post.isSingle == true and page.title == post.title %}
 
                             {% assign current = 'true' %}
 

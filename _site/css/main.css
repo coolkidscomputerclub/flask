@@ -267,6 +267,11 @@ body, html {
       .post .words a:hover {
         color: #411b75;
         border-bottom: 1px solid #411b75; }
+    .post .words ul {
+      margin: 20px 0; }
+      .post .words ul li:before {
+        content: "— ";
+        color: #411b75; }
     .post .words p {
       margin: 0 0 20px 0; }
     .post .words img {

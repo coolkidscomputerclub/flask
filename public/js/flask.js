@@ -117,7 +117,7 @@ Droplet.prototype = {
 			if (self.dO >= 0.8)
 				self.dO = 0.8;
 		}
-		if (self.lifeTime > 1800) {
+		if (self.lifeTime > 1400) {
 			// console.log(self.id + " REACHED END OF ITS LIFETIME..");
 			self.dead = true;
 		}
@@ -283,10 +283,12 @@ var main = {
 		if (self.flowRate != rate) {
 			if (rate == 2) {
 				flog("FLOWWWING");
-				self.flask.pour();
+				if (self.flowRate == 0)
+					self.flask.pour();
 			} else if (rate == 1) {
 				flog("FLOWING");
-				self.flask.pour();
+				if (self.flowRate == 0)
+					self.flask.pour();
 			} else {
 				flog("STOPPING");
 			}
@@ -382,7 +384,7 @@ var main = {
 //
 
 function flog(message, values) {
-	$('#debug').append(" === " + message);
+	$('#debug').append(" = " + message);
 	if (values instanceof Array) {
 		var v = ": ";
 		for (var i in values) {

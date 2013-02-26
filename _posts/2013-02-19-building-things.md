@@ -23,6 +23,12 @@ On the surface the concept *seems* fairly simple – cut the bottom off a bottle
 
 Even the first item on the list, a bottle, is harder than it sounds; when was the last time you walked past the ‘custom glass bottle shop’ on your local high street? My guess is never. The closest thing we could think of was an artisanal glassblower – should those even exist – but just saying those words made my purse strings tighten and so we opted to find rather than fabricate.
 
+Many "high-street" products come in glass bottles but when you specify down to rounded clear glass bottles the choice is greatly narrowed. Discounting iconically shaped or logo embossed bottles we decided that the good old classic milk bottle is probably the best bet. We just have to cross our fingers and hope that all the tech will fit.
+
+As it turns out milk bottles aren't even particularly easy to find either… When was the last time you saw a milkman? The idea of having to order hundreds of bottles from a trade supplier was not a pleasant one. Luckily local drink hole "The Dairy" has it's own cheesy gimmick of serving cocktails in the very same bottles we were after. 
+
+We rolled up on The Dairy around closing time, cash in hand, hoping to score a bottle or two. To our delight the bar scrubbing ships captain said we could have a few free of charge.  Trying not to milk the situation we asked for six in case of third party, fire or theft.
+
 I foresee things getting a little ‘scrapheap challenge’ for this project, but you do what you can with what you have.
 
 Let the games begin!

@@ -2,7 +2,7 @@
 ================================================== */
 
 var root = require("./controllers/RootController"),
-	instagram = require("./controllers/instagramController");
+	instagram = require("./controllers/InstagramController");
 
 /* # Routes
 ================================================== */

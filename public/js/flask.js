@@ -5,11 +5,12 @@
 // Droplet
 //
 
-var Droplet = function(id, type, source) {
+var Droplet = function(id, type, source, author) {
 	this.id = id;
 	this.type = type;
 	this.src = (type === "photo") ? "http://" + location.host : "";
 	this.src += source;
+	this.author = author;
 	this.init();
 }
 
@@ -64,8 +65,9 @@ Droplet.prototype = {
 		else {
 			ctx.fillStyle = "white";
 			ctx.textAlign = "center";
-    		ctx.font = "24pt Helvetica";
-    		ctx.fillText(this.src, 256, 270, 500);
+    		ctx.font = "24pt Helvetica Neue";
+    		prettifyTweet(ctx, this.src, this.author);
+    		//ctx.fillText(this.src, 256, 270, 500);
     		this.image = new Image();
 		}
 		this.image.src = c.toDataURL("image/png");
@@ -249,7 +251,8 @@ var main = {
 	},
 
 	enqueueDrop: function(params, isDummy) {
-		var drop = new Droplet(this.dropCount, params.type, params.content);
+		var author = (params.author) ? params.author : null;
+		var drop = new Droplet(this.dropCount, params.type, params.content, author);
 		drop.dummy = isDummy;
 		this.queue.push(drop);
 		flog((params.type === "photo") ? "P" : "T");
@@ -345,7 +348,7 @@ var main = {
 				self.enqueueDrop({type:"photo", content:"/img/test.jpg"}, true);
 
 			if (event.keyCode == 84) 
-				self.enqueueDrop({type:"tweet", content:"blargh"}, true);		
+				self.enqueueDrop({type:"tweet", content:"blargh is a sweet test tweet"}, true);		
 			
 			if (event.keyCode == 32)
 				self.releaseDrop();
@@ -382,7 +385,22 @@ function flog(message, values) {
 }
 
 function toggleDebug() {
-	$('#surgery').toggle();
+	$('#surgery, #debug').toggle();
+}
+
+function prettifyTweet(context, text, author) {
+	console.log("TWEET LENGTH: " + text.length);
+	var amountRows = (text.length >= 84) ? 5 : 3;
+
+	var nextGap; 
+	var i = 0;
+	// while (text.indexOf(" ") != -1) {
+	// 	nextGap = text.indexOf(" ");
+	// 	//context.fillText(text, 256, 270, 500+(i*24));
+	// 	//i++;
+	// }
+	context.fillText(text, 256, 270, 500+(i*24));
+
 }
 
 

@@ -12,14 +12,12 @@ var websocket = {
 
     sockets: {},
 
-    cork: false,
+    socketCount: 0,
 
     init: function (server) {
 
         var ws = io.attach(server),
             self = this;
-
-        console.log("Cork: ", this.cork);
 
         _.bindAll(this);
 
@@ -33,6 +31,10 @@ var websocket = {
 
             self.sockets[id] = socket;
 
+            self.socketCount++;
+
+            mediator.publish("websocket:joined");
+
             self.bindSocketEvents(socket);
 
             self.sayHello(socket);
@@ -45,34 +47,11 @@ var websocket = {
 
     bindMediatorEvents: function () {
 
-        var self = this,
-            channels = ["content:update", "flow:update"];
+        var self = this;
 
-        channels.forEach(function (channel) {
+        mediator.subscribe("websocket:broadcast", function (data) {
 
-            mediator.subscribe(channel, function (data, channel) {
-
-                if (self.cork === false) {
-
-                    self.broadcast({
-
-                        topic: channel.namespace,
-
-                        payload: data
-
-                    });
-
-                }
-
-            });
-
-        });
-
-        mediator.subscribe("cork:update", function (data) {
-
-            console.log("Cork set: ", data);
-
-            self.cork = (data === "0") ? false : true;
+            self.broadcast(data);
 
         });
 
@@ -111,13 +90,27 @@ var websocket = {
 
             delete self.sockets[socket.id];
 
+            self.socketCount--;
+
+            mediator.publish("websocket:left");
+
             console.log("Socket disconnected: ", socket.id);
 
         });
 
         socket.on("message", function (message) {
 
-            console.log("WebSocket [%s] message received: ", socket.id, message);
+            message = JSON.parse(message);
+
+            if (typeof message.topic !== "undefined") {
+
+                mediator.publish(message.topic, message.payload);
+
+            } else {
+
+                console.log("WebSocket [%s] message received: ", socket.id, message);
+
+            }
 
         });
 

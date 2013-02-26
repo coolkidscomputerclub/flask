@@ -2,6 +2,7 @@
 ================================================== */
 
 global.mediator = new require("mediator-js").Mediator();
+global.flask = require("./flask").init();
 
 /* # Dependencies & initialize
 ================================================== */

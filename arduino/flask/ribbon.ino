@@ -4,141 +4,95 @@ void setupRibbon() {
 
 	strip.show();
 
-	turnItOff();
+	int i, j = 33, x, y = 4;
+
+	for(i = 0; i < j; i++) {
+
+		for(x = 0; x < y; x++) {
+
+			leds[i][x] = 0;
+
+		}
+
+	}
 	 
 }
 
-
-// void makeChart() {
-
-// 	ledVal = map(GetValue(B1000), 0, 500, 0, 32);
-
-//     delay(50);
-
-// 	turnItOff();
-
-// 	if(ledVal != prevLedVal) {
-
-// 		doChart(ledVal);
-	
-// 		//Serial.println("ledVal is " + String(ledVal) + " true value is " + String(GetValue(B1000)));
-// 	}
-
-// 	prevLedVal = ledVal;
-	
-// }
-
-void doStripe(uint32_t c, int offset){
+void fadeTo(int led, int r, int g, int b){
 
 	int i;
 
-	for (i = 0; i < (nLEDs / bottleCirc) + 1; i++) {
+	 
 
-		strip.setPixelColor(i * bottleCirc + offset, c);
+	float rInc, gInc, bInc, steps = 40.0, _r = (float) leds[led][0], _g = (float) leds[led][1], _b = (float) leds[led][2];
 
-	}
+	rInc = (r - _r) / steps;
+	gInc = (g - _g) / steps;
+	bInc = (b - _b) / steps;
 
-	strip.show();
+	for (i = 0; i < abs(steps); i++) {
 
-}
+		_r += rInc;
+		_g += gInc;
+		_b += bInc;
 
-void loopStripe(uint32_t c, uint32_t c2, int speed) {
-	
-	int i;
+		strip.setPixelColor(led - 1, strip.Color(abs(_r), abs(_g), abs(_b)));
 
-	for (i = 0; i < bottleCirc; i++) {
-
-		doStripe(c , i);
-		doStripe(c2, i - ( bottleCirc/2 ));
-		delay(speed * 100);
-		turnItOff();
+		strip.show();
 
 	}
 
+	leds[led][0] = r;
+	leds[led][1] = g;
+	leds[led][2] = b;
+	// leds[led][3] = a;
+
 }
 
-void doRing(uint32_t c, int height) {
+void fadeAll(int r, int g, int b) {
+	int led = 1;
+	float rInc, gInc, bInc, steps = 40.0, _r = (float) leds[led][0], _g = (float) leds[led][1], _b = (float) leds[led][2];
+	int i, j = abs(steps), x;
 
-	int i;
+	rInc = (r - _r) / steps;
+	gInc = (g - _g) / steps;
+	bInc = (b - _b) / steps;
 
-	int fillStart = height * bottleCirc;
+	for (i = 0; i < j ; i++) {
 
-	for (i = fillStart; i < fillStart + bottleCirc; i++) {
+		_r += rInc;
+		_g += gInc;
+		_b += bInc;
 
-		strip.setPixelColor(i, c);
+		for (x = 0; x < currentFluid; x++) {
+
+			strip.setPixelColor(x, strip.Color(abs(_r), abs(_g), abs(_b)));
+
+		}
+
+		strip.show();
 
 	}
 
-	strip.show();
+	for (i = 1; i < currentFluid + 1; i++) {
 
-}
-
-void doAll(uint32_t c) {
-
-	int i;
-
-	for (i = 0; i < nLEDs; i++) {
-
-		strip.setPixelColor(i, c);
-
+		leds[i][0] = r;
+		leds[i][1] = g;
+		leds[i][2] = b;
+		
 	}
 
-	strip.show();
 
 }
 
-void singleColour(uint32_t c,int i) {
-
-	strip.setPixelColor(i, c);
-
-	strip.show();
-
-}
-
-void turnItOff() {
+void allOff() {
 	int i;
 
 	for(i=0; i<strip.numPixels(); i++) strip.setPixelColor(i, 0);
 
-}
-
-void doChart(int theAmount) {
-	int i;
-
-	for (i=0; i < theAmount; i++) {
-	
-		strip.setPixelColor(i, red);
-
-	}
-
-	strip.setPixelColor(theAmount, green);
-
 	strip.show();
+		
+	// Serial.println("turn off");
 
 }
-
-void colorWipe(uint32_t c, uint8_t wait) {
-	int i;
-
-	for (i=0; i < strip.numPixels(); i++) {
-		strip.setPixelColor(i, c);
-		strip.show();
-		delay(wait);
-	}
-
-}
-
-void errorLights(){
-	int i;
-
-	for (i=0; i < nLEDs; i++) {
-	
-		strip.setPixelColor(i, red);
-
-	}
-
-	strip.show();
-
-}
-
 

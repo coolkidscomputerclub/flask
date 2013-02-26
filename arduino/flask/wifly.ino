@@ -5,15 +5,19 @@ void setupWiFly() {
 
 	WiFly.begin();
 
-	if (WiFly.join(ssid, passphrase)) {
+    // timer.setTimer(100, doAll, 3);
 
-		Serial.println("WiFly connected to " + String(ssid));
+    if (WiFly.join(ssid, passphrase)) {
 
-	} else {
+        Serial.println("WiFly connected to " + String(ssid));
 
-		Serial.println("Could not connect to " + String(ssid));
+    } else {
 
-        errorLights();
+        Serial.println("Could not connect to " + String(ssid));
+
+        // timer.setTimer(100, flashAll, 3);
+
+        // errorLights();
 
 	}
 
@@ -21,7 +25,10 @@ void setupWiFly() {
 
 /* # MQTT
 ================================================== */
+
 void setupPubSub () {
+
+    pubSubRun = true;
 
     Serial.println("PubSub connecting...");
 
@@ -29,7 +36,7 @@ void setupPubSub () {
 
         Serial.println("PubSub connected.");
 
-        client.subscribe(subTopic);
+        // client.subscribe(subTopic);
 
     } else {
 
@@ -41,7 +48,9 @@ void setupPubSub () {
 
 void callback (char* topic, byte* payload, unsigned int length) {
 
-    if (String(topic) == subTopic) {
+    // Serial.println(topic);
+
+    if (String(topic) == fluidTopic) {
 
         char payloadChar[length+1];
 
@@ -53,7 +62,18 @@ void callback (char* topic, byte* payload, unsigned int length) {
 
         payloadChar[length] = '\0';
 
-        Serial.println("Payload received: {topic: " + String(topic) + ", payload: " + payloadChar + "}");
+        newFluid = atoi(payloadChar);
+
+        Serial.println("Received - " + String(topic) + ": " + newFluid);
+        
+        // Serial.println("newFluid set to " + String(newFluid));
+
+        fadeBetween(currentFluid, newFluid);
+
+        // Serial.println(thisNewFluid);
+
+
+
 
     }
 

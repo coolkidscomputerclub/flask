@@ -2,9 +2,7 @@
 /* # Accelerometer
 ================================================== */
 
-void gyroSetup() {
-
-	Serial.begin(115200);
+void setupAccel() {
 
 	pinMode(CS_PIN,  OUTPUT);
 	pinMode(CLK_PIN, OUTPUT);

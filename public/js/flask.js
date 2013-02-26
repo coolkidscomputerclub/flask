@@ -348,7 +348,7 @@ var main = {
 				self.enqueueDrop({type:"photo", content:"/img/test.jpg"}, true);
 
 			if (event.keyCode == 84) 
-				self.enqueueDrop({type:"tweet", content:"blargh is a sweet test tweet"}, true);		
+				self.enqueueDrop({type:"tweet", content:"I'm a tweet machine, look at ma juiceyyy tweets. Oh sweet tweet o' mine. ({}) Making pancakes, making bacon paaaancakes. New York, New York.", author:"bloomingbridges"}, true);		
 			
 			if (event.keyCode == 32)
 				self.releaseDrop();
@@ -389,18 +389,35 @@ function toggleDebug() {
 }
 
 function prettifyTweet(context, text, author) {
-	console.log("TWEET LENGTH: " + text.length);
-	var amountRows = (text.length >= 84) ? 5 : 3;
+	var amountRows = Math.round(text.length / 24);
+	//console.log("TWEET LENGTH: " + text.length);
+	var offset = 0, start = 0, remaining = 0;
+	for ( var i=0; i<amountRows; i++ ) {
+		if (i < amountRows - 1) {
+			offset = getCharOffset(amountRows,i) * 2;
+			remaining += offset;
+		}
+		else {
+			offset = -remaining;
+		}
+		context.fillText(text.substr(start,28-offset), 256, 270+(i*48)-(Math.floor(amountRows/2) * 48), 500);
+		start += 28 - offset;
+	}
+	context.fillStyle = 'rgb(25,100,128)';
+	context.fillText("@"+author, 256, 270+Math.ceil(amountRows/2)*48, 500);
 
-	var nextGap; 
-	var i = 0;
-	// while (text.indexOf(" ") != -1) {
-	// 	nextGap = text.indexOf(" ");
-	// 	//context.fillText(text, 256, 270, 500+(i*24));
-	// 	//i++;
-	// }
-	context.fillText(text, 256, 270, 500+(i*24));
+}
 
+function getCharOffset(rows, index) {
+	var map = [
+		[0,0,0,0,0,0],
+		[1,1,0,0,0,0],
+		[1,0,1,0,0,0],
+		[2,1,1,2,0,0],
+		[2,1,0,1,2,0],
+		[2,1,0,0,1,2]
+	];
+	return map[rows-1][index];
 }
 
 

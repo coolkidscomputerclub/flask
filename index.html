@@ -7,7 +7,7 @@ isSingle: true
 
 	{% for post in site.posts %}
 
-        {% if post.layout != "single" %}
+        {% if post.layout == 'post' %}
 
 		<article class="post">
 

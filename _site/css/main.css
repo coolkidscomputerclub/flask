@@ -148,7 +148,7 @@ a:hover, a:focus {
 
 .wrap {
   margin: 0 auto;
-  max-width: 920px; }
+  width: 920px; }
 
 a {
   text-decoration: none;
@@ -293,8 +293,17 @@ body, html {
 
 /* # Single pages
 ================================================== */
+.abstract {
+  display: none; }
+
+.soon h2 {
+  color: #411b75;
+  font-weight: 300;
+  font-size: 14px;
+  font-size: 1.4rem; }
+
 .makers {
-  margin: 30px 0 100px 0;
+  margin: 30px 0 30px 0;
   text-align: left; }
   .makers .maker {
     float: left;

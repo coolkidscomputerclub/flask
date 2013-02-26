@@ -1,0 +1,11 @@
+.abstract {
+	display: none;
+}
+
+.soon {
+	h2 {
+		color: $brand;
+		font-weight: 300;
+		@include font-size(1.4);
+	}
+}

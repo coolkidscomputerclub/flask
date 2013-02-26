@@ -3,7 +3,6 @@ layout: post
 title: Inspiration
 author: Ben Ashman
 twitter: benashman
-published: false
 ---
 
 When formulating the initial idea for Flask, we took to the Web to see if there were any similar projects out there. Here are some thoughts on a few of the more interesting pieces:
@@ -14,12 +13,9 @@ When formulating the initial idea for Flask, we took to the Web to see if there 
 
 When the pin is pulled, the Transparency Grenade begins to capture network traffic and audio at the site, and proceeds to securely and anonymously stream the data to a dedicated server where it is publicly accessible.
 
-- network monitoring
-
-
 ### Re:Sound Bottle
 
-Another source of inspiration on this project was Jun Fujiwara's Re:Sound Bottle. [Re:Sound Bottle](http://vimeo.com/42921558) is an art piece that is designed to capture and reproduce recorded voice and other audio as music. When uncorked, Re:Sound Bottle begins recording via. a built-in microphone and processes the audio when it is re-corked, creating a remixed version of the original input, mapped to a funky beat.
+Another source of inspiration on this project was Jun Fujiwara's [Re:Sound Bottle](http://vimeo.com/42921558). Re:Sound Bottle is an art piece that is designed to capture and reproduce recorded voice and other audio as music. When uncorked, Re:Sound Bottle begins recording via. a built-in microphone and processes the audio when it is re-corked, creating a remixed version of the original input, mapped to a funky beat.
 
 The idea of capturing sound in a bottle is an interesting one. From Kevin Costner movies to The Police, the idea of conveying a message in a bottle — whether it be written text or an audio recording — has been imagined time and time again.
 

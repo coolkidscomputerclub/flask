@@ -1,5 +1,5 @@
 .makers {
-	margin: 30px 0 100px 0;
+	margin: 30px 0 30px 0;
 	text-align: left;
 	@extend .cf;
 
@@ -18,10 +18,18 @@
 			border-radius: 50% 50%;
 			overflow: hidden;
 
+			&:hover img {
+				border: 5px solid $brand;
+				@include transition(all .2s);
+			}
+
 			img {
 				height: 200px;
 				width: 200px;
 				margin: 0 100px 100px 0;
+				border-radius: 50% 50%;
+				border: none;
+				@include transition(all .2s);
 			}
 		}
 

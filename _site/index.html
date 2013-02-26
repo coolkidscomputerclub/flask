@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Flask</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="/flask/css/main.css">
+    <script type="text/javascript" src="//use.typekit.net/vts7ppd.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+    <span class="gradient"></span>
+
+    <header class="global-header" role="banner">
+
+        <div class="wrap">
+
+        <h1><a href="http://sorakasumi.github.com/flask">Flask</a></h1>
+
+            <nav class="global-nav">
+
+                <ul>
+
+                    
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                    <li><a class="currentpage" href="http://sorakasumi.github.com/flask" title="Follow the team's journey from start to finish">Blog</a></li>
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                            <li><a href="http://sorakasumi.github.com/flask/abstract" title="A concise explanation of what Flask is and why it was made" class="">Abstract</a></li>
+
+                        
+
+                    
+
+                        
+
+                            <li><a href="http://sorakasumi.github.com/flask/team" title="Find out more about who made Flask" class="">Team</a></li>
+
+                        
+
+                    
+
+                </ul>
+
+            </nav>
+
+            <div class="deco"></div>
+
+        </div>
+
+    </header>
+
+    <section class="main wrap" role="main">
+
+        <ul>
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/inspiration">Inspiration</a></h2>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-25" class="date">25 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/benashman" title="Click to hear more from Ben Ashman" class="author" rel="author">Ben Ashman</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>When formulating the initial idea for Flask, we took to the Web to see if there were any similar projects out there. Here are some thoughts on a few of the more interesting pieces:</p>
+
+<h3>Transparency Grenade</h3>
+
+<p><a href="http://transparencygrenade.com/">The Transparency Grenade </a> is a project by Julian Oliver which aims to promote governmental and corporate transparency. Taking the form of a Soviet F1 grenade, the Transparency Grenade provides an 'iconic cure' to the back-room dealings and other questionable activity otherwise shrouded in secrecy.</p>
+
+<p>When the pin is pulled, the Transparency Grenade begins to capture network traffic and audio at the site, and proceeds to securely and anonymously stream the data to a dedicated server where it is publicly accessible.</p>
+
+<h3>Re:Sound Bottle</h3>
+
+<p>Another source of inspiration on this project was Jun Fujiwara's <a href="http://vimeo.com/42921558">Re:Sound Bottle</a>. Re:Sound Bottle is an art piece that is designed to capture and reproduce recorded voice and other audio as music. When uncorked, Re:Sound Bottle begins recording via. a built-in microphone and processes the audio when it is re-corked, creating a remixed version of the original input, mapped to a funky beat.</p>
+
+<p>The idea of capturing sound in a bottle is an interesting one. From Kevin Costner movies to The Police, the idea of conveying a message in a bottle — whether it be written text or an audio recording — has been imagined time and time again.</p>
+
+<p>At first glance this seems to be the idea that Re:Sound Bottle is playing to. Upon second glance, however, the 'message in a bottle' metaphor begins to fade with the idea of remixing all audio that finds its way inside Re:Sound Bottle.</p>
+
+<p>Personally, I think it feels as though Jun took the project just that little bit too far over the line with the remix functionality, losing the well-executed simplicity of the 'message in a bottle' metaphor and the magic that comes along with capturing it in a physical object.</p>
+
+<p>There's nothing wrong with performing <em>one function well</em>, and that's exactly what we intend to do with Flask.</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/data">Tweets keep falling on my head</a></h2>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-25" class="date">25 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/benashman" title="Click to hear more from Ben Ashman" class="author" rel="author">Ben Ashman</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>One aspect of our last project, <a href="http://vimeo.com/56106551">Inhabit</a>, was the ability to approximately locate a user within a physical geographical space. However, we quickly came to realize that, being the über-nerds we are and considering we spend 16+ hours a day at a computer, maybe it would be more interesting to know where our peers where in cyberspace rather than physical.</p>
+
+<h2>Sniff, sniff</h2>
+
+<p>Our initial thoughts were to sniff network traffic around the home, revealing all sorts of wondrous activities, ranging from questionable HTTP requests to file transfers and downloads. However, network traffic is pretty messy. Amongst the good, fun, meaningful stuff there usually lies a ton of nonsensical packets that hold no value in such a context.</p>
+
+<p>The idea of making something from the traffic-riddled air that surrounds us seemed exciting at first, and we even began to brainstorm ways in which to physically manifest the harvested data. One idea that floated around for a while was to create an automated typewriter that would act in a Courtroom Scribe-like manner, continuously transcribing and printing all network activity that is occurring throughout the home.</p>
+
+<p><img src="http://sorakasumi.github.com/flask/img/typewriter.png" alt="Typewriter" /></p>
+
+<p>Ultimately, we decided against sniffing network traffic as it would prove to be an impractical method of valuable data harvesting; the ratio of signal vs. noise made the process impractical <em>at best</em>. There were better ways.</p>
+
+<h2>Geotagged media</h2>
+
+<p><strong>Why focus on the polluted air that surrounds us when a pristine cloud lies above?</strong>
+Rather than filtering out the content we wanted, we decided to go straight to the source.</p>
+
+<p>Acting as a digital sponge, Flask absorbs social media activity within a close proximity of itself. In order to achieve this, Flask needs access to geotagged data that we can effectively map to a geographical location. Luckily, <a href="https://dev.twitter.com/docs/streaming-apis">Twitter</a> and <a href="http://instagram.com/developer/realtime/">Instagram</a> both provide real-time streaming APIs that were perfect for this job — streaming geotagged media of varying formats <strong>as it happens.</strong></p>
+
+<p>After a bit of tinkering, we found ourselves with a stable stream of tweets and photographs that we could begin to fill our Flask with.</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/building-things">Building Things</a></h2>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-19" class="date">19 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/saulhardman" title="Click to hear more from Saul Hardman" class="author" rel="author">Saul Hardman</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>We want to build something real. Don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; it’s been Unity this, WebSockets that. So we’re putting our hardhats on, applying some elbow grease, and <em>making a real, physical thing</em>.</p>
+
+<p>But ‘things’ are a far-cry from lines of code and despite being pretty handy with an axe, none of us could be described as the crafty type. Is this going to stop us? <strong>Nope</strong>. Will we regret it? <strong>Maybe</strong>.</p>
+
+<p>On the surface the concept <em>seems</em> fairly simple – cut the bottom off a bottle, ‘frost’ it, construct a base to house the Arduino and a suitable power source, scaffold an LED matrix within the cavity, and finally fix the base in place. OK, even as I type this out I’m beginning to see where we might run into problems. I mean, how do you even cut glass? Alas, we’re obviously getting bogged down in the details – we’d best acquire the component parts before deciding how to bodge them together.</p>
+
+<h2>A Recipe for Disaster</h2>
+
+<ul>
+<li>Bottle</li>
+<li>Cork</li>
+<li>Base</li>
+<li>LED matrix</li>
+<li>Light sensor</li>
+<li>Battery pack</li>
+<li>Frosting spray</li>
+</ul>
+
+
+<p>Even the first item on the list, a bottle, is harder than it sounds; when was the last time you walked past the ‘custom glass bottle shop’ on your local high street? My guess is never. The closest thing we could think of was an artisanal glassblower – should those even exist – but just saying those words made my purse strings tighten and so we opted to find rather than fabricate.</p>
+
+<p>I foresee things getting a little ‘scrapheap challenge’ for this project, but you do what you can with what you have.</p>
+
+<p>Let the games begin!</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h2 class="title"><a href="http://sorakasumi.github.com/flask/not-building-things">Not Building Things</a></h2>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-07" class="date">07 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/saulhardman" title="Click to hear more from Saul Hardman" class="author" rel="author">Saul Hardman</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>I suppose this is the point at which I eat my own words. My suspicions were correct; building things is only easy if you know how, and have the right tools for the job. That doesn’t mean we gave up on our mission, it just means that we had to reel in our expectations, extend our timescale a little and seek the help of hired professionals.</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+	
+
+        
+
+	
+
+</ul>
+
+
+    </section>
+
+    <footer class="global-footer" role="contentinfo">
+
+        <div class="wrap">
+
+        </div>
+
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/flask/js/app.js"></script>
+</body>
+</html>

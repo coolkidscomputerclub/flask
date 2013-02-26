@@ -19,7 +19,7 @@
 
         <div class="wrap">
 
-        <h1><a href="{{ site.url }}">Flask</a></h1>
+        <h1><a href="{{ site.url }}{{ site.baseurl }}">Flask</a></h1>
 
             <nav class="global-nav">
 
@@ -29,7 +29,7 @@
 
                     {% for post in site.posts %}
 
-                        {% if post.layout == "single" and page.title == post.title %}
+                        {% if post.isSingle and page.title == post.title %}
 
                             {% assign current = 'true' %}
 
@@ -37,13 +37,13 @@
 
                     {% endfor %}
 
-                    <li><a class="{% if current == 'false' %}currentpage{% endif %}" href="{{ site.url }}{{ site.baseUrl }}" title="Follow the team's journey from start to finish">Blog</a></li>
+                    <li><a class="{% if current == 'false' %}currentpage{% endif %}" href="{{ site.url }}{{ site.baseurl }}" title="Follow the team's journey from start to finish">Blog</a></li>
 
                     {% for post in site.posts %}
 
-                        {% if post.layout == "single" %}
+                        {% if post.isSingle %}
 
-                            <li><a href="{{ site.url }}{{ site.baseUrl }}{{ post.url }}" title="{{ post.description }}" class="{% if page.title == post.title %}currentpage{% endif %}">{{ post.title }}</a></li>
+                            <li><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="{{ post.description }}" class="{% if page.title == post.title %}currentpage{% endif %}">{{ post.title }}</a></li>
 
                         {% endif %}
 

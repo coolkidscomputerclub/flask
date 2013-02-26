@@ -17,7 +17,8 @@
 // Objects
 .wrap {
 	margin: 0 auto;
-	max-width: $site-width;
+	// max-width: $site-width;
+	width: $site-width;
 }
 
 // Linkz
@@ -66,6 +67,8 @@ body, html {
 
 /* # Single pages
 ================================================== */
+
+@import 'abstract';
 
 @import 'team';
 

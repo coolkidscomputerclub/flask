@@ -293,14 +293,9 @@ body, html {
 
 /* # Single pages
 ================================================== */
-.abstract {
-  display: none; }
-
-.soon h2 {
-  color: #411b75;
-  font-weight: 300;
-  font-size: 14px;
-  font-size: 1.4rem; }
+blockquote {
+  padding-left: 20px;
+  border-left: 5px solid #411b75; }
 
 .team h2 {
   display: inline-block;

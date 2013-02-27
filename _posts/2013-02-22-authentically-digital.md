@@ -9,8 +9,7 @@ It's offically set in blog - no take backs - we are making something physical ha
 
 ## States of digital matter
 
-<!--![LED fluid simulation Processing sketch](http://sorakasumi.github.com/flask/img/ledsketch.png)-->
-![LED fluid simulation Processing sketch](http://0.0.0.0:4000/flask/img/ledsketch.png)
+![LED fluid simulation Processing sketch](http://sorakasumi.github.com/flask/img/ledsketch.png)
 
 Given that our bottle pulls data in from the cloud and the air surrounding it, it is only safe to assume that data isn't solid matter, but either a gas or liquid. Thinking a step further: Let's say data was liquid for a second. If captured inside a glass container, would one still expect it to behave just like regular liquid when shaken? When poured? Will it blend? The answer is probably yes, but **what does liquid data even look like?**
 

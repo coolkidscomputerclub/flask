@@ -1,5 +1,17 @@
+.team {
+	h2 {
+		display: inline-block;
+		color: $brand;
+		font-weight: 300;
+		@include font-size(1.4);
+		margin: 0 0 30px 0;
+		padding: 0 0 10px 0;
+		border-bottom: 5px solid $brand;
+	}
+}
+
 .makers {
-	margin: 30px 0 30px 0;
+	margin: 30px 0 60px 0;
 	text-align: left;
 	@extend .cf;
 
@@ -15,21 +27,23 @@
 		.avatar {
 			height: 200px;
 			width: 200px;
-			border-radius: 50% 50%;
+			//border-radius: 50% 50%;
 			overflow: hidden;
+			background: $brand;
 
 			&:hover img {
-				border: 5px solid $brand;
-				@include transition(all .2s);
+				// border: 5px solid $brand;
+				@include transition(all .1s);
+				opacity: .5;
 			}
 
 			img {
 				height: 200px;
 				width: 200px;
 				margin: 0 100px 100px 0;
-				border-radius: 50% 50%;
-				border: none;
-				@include transition(all .2s);
+				//border-radius: 50% 50%;
+				// border: none;
+				@include transition(all .1s);
 			}
 		}
 
@@ -45,6 +59,18 @@
 		.twitter {
 			display: block;
 			text-align: center;
+			color: $copy;
 		}
 	}
+}
+
+.shoutouts {
+	color: $copy;
+	font-weight: 300;
+	@include font-size(1.4);
+
+	.love {
+		color: $brand;
+	}
+
 }

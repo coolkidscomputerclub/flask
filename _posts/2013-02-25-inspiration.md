@@ -3,6 +3,9 @@ layout: post
 title: Inspiration
 author: Ben Ashman
 twitter: benashman
+authors:
+- Ben Ashman
+- Saul Hardman
 ---
 
 When formulating the initial idea for Flask, we took to the Web to see if there were any similar projects out there. Here are some thoughts on a few of the more interesting pieces:

@@ -302,8 +302,18 @@ body, html {
   font-size: 14px;
   font-size: 1.4rem; }
 
+.team h2 {
+  display: inline-block;
+  color: #411b75;
+  font-weight: 300;
+  font-size: 14px;
+  font-size: 1.4rem;
+  margin: 0 0 30px 0;
+  padding: 0 0 10px 0;
+  border-bottom: 5px solid #411b75; }
+
 .makers {
-  margin: 30px 0 30px 0;
+  margin: 30px 0 60px 0;
   text-align: left; }
   .makers .maker {
     float: left;
@@ -314,26 +324,24 @@ body, html {
     .makers .maker .avatar {
       height: 200px;
       width: 200px;
-      border-radius: 50% 50%;
-      overflow: hidden; }
+      overflow: hidden;
+      background: #411b75; }
       .makers .maker .avatar:hover img {
-        border: 5px solid #411b75;
-        -webkit-transition: all 0.2s;
-        -moz-transition: all 0.2s;
-        -ms-transition: all 0.2s;
-        -o-transition: all 0.2s;
-        transition: all 0.2s; }
+        -webkit-transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        -ms-transition: all 0.1s;
+        -o-transition: all 0.1s;
+        transition: all 0.1s;
+        opacity: .5; }
       .makers .maker .avatar img {
         height: 200px;
         width: 200px;
         margin: 0 100px 100px 0;
-        border-radius: 50% 50%;
-        border: none;
-        -webkit-transition: all 0.2s;
-        -moz-transition: all 0.2s;
-        -ms-transition: all 0.2s;
-        -o-transition: all 0.2s;
-        transition: all 0.2s; }
+        -webkit-transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        -ms-transition: all 0.1s;
+        -o-transition: all 0.1s;
+        transition: all 0.1s; }
     .makers .maker .name {
       margin: 20px 0 0 0;
       text-align: center;
@@ -344,4 +352,13 @@ body, html {
       font-size: 1.4rem; }
     .makers .maker .twitter {
       display: block;
-      text-align: center; }
+      text-align: center;
+      color: #434343; }
+
+.shoutouts {
+  color: #434343;
+  font-weight: 300;
+  font-size: 14px;
+  font-size: 1.4rem; }
+  .shoutouts .love {
+    color: #411b75; }

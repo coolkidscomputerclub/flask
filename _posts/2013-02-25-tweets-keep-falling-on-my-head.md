@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tweets keep falling on my head
+title: Tweets Keep Falling on my Head
 authors: [Ben Ashman]
 twitter: [benashman]
 ---

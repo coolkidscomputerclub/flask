@@ -5,7 +5,7 @@ author: Saul Hardman
 twitter: saulhardman
 ---
 
-We want to build something real. Don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; it’s been Unity this and WebSockets that. So we’re setting our digital tools aside, applying a liberal amount of elbow grease, and *making a real, physical thing*.
+We want to build something real. Don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; nothing but Unity this and WebSockets that. So we’re setting our digital tools aside, applying a liberal amount of elbow grease, and *making a real, physical thing*.
 
 But ‘things’ are a far-cry from lines of code and despite being pretty handy with an axe, none of us could be described as the crafty type. Is this going to stop us? **Nope**. Will we regret it? **Maybe**.
 

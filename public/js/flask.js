@@ -12,7 +12,7 @@ var Droplet = function(id, type, source, author) {
 	this.src += source;
 	this.author = author;
 	this.init();
-}
+};
 
 Droplet.prototype = {
 
@@ -78,7 +78,7 @@ Droplet.prototype = {
     	if (this.type === "photo" && this.image.complete) {
     		if (this.canvas)
     			return true;
-    		else 
+    		else
     			this.canvas = this.createCanvas();
     			return false;
     	}
@@ -91,7 +91,7 @@ Droplet.prototype = {
     move: function() {
 
     	var self = this;
-    	
+
 		if (!self.dropping) {
 			if (self.width < self.maxSize) {
 				self.width += 1;
@@ -200,7 +200,7 @@ var main = {
 				d = self.pool[i];
 				if (!d.dead) {
 					d.move();
-				} else {	
+				} else {
 					// console.log(d.id + " DEAD!");
 					$('#c'+d.id).remove();
 					self.pool.splice(i,1);
@@ -218,10 +218,10 @@ var main = {
 
 		this.flask.draw = function() {
 			var flask = self.flask;
-			
+
 			for (i in self.pool) {
 				var d = self.pool[i];
-				
+
 				// draw ripple behind drop
 				if (d.dropScale > 0 && d.dropScale < 10) {
 					flask.save();
@@ -235,11 +235,11 @@ var main = {
 					flask.beginPath();
 					flask.arc( 0, 0, d.width / 2, 0, TWO_PI );
 					flask.closePath();
-					flask.globalCompositeOperation = 'lighter';
+					// flask.globalCompositeOperation = 'lighter';
 					flask.stroke();
-					
+
 					//flask.fillRect(-50, -50, 100, 100);
-					
+
 					flask.restore();
 				}
 				flask.save();
@@ -277,7 +277,7 @@ var main = {
 	},
 
 	setFlowRate: function(rate) {
-		
+
 		var self = this;
 
 		if (self.flowRate != rate) {
@@ -302,7 +302,7 @@ var main = {
 
 	connect: function(address) {
 
-		console.log("Connecting to Saul..");
+		console.log("Connecting to Saul..", address);
 		this.socket = new WebSocket(address);
 		this.bindSocketEvents();
 
@@ -346,20 +346,20 @@ var main = {
 	addDebugHandlers: function() {
 
 		var self = this;
-		
+
 		$(window).on('keyup', function(event) {
-			
+
 			// console.log(event.keyCode);
 
 			if (event.keyCode == 192)
 				toggleDebug();
 
-			if (event.keyCode == 80) 
+			if (event.keyCode == 80)
 				self.enqueueDrop({type:"photo", content:"/img/test.jpg"}, true);
 
-			if (event.keyCode == 84) 
-				self.enqueueDrop({type:"tweet", content:"I'm a tweet machine, look at ma juiceyyy tweets. Oh sweet tweet o' mine. ({}) Making pancakes, making bacon paaaancakes. New York, New York.", author:"bloomingbridges"}, true);		
-			
+			if (event.keyCode == 84)
+				self.enqueueDrop({type:"tweet", content:"I'm a tweet machine, look at ma juiceyyy tweets. Oh sweet tweet o' mine. ({}) Making pancakes, making bacon paaaancakes. New York, New York.", author:"bloomingbridges"}, true);
+
 			if (event.keyCode == 32)
 				self.releaseDrop();
 

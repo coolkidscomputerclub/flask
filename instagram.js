@@ -12,7 +12,7 @@ var Instagram = require("instagram-node-lib"),
 
 console.log("Instagram Initialized!");
 
-var baseURL = "http://48k7.localtunnel.com";
+var baseURL = "http://49cw.localtunnel.com";
 
 var credentials = {
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
@@ -202,6 +202,6 @@ var instagram = {
 
 };
 
-instagram.init();
+// instagram.init();
 
 module.exports = instagram;

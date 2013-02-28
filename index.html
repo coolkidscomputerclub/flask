@@ -3,38 +3,34 @@ layout: layout
 isSingle: true
 ---
 
-<ul>
+{% for post in site.posts %}
 
-	{% for post in site.posts %}
+    {% if post.layout == 'post' %}
 
-        {% if post.layout == 'post' %}
+	<article class="post">
 
-		<article class="post">
+		<header>
 
-			<header>
+			<h1 class="title"><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-				<h2 class="title"><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+			<ul class="details">
 
-				<ul class="details">
+                <li><time datetime="{{ post.date | date: '%Y-%m-%d' }}" class="date">{{ post.date | date: "%d %B %Y" }}</time></li>
 
-                    <li><time datetime="{{ post.date | date: '%Y-%m-%d' }}" class="date">{{ post.date | date: "%d %B %Y" }}</time></li>
+                <li>by {% for author in post.authors %}<a href="http://twitter.com/{{ post.twitter[forloop.index0] }}" title="Click to hear more from {{ author }}" class="author" rel="author">{{ author }}</a>{% case forloop.length %}{% when 1 %}{% when 2 %}{% if forloop.first %} and {% endif %}{% else %}{% if forloop.last %}{% else %}{% if forloop.rindex0 == 1 %}, and {% else %}, {% endif %}{% endif %}{% endcase %}{% endfor %}</li>
 
-                    <li>by <a href="http://twitter.com/{{ post.twitter }}" title="Click to hear more from {{ post.author }}" class="author" rel="author">{{ post.author }}</a></li>
+            </ul>
 
-                </ul>
+		</header>
 
-			</header>
+		<section class="words">
 
-			<section class="words">
+			{{ post.content }}
 
-				{{ post.content }}
+		</section>
 
-			</section>
+	</article>
 
-		</article>
+    {% endif %}
 
-        {% endif %}
-
-	{% endfor %}
-
-</ul>
+{% endfor %}

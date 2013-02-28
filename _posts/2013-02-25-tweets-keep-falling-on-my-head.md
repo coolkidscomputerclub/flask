@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Tweets keep falling on my head
-author: Ben Ashman
-twitter: benashman
+title: Tweets Keep Falling on my Head
+authors: [Ben Ashman]
+twitter: [benashman]
 ---
 
 One aspect of our last project, [Inhabit](http://vimeo.com/56106551), was the ability to approximately locate a user within a physical geographical space. However, we quickly came to realize that, being the über-nerds we are and considering we spend 16+ hours a day at a computer, maybe it would be more interesting to know where our peers where in cyberspace rather than physical.

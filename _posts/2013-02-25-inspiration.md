@@ -1,22 +1,19 @@
 ---
 layout: post
 title: Inspiration
-author: Ben Ashman
-twitter: benashman
-authors:
-- Ben Ashman
-- Saul Hardman
+authors: [Ben Ashman]
+twitter: [benashman]
 ---
 
 When formulating the initial idea for Flask, we took to the Web to see if there were any similar projects out there. Here are some thoughts on a few of the more interesting pieces:
 
-### Transparency Grenade
+## Transparency Grenade
 
-[The Transparency Grenade ](http://transparencygrenade.com/) is a project by Julian Oliver which aims to promote governmental and corporate transparency. Taking the form of a Soviet F1 grenade, the Transparency Grenade provides an 'iconic cure' to the back-room dealings and other questionable activity otherwise shrouded in secrecy.
+[The Transparency Grenade](http://transparencygrenade.com/) is a project by Julian Oliver which aims to promote governmental and corporate transparency. Taking the form of a Soviet F1 grenade, the Transparency Grenade provides an 'iconic cure' to the back-room dealings and other questionable activity otherwise shrouded in secrecy.
 
 When the pin is pulled, the Transparency Grenade begins to capture network traffic and audio at the site, and proceeds to securely and anonymously stream the data to a dedicated server where it is publicly accessible.
 
-### Re:Sound Bottle
+## Re:Sound Bottle
 
 Another source of inspiration on this project was Jun Fujiwara's [Re:Sound Bottle](http://vimeo.com/42921558). Re:Sound Bottle is an art piece that is designed to capture and reproduce recorded voice and other audio as music. When uncorked, Re:Sound Bottle begins recording via. a built-in microphone and processes the audio when it is re-corked, creating a remixed version of the original input, mapped to a funky beat.
 

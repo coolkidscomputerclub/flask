@@ -15,11 +15,11 @@
 
     <span class="gradient"></span>
 
-    <header class="global-header" role="banner">
+    <header class="global-header">
 
         <div class="wrap">
 
-        <h1><a href="http://localhost:4000">Flask</a></h1>
+            <h1 class="banner" role="banner"><a href="http://localhost:4000">Flask</a></h1>
 
             <nav class="global-nav">
 
@@ -53,7 +53,23 @@
 
                     
 
+                        
+
+                    
+
+                        
+
+                    
+
                     <li><a class="currentpage" href="http://localhost:4000" title="Follow the team's journey from start to finish">Blog</a></li>
+
+                    
+
+                        
+
+                    
+
+                        
 
                     
 
@@ -111,7 +127,7 @@
 
 			<header>
 
-				<h2 class="title"><a href="http://localhost:4000/inspiration">Inspiration</a></h2>
+				<h1 class="title"><a href="http://localhost:4000/inspiration">Inspiration</a></h1>
 
 				<ul class="details">
 
@@ -127,13 +143,13 @@
 
 				<p>When formulating the initial idea for Flask, we took to the Web to see if there were any similar projects out there. Here are some thoughts on a few of the more interesting pieces:</p>
 
-<h3>Transparency Grenade</h3>
+<h2>Transparency Grenade</h2>
 
-<p><a href="http://transparencygrenade.com/">The Transparency Grenade </a> is a project by Julian Oliver which aims to promote governmental and corporate transparency. Taking the form of a Soviet F1 grenade, the Transparency Grenade provides an 'iconic cure' to the back-room dealings and other questionable activity otherwise shrouded in secrecy.</p>
+<p><a href="http://transparencygrenade.com/">The Transparency Grenade</a> is a project by Julian Oliver which aims to promote governmental and corporate transparency. Taking the form of a Soviet F1 grenade, the Transparency Grenade provides an 'iconic cure' to the back-room dealings and other questionable activity otherwise shrouded in secrecy.</p>
 
 <p>When the pin is pulled, the Transparency Grenade begins to capture network traffic and audio at the site, and proceeds to securely and anonymously stream the data to a dedicated server where it is publicly accessible.</p>
 
-<h3>Re:Sound Bottle</h3>
+<h2>Re:Sound Bottle</h2>
 
 <p>Another source of inspiration on this project was Jun Fujiwara's <a href="http://vimeo.com/42921558">Re:Sound Bottle</a>. Re:Sound Bottle is an art piece that is designed to capture and reproduce recorded voice and other audio as music. When uncorked, Re:Sound Bottle begins recording via. a built-in microphone and processes the audio when it is re-corked, creating a remixed version of the original input, mapped to a funky beat.</p>
 
@@ -160,7 +176,7 @@
 
 			<header>
 
-				<h2 class="title"><a href="http://localhost:4000/data">Tweets keep falling on my head</a></h2>
+				<h1 class="title"><a href="http://localhost:4000/data">Tweets keep falling on my head</a></h1>
 
 				<ul class="details">
 
@@ -210,13 +226,13 @@ Rather than filtering out the content we wanted, we decided to go straight to th
 
 			<header>
 
-				<h2 class="title"><a href="http://localhost:4000/building-things">Building Things</a></h2>
+				<h1 class="title"><a href="http://localhost:4000/liquid-data">Liquid Data</a></h1>
 
 				<ul class="details">
 
-                    <li><time datetime="2013-02-19" class="date">19 February 2013</time></li>
+                    <li><time datetime="2013-02-23" class="date">23 February 2013</time></li>
 
-                    <li>by <a href="http://twitter.com/saulhardman" title="Click to hear more from Saul Hardman" class="author" rel="author">Saul Hardman</a></li>
+                    <li>by <a href="http://twitter.com/bloomingbridges" title="Click to hear more from Florian Brueckner" class="author" rel="author">Florian Brueckner</a></li>
 
                 </ul>
 
@@ -224,36 +240,31 @@ Rather than filtering out the content we wanted, we decided to go straight to th
 
 			<section class="words">
 
-				<p>We want to build something real. Don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; it’s been Unity this, WebSockets that. So we’re putting our hardhats on, applying some elbow grease, and <em>making a real, physical thing</em>.</p>
+				<p><strong>We figured, that one achievable way to add an element of magic to Flask is by incorporating something we won't ever fully fathom ourselves</strong>.</p>
 
-<p>But ‘things’ are a far-cry from lines of code and despite being pretty handy with an axe, none of us could be described as the crafty type. Is this going to stop us? <strong>Nope</strong>. Will we regret it? <strong>Maybe</strong>.</p>
+<p>For the tablet interface end of Flask we had to ask ourselves, what is the digital equivalent to an atom when it comes to visual building blocks? Is it the pixel? The vertex? The tetramino? In any case it was clear that what the visualisation needed was a decent amount of particles!</p>
 
-<p>On the surface the concept <em>seems</em> fairly simple – cut the bottom off a bottle, ‘frost’ it, construct a base to house the Arduino and a suitable power source, scaffold an LED matrix within the cavity, and finally fix the base in place. OK, even as I type this out I’m beginning to see where we might run into problems. I mean, how do you even cut glass? Alas, we’re obviously getting bogged down in the details – we’d best acquire the component parts before deciding how to bodge them together.</p>
+<p>From particle physics it was then only a small step towards low-level graphics programming, an area which I meant to develop skills in for a while, so I thought why not pick up <a href="http://www.openframeworks.cc/">openFrameworks</a> (the widely proclaimed <em>Processing</em> of the C++ world) for a bit of a taster. The reasoning being that if I don't get to learn how to blow glass during this project, I want to at least leave as a better programmer.</p>
 
-<h2>A Recipe for Disaster</h2>
+<h2>Of vertex shaders and forgotten behemoths</h2>
 
-<ul>
-<li>Bottle</li>
-<li>Cork</li>
-<li>Base</li>
-<li>LED matrix</li>
-<li>Light sensor</li>
-<li>Battery pack</li>
-<li>Frosting spray</li>
-</ul>
+<p><img src="http://sorakasumi.github.com/flask/img/sep_vertices.jpg" alt="GLSL shader programming" /></p>
+
+<p>The initial attraction of using openFrameworks did not solely stem from the fact that most critically acclaimed digital artwork produced was built with it, but Memo Akten's <a href="http://www.memo.tv/msafluid/">MSAFluid solver library</a>, which promised to make 2D fluid simulations a piece of cake. If the mention of openFrameworks alone would have made the bottle look more professional by just 10%, it was worth taking the risk.</p>
+
+<p>Your average instagram photo has the dimensions of 612 pixels square. Naïvely I assumed that I could just turn every pixel into a particle without having to make sacrifices in terms of speed,  but only if you start considering every second pixel value you're starting to get smooth results. And we're just talking about a single image here.</p>
+
+<p>My next approach was to map the image to a plane mesh and just push its vertices around. This way you'd end up with a more rigid-looking fluid effect, however nobody said that liquid data was high in viscosity anyway. By week five I was knees-deep in shader programming with GLSL to squeeze some more performance out of the piece (by writing little programmes that would compute vertex positions in parallel on the GPU) and everything seemed fine in Nodeland, too.</p>
+
+<p>Problems didn't occur until we've realised that we hadn't tested the application on the intended   hardware (i.e. iOS or Android). Turns out that whenever you're trying to make a senior language play nicely with a rather young piece of technology you better know what you are doing. I couldn't manage to compile the third party library we used for the WebSocket communication (libwebsocket) for iOS and since rethinking our setup this late in the game was out of the question, I had to jump ship and go back to good young HTML5 canvas.</p>
+
+<!--
+## Like oil and water
+
+![Drip drop](http://sorakasumi.github.com/flask/img/sep_drips.jpg)-->
 
 
-<p>Even the first item on the list, a bottle, is harder than it sounds; when was the last time you walked past the ‘custom glass bottle shop’ on your local high street? My guess is never. The closest thing we could think of was an artisanal glassblower – should those even exist – but just saying those words made my purse strings tighten and so we opted to find rather than fabricate.</p>
 
-<p>Many "high-street" products come in glass bottles but when you specify down to rounded clear glass bottles the choice is greatly narrowed. Discounting iconically shaped or logo embossed bottles we decided that the good old classic milk bottle is probably the best bet. We just have to cross our fingers and hope that all the tech will fit.</p>
-
-<p>As it turns out milk bottles aren't even particularly easy to find either… When was the last time you saw a milkman? The idea of having to order hundreds of bottles from a trade supplier was not a pleasant one. Luckily local drink hole "The Dairy" has it's own cheesy gimmick of serving cocktails in the very same bottles we were after.</p>
-
-<p>We rolled up on The Dairy around closing time, cash in hand, hoping to score a bottle or two. To our delight the bar scrubbing ships captain said we could have a few free of charge.  Trying not to milk the situation we asked for six in case of third party, fire or theft.</p>
-
-<p>I foresee things getting a little ‘scrapheap challenge’ for this project, but you do what you can with what you have.</p>
-
-<p>Let the games begin!</p>
 
 
 			</section>
@@ -270,13 +281,116 @@ Rather than filtering out the content we wanted, we decided to go straight to th
 
 			<header>
 
-				<h2 class="title"><a href="http://localhost:4000/not-building-things">Not Building Things</a></h2>
+				<h1 class="title"><a href="http://localhost:4000/authentically-digital">Authentically Digital</a></h1>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-22" class="date">22 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/bloomingbridges" title="Click to hear more from Florian Brueckner" class="author" rel="author">Florian Brueckner</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>It's offically set in blog - no take backs - we are making something physical happen, we are building a device of the bottle variety for collecting, storing and consuming data. Obvious problems concerning the production of the artifact aside, how does one design the look and feel of something normally invisible to the human eye?</p>
+
+<h2>States of digital matter</h2>
+
+<p><img src="http://sorakasumi.github.com/flask/img/ledsketch.png" alt="LED fluid simulation Processing sketch" /></p>
+
+<p>Given that our bottle pulls data in from the cloud and the air surrounding it, it is only safe to assume that data isn't solid matter, but either a gas or liquid. Thinking a step further: Let's say data was liquid for a second. If captured inside a glass container, would one still expect it to behave just like regular liquid when shaken? When poured? Will it blend? The answer is probably yes, but <strong>what does liquid data even look like?</strong></p>
+
+<p>The choice of some kind of liquid as physical manifestation of data seemed only appropriate in the context of a bottle, but rendered completely impractical when trying to add an Arduino plus batteries into the mix. And let's not forget that all that needs to go inside a bottle, preferably hidden away.</p>
+
+<p>Emulating fluid through light seemed therefore to be the next best option, provided that we are able to obfuscate the glass somehow so that it doesn't just look like a grid of LEDs inside a bottle. We figured it would take at least 4 upright strips of 20 LEDs per side in order to replicate a fluid effect within the bottle. Why go through through the effort of stuffing the bottle with tech you ask? And how are you thinking of powering all this?</p>
+
+<p>Well, comparable consumer electronics like a memory stick would just sit there on a desktop, yet regardless of how decorative it may be it doesn't tell anyone anything about its contents. The stick is hardly "aware" of what its function is. All it needs to know is that it can be plugged into a USB port and that's the end of the story. We felt strongly that Flask needed to fill that communicational void in an inobtrusive manner to become truly awe-inspring as well as functional.</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h1 class="title"><a href="http://localhost:4000/building-things">Building Things</a></h1>
+
+				<ul class="details">
+
+                    <li><time datetime="2013-02-19" class="date">19 February 2013</time></li>
+
+                    <li>by <a href="http://twitter.com/saulhardman" title="Click to hear more from Saul Hardman" class="author" rel="author">Saul Hardman</a> and <a href="http://twitter.com/sorakasumi" title="Click to hear more from James King" class="author" rel="author">James King</a></li>
+
+                </ul>
+
+			</header>
+
+			<section class="words">
+
+				<p>We want to build something real. Don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; nothing but Unity this and WebSockets that. So we’re setting our digital tools aside, applying a liberal amount of elbow grease, and <em>making a real, physical thing</em>.</p>
+
+<p>But ‘things’ are a far-cry from lines of code and despite being pretty handy with an axe, none of us could be described as the crafty type. Is this going to stop us? <strong>Nope</strong>. Will we regret it? <strong>Maybe</strong>.</p>
+
+<p>On the surface the concept <em>seems</em> fairly simple – cut the bottom off a bottle, ‘frost’ it, construct a base to house the Arduino, scaffold an LED matrix within the cavity, and secure the base. Even as I type this out I’m beginning to see where we might run into problems. I mean, how do you even cut glass? Before we get too bogged down in the details we’d best acquire the component parts before deciding how to bodge them together.</p>
+
+<h2>A Recipe for Disaster</h2>
+
+<ul>
+<li>Bottle</li>
+<li>Cork</li>
+<li>Base</li>
+<li>LED matrix</li>
+<li>Light sensor</li>
+<li>Battery pack</li>
+<li>Frosting spray</li>
+</ul>
+
+
+<p>Even the first item on the list, a bottle, is harder than it sounds; when was the last time you walked past the ‘custom glass bottle shop’ on your local high street? My guess is never. The closest thing we could think of was an artisanal glassblower – should those even exist – but just saying those words made my purse strings tighten and so we opted to find rather than fabricate.</p>
+
+<p>Many "high-street" products come in glass bottles but when you specify down to rounded clear glass bottles the choice is greatly narrowed. Discounting iconically shaped or logo embossed bottles we decided that the classic milk bottle was probably our best bet – we just have to cross our fingers and hope that all the tech will fit.</p>
+
+<p>As it turns out milk bottles aren't even particularly easy to find either… When was the last time you saw a milkman? The idea of having to order hundreds of bottles from a trade supplier was not a pleasant one. Luckily, local drink hole "The Dairy" has it's own cheesy gimmick of serving cocktails in the very same bottles we were after.</p>
+
+<p>We rolled up on The Dairy around closing time, cash in hand, hoping to score a bottle or two. To our delight the bar scrubbing ships captain said we could have a few free of charge. Trying not to milk the situation we asked for six in case of third party, fire or theft.</p>
+
+<p>I foresee things getting a little ‘scrapheap challenge’ for this project, but you do what you can with what you have.</p>
+
+<p>I guess it's time to exclaim; let the games begin!</p>
+
+
+			</section>
+
+		</article>
+
+        
+
+	
+
+        
+
+		<article class="post">
+
+			<header>
+
+				<h1 class="title"><a href="http://localhost:4000/not-building-things">Not Building Things</a></h1>
 
 				<ul class="details">
 
                     <li><time datetime="2013-02-07" class="date">07 February 2013</time></li>
 
-                    <li>by <a href="http://twitter.com/saulhardman" title="Click to hear more from Saul Hardman" class="author" rel="author">Saul Hardman</a></li>
+                    <li>by <a href="http://twitter.com/saulhardman" title="Click to hear more from Saul Hardman" class="author" rel="author">Saul Hardman</a> and <a href="http://twitter.com/sorakasumi" title="Click to hear more from James King" class="author" rel="author">James King</a></li>
 
                 </ul>
 

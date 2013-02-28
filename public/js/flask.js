@@ -178,7 +178,7 @@ var main = {
 		this.spillRate = 0;
 
 		this.socket;
-		this.flowRate = 1;
+		this.flowRate = 0;
 		this.flowStart = 0;
 		this.dropCount = 0;
 

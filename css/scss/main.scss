@@ -14,14 +14,26 @@
 
 * { @include prefixer(box-sizing, border-box, webkit moz o spec); }
 
-// Objects
-.wrap {
-	margin: 0 auto;
-	// max-width: $site-width;
-	width: $site-width;
+body {
+	padding: 0 0 40px 0;
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 6px;
+		// @include linear-gradient(left, #FF47E3, #33FCFF, #0068FA);
+		@include linear-gradient(left, $brand, #943DE6, $brand);
+	}
 }
 
-// Linkz
+.container {
+	margin: 0 auto;
+	max-width: $site-width;
+	// ie fix
+	*width: $site-width;
+}
+
 a {
 	text-decoration: none;
 	color: $brand;

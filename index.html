@@ -19,7 +19,7 @@ isSingle: true
 
                     <li><time datetime="{{ post.date | date: '%Y-%m-%d' }}" class="date">{{ post.date | date: "%d %B %Y" }}</time></li>
 
-                    <li>by <a href="http://twitter.com/{{ post.twitter }}" title="Click to hear more from {{ post.author }}" class="author" rel="author">{{ post.author }}</a></li>
+                    <li>by {% for author in post.authors %}<a href="http://twitter.com/{{ post.twitter[forloop.index0] }}" title="Click to hear more from {{ author }}" class="author" rel="author">{{ author }}</a>{% case forloop.length %}{% when 1 %}{% when 2 %}{% if forloop.first %} and {% endif %}{% else %}{% if forloop.last %}{% else %}{% if forloop.rindex0 == 1 %}, and {% else %}, {% endif %}{% endif %}{% endcase %}{% endfor %}</li>
 
                 </ul>
 

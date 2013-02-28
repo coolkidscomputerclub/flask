@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Authentically Digital
-author: Florian Brueckner
-twitter: bloomingbridges
+authors: [Florian Brueckner]
+twitter: [bloomingbridges]
 ---
 
 It's offically set in blog - no take backs - we are making something physical happen, we are building a device of the bottle variety for collecting, storing and consuming data. Obvious problems concerning the production of the artifact aside, how does one design the look and feel of something normally invisible to the human eye?

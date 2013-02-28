@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Liquid Data
-author: Florian Brueckner
-twitter: bloomingbridges
+authors: [Florian Brueckner]
+twitter: [bloomingbridges]
 ---
 
 **We figured, that one achievable way to add an element of magic to Flask is by incorporating something we won't ever fully fathom ourselves**.
@@ -17,7 +17,7 @@ From particle physics it was then only a small step towards low-level graphics p
 
 The initial attraction of using openFrameworks did not solely stem from the fact that most critically acclaimed digital artwork produced was built with it, but Memo Akten's [MSAFluid solver library](http://www.memo.tv/msafluid/), which promised to make 2D fluid simulations a piece of cake. If the mention of openFrameworks alone would have made the bottle look more professional by just 10%, it was worth taking the risk.
 
-Your average instagram photo has the dimensions of 612 pixels square. Naïvely I assumed that I could just turn every pixel into a particle without having to make sacrifices in terms of speed,  but only if you start considering every second pixel value you're starting to get smooth results. And we're just talking about a single image here. 
+Your average instagram photo has the dimensions of 612 pixels square. Naïvely I assumed that I could just turn every pixel into a particle without having to make sacrifices in terms of speed,  but only if you start considering every second pixel value you're starting to get smooth results. And we're just talking about a single image here.
 
 My next approach was to map the image to a plane mesh and just push its vertices around. This way you'd end up with a more rigid-looking fluid effect, however nobody said that liquid data was high in viscosity anyway. By week five I was knees-deep in shader programming with GLSL to squeeze some more performance out of the piece (by writing little programmes that would compute vertex positions in parallel on the GPU) and everything seemed fine in Nodeland, too.
 

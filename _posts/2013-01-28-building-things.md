@@ -27,8 +27,6 @@ Many "high-street" products come in glass bottles but when you specify down to r
 
 As it turns out milk bottles aren't even particularly easy to find either… When was the last time you saw a milkman? The idea of having to order hundreds of bottles from a trade supplier was not a pleasant one. Luckily, local drink hole "The Dairy" has it's own cheesy gimmick of serving cocktails in the very same bottles we were after.
 
-We rolled up on The Dairy around closing time, cash in hand, hoping to score a bottle or two. To our delight the bar scrubbing ships captain said we could have a few free of charge. Trying not to milk the situation we asked for six in case of third party, fire or theft.
+We rolled up to The Dairy around closing time, cash in hand, hoping to score a bottle or two. To our delight the bar scrubbing ships captain said we could have a few free of charge. Trying not to milk the situation we asked for six in case of third party, fire or theft.
 
-I foresee things getting a little ‘scrapheap challenge’ for this project, but you do what you can with what you have.
-
-I guess it's time to exclaim; let the games begin!
+Slowly but surely we’re making ground. I foresee things getting a little ‘scrapheap challenge’ along the way, but you do what you can with what you have. I guess it's time to exclaim; let the games begin!

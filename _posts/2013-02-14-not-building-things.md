@@ -5,13 +5,24 @@ authors: [Saul Hardman, James King]
 twitter: [saulhardman, sorakasumi]
 ---
 
-I suppose this is the point at which I eat my own words. My suspicions were correct; building things is only easy if you know how, and have the right tools for the job. That doesn’t mean we gave up on our mission, it just means that we had to reel in our expectations, extend our timescale a little and seek the help of hired professionals.
+I suppose this is the point at which I eat my words. My suspicions were correct; building things is only easy if you know how and have the right tools for the job. That doesn’t mean we gave up on our mission, just that we had to reel in our expectations, extend our timescale and seek the help of hired professionals. Our quest for knowledge and components was to see us traverse many previously unexplored areas of the University, and beyond.
 
+With bottles in hand it was time for the first stop of this magical mystery tour. Of all the University buildings, Brunel is the one which looks most like it could house a device capable of cutting our bottles. Yet, to our dismay; the craftsmen of Brunel were not in the business of glass, but were helpful enough to identify the tools for the job and those who might possess them. 
+
+After venturing to an industrial estate (the native habitat of the common tradesman) we quickly located a glass specialist who attempted the delicate procedure of severing the bottles bottoms. His tile cutting knife and the relatively low quality of the glass bottles meant the demise of 2 of our vessels.
+
+<!-- foam/tubing -->
+
+However, we hadn’t put all of our eggs into one basket; in the end our saviour came in the form of a friend who attends the [Art College](http://www.plymouthart.ac.uk/) who masterfully cut a couple of bottles using a diamond edged saw, oh-la-la.
+
+The base was one of the greater unknowns, ideas were bounded about of beautiful, polished, wooden affairs with hidden locking grooves and push-fit rubber seals. The most feasible option was a vacuum formed cup of thin plastic. While turning down the wooden mould and using the forming machine itself are not especially difficult, we were unable to do so ourselves as we’re not yet inducted into the Brunel workshop (something we’re hoping will soon be rectified). Craft master Ben however, came to the rescue and, despite his busy schedule, set aside some time to make us a slightly off-colour but snug-fitting base.
+
+<!-- bung -->
+<!-- cork -->
 <!-- ![Cork]({{ site.baseurl }}img/cork.jpg) -->
+
+<!-- electronics -->
 <!-- ![Light Sensor]({{ site.baseurl }}img/light-sensor.jpg) -->
 
-On our quest for knowledge and components we traversed many unexplored areas of the university and beyond. After acquiring the bottles the next step was surgical base removal. This was certainly not our safe zone; but with limited test subjects and no equipment we set out to find our executioner.
-
-The craftsmen in Brunnel were not in the business of glass and so recommended tile cutting specialists. After asking around we got a specialists to attempted the delicate procedure but his tile cutting knife and the relatively low quality of the bottles caused the demise of 2 of our vessels. In the end our saviour was a friend at the Art College who managed to cut a couple of bottles almost perfectly.
-
-The base was one of the greater unknowns, ideas floated about of beautiful polished wooden affairs with hidden locking grooves or push-fit rubber seals. The most feasible option was a vacuum formed cup of thin plastic. While turning down the wooden mold and using the forming device itself are not especially difficult, we were unable ourselves as we were not inducted into the Brunnel workshop. Craftmaster Ben however, jumped to the rescue and made us a slightly off-colour but snug-fitting base.
+<!-- frosting -->
+<!-- painting -->

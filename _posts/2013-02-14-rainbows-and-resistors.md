@@ -3,7 +3,7 @@ layout: post
 title: Rainbows & Resistors
 authors: [Saul Hardman]
 twitter: [saulhardman]
-published: false
+published: true
 ---
 
 <!-- electronics -->

@@ -1,5 +1,6 @@
 .DS_Store
 .sublime
 _site/
-node_modules/
-public/
+img/content/analog
+img/content/original
+img/content/resized

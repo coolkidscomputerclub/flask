@@ -3,13 +3,14 @@ layout: post
 title: Rainbows & Resistors
 authors: [Saul Hardman]
 twitter: [saulhardman]
+published: false
 ---
 
 <!-- electronics -->
 
 ![Flask’s guts]({{ site.baseurl }}/img/content/flask4.jpg)
 
-![Flask light sensor]({{ site.baseurl }}/img/content/flask3.jpg) 
+![Flask light sensor]({{ site.baseurl }}/img/content/flask3.jpg)
 
 <!-- led strip -->
 

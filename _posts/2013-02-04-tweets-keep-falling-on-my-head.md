@@ -22,7 +22,6 @@ Ultimately, we decided against sniffing network traffic as it would prove to be 
 **Why focus on the polluted air that surrounds us when a pristine cloud lies above?**
 Rather than filtering out the content we wanted, we decided to go straight to the source.
 
-
 Acting as a digital sponge, Flask absorbs social media activity within a close proximity of itself. In order to achieve this, Flask needs access to geotagged data that we can effectively map to a geographical location. Luckily, [Twitter](https://dev.twitter.com/docs/streaming-apis) and [Instagram](http://instagram.com/developer/realtime/) both provide real-time streaming APIs that were perfect for this job — streaming geotagged media of varying formats **as it happens.**
 
 After a bit of tinkering, we found ourselves with a stable stream of tweets and photographs that we could begin to fill our Flask with.

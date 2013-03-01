@@ -1,5 +1,5 @@
 .post {
-	margin: 0 0 50px 0;
+	margin: 0 0 60px 0;
 
 	.title {
 		color: $brand;
@@ -14,9 +14,10 @@
 	}
 
 	.words {
-		width: 75%;
+		margin: 30px auto 0;
+		max-width: $content-width;
+		*width: $content-width;
 		font-family: "minion-pro";
-		margin: 30px auto 0 auto;
 		text-align: left;
 		color: lighten($copy, 10%);
 		@include font-size(1.2);

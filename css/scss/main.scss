@@ -15,7 +15,7 @@
 * { @include prefixer(box-sizing, border-box, webkit moz o spec); }
 
 body {
-	padding: 0 0 40px 0;
+	padding: 0 0 60px 0;
 	&:before {
 		content: "";
 		display: block;
@@ -29,8 +29,8 @@ body {
 
 .container {
 	margin: 0 auto;
+	padding: 0 20px;
 	max-width: $site-width;
-	// ie fix
 	*width: $site-width;
 }
 

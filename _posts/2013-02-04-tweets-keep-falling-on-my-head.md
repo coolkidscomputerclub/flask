@@ -13,7 +13,7 @@ Our initial thoughts were to sniff network traffic around the home, revealing al
 
 The idea of making something from the traffic-riddled air that surrounds us seemed exciting at first, and we even began to brainstorm ways in which to physically manifest the harvested data. One idea that floated around for a while was to create an automated typewriter that would act in a Courtroom Scribe-like manner, continuously transcribing and printing all network activity that is occurring throughout the home.
 
-![Typewriter](http://sorakasumi.github.com/flask/img/typewriter.png)
+![Typewriter]({{ site.baseurl }}/img/content/typewriter.png)
 
 Ultimately, we decided against sniffing network traffic as it would prove to be an impractical method of valuable data harvesting; the ratio of signal vs. noise made the process impractical *at best*. There were better ways.
 

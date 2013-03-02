@@ -26,5 +26,10 @@ Acting as a digital sponge, Flask absorbs social media activity within a close p
 
 By running Flask's back-end on Node.js, we were able to leverage the offerings of the vibrant Node community. After a little poke around [GitHub](http://github.com), we stumbled across a number of open-source wrapper libraries for the Twitter and Instagram APIs. Although both Twitter and Instagram provide unparalleled documentation for interacting with their respective services the hard way, using these libraries ([ntwitter](https://github.com/AvianFlu/ntwitter) and [Instagram-node-lib](https://github.com/mckelvey/instagram-node-lib)) helped us to retain a sensible code structure and save a bit of time!
 
+## I would like to subscribe to your newsletter
 
-After a bit of tinkering, we found ourselves with a stable stream of tweets and photographs that we could begin to fill our Flask with.
+Flask collects all of its data through geographical subscriptions. This means that we are able to collect Twitter and Instagram post data without users (publishers?) even knowing of Flask's existence. This means no hashtags, no Foursquare check-ins and no Twitter @replys. Post a Tweet or Instagram photo, and if Flask is nearby, it'll just know.
+
+By collecting data in this publish / subscribe style, we enable Flask to collect much more genuine, honest and unfiltered posts. The issue with similar solutions such as hashtag Twitter 'walls' is that users are specifically instructed to tag all of their posts with the event's designated hashtag. This results in reservations of *true* opinion — critical Tweets or potentially embarrasing photos may be silenced and a true representation of the collective 'voice' is lost.
+
+Flask collects anything and *everything*. That's where the real fun lies.

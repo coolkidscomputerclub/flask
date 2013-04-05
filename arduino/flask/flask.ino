@@ -12,7 +12,7 @@
 
 #define delayInterval 1000
 
-byte ip[] = {178, 79, 187, 163};
+byte ip[] = {192, 168, 2, 3};
 
 Timer t;
 

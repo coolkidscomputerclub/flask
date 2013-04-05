@@ -24,7 +24,7 @@
 	/* # DAT House
 	================================================== */
 
-	char ssid[] = "kings";
-	char passphrase[] = "fab38fab38";
+	char ssid[] = "flask";
+	char passphrase[] = "password";
 
 #endif

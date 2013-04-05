@@ -12,7 +12,7 @@ var Instagram = require("instagram-node-lib"),
 
 console.log("Instagram Initialized!");
 
-var baseURL = "http://49cw.localtunnel.com";
+var baseURL = "http://57jq.localtunnel.com";
 
 var credentials = {
 	clientID: "dcb5bc2a4e1747e8a22b1559a260cd63",
@@ -33,7 +33,7 @@ var instagram = {
 
 	init: function () {
 
-		this.deleteImages();
+		// this.deleteImages();
 
 		Instagram.media.unsubscribe_all({
 			object_id: "all"
@@ -47,9 +47,9 @@ var instagram = {
 
 		Instagram.geographies.subscribe({
 
-			lat: 50.381994,
+			lat: 50.374149,
 
-			lng: -4.138091,
+			lng: -4.138959,
 
 			radius: 5000,
 

@@ -15,7 +15,7 @@ var express = require("express"),
 /* # App config
 ================================================== */
 
-var port = 8080,
+var port = 8082,
     app = express(),
     server = http.createServer(app),
     connections = require("./connections")(server),

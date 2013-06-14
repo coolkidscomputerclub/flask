@@ -8,7 +8,7 @@
   "dependencies": {
     "express": "~3.x",
     "jade": "*",
-    "mqttjs": "*",
+    "mqtt": "*",
     "websocket.io": "*",
     "mediator-js": "*",
     "underscore": "*",

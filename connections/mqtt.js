@@ -4,8 +4,8 @@ var _ = require("underscore");
 
 /* Dependencies */
 
-var mqttjs = require("mqttjs"),
-    port = 1883;
+var mqttjs = require("mqtt"),
+    port = 2000;
 
 /* Mqtt namespace */
 

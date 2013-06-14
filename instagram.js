@@ -202,6 +202,6 @@ var instagram = {
 
 };
 
-// instagram.init();
+instagram.init();
 
 module.exports = instagram;

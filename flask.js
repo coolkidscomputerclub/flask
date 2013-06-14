@@ -18,7 +18,7 @@ var flask = {
 
         this.bindMediatorEvents();
 
-        this.drip();
+        // this.drip();
 
         return this;
 

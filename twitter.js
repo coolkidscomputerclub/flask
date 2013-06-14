@@ -72,6 +72,6 @@ var twitter = {
 
 };
 
-// twitter.init();
+twitter.init();
 
 module.exports = twitter;

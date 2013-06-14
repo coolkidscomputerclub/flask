@@ -1,0 +1,9 @@
+{
+  "name": "Flask",
+  "version": "0.0.1",
+  "dependencies": {
+    "modernizr": "*",
+    "jquery": "*",
+    "threejs": "*"
+  }
+}

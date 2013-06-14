@@ -22,8 +22,12 @@ Droplet.prototype = {
 		this.width = 25;
 		this.height = 25;
 		this.maxSize = 256 + (Math.random() * 256);
-		this.dX = 0.1 + Math.random() - 0.5;
-		this.dY = 0.1 + Math.random() - 0.5;
+		this.dX = -1.7 + Math.random();
+		this.dY = -1.6 + Math.random() + 0.4;
+		if (this.dX >= -0.1 && this.dX <= 0.1) {
+			this.dX -= 0.3;
+			this.dY -= 0.2;
+		}
 		this.dO = 0;
 		//this.rotation = 0;
 		// this.spin = Math.random() * (Math.PI/2);
@@ -58,31 +62,35 @@ Droplet.prototype = {
     	c.width = 512;
     	c.height = 512;
     	$('#surgery').append(c);
-    	var ctx = c.getContext("2d");
+    	var canvas = c.getContext("2d");
     	if (this.type === "photo") {
-			ctx.drawImage(this.image,0,0);
+			canvas.drawImage(this.image,0,0);
 		}
 		else {
-			ctx.fillStyle = "white";
-			ctx.textAlign = "center";
-    		ctx.font = "24pt Helvetica Neue";
-    		prettifyTweet(ctx, this.src, this.author);
-    		//ctx.fillText(this.src, 256, 270, 500);
+			canvas.fillStyle = "white";
+			canvas.textAlign = "center";
+    		canvas.font = "24pt Helvetica Neue";
+    		prettifyTweet(canvas, this.src, this.author);
+    		//canvas.fillText(this.src, 256, 270, 500);
     		this.image = new Image();
+    		this.image.src = c.toDataURL("image/png");
 		}
-		this.image.src = c.toDataURL("image/png");
-		return ctx;
+		return canvas;
     },
 
     isReady: function() {
-    	if (this.type === "photo" && this.image.complete) {
-    		if (this.canvas)
+    	var self = this;
+    	if (self.type === "photo" && self.image.complete) {
+    		if (!self.canvas) {
+    			self.canvas = self.createCanvas();
+  				self.image.onload = null;
     			return true;
-    		else
-    			this.canvas = this.createCanvas();
-    			return false;
+    		}
+    		else {
+    			return true;
+    		}
     	}
-    	else if (this.type === "tweet") {
+    	else if (self.type === "tweet") {
     		return true;
     	}
     	else { return false; }
@@ -108,16 +116,16 @@ Droplet.prototype = {
 			}
 		}
 
-		self.dropScale += 0.1;
-		self.x += self.dX * self.vel;
-		self.y += self.dY * (self.vel / 2);
+		self.dropScale += 1;
+		self.x += Math.ceil(self.dX * self.vel);
+		self.y += Math.round(self.dY * (self.vel / 2));
 		self.lifeTime += 1;
-		if (self.lifeTime > 1200) {
+		if (self.lifeTime > 1000) {
 			self.dO += 0.01;
 			if (self.dO >= 0.8)
 				self.dO = 0.8;
 		}
-		if (self.lifeTime > 1400) {
+		if (self.lifeTime > 1200) {
 			// console.log(self.id + " REACHED END OF ITS LIFETIME..");
 			self.dead = true;
 		}
@@ -126,31 +134,29 @@ Droplet.prototype = {
 
     draw: function( ctx ) {
     	var self = this;
-    	if (this.isReady()) {
-	        ctx.fillStyle = this.color;
+        ctx.fillStyle = this.color;
 
-	        if (!self.dropping) {
-	        	ctx.beginPath();
-				ctx.arc( self.x, self.y, self.width/2 - 2, 0, TWO_PI );
-				ctx.closePath();
-				ctx.globalAlpha = 0.8 - self.dO;
-				if (self.type == "tweet") {
-					ctx.fill();
-				}
-				ctx.clip();
-	        	ctx.drawImage(self.image, self.x - (self.width / 2), self.y - (self.height / 2), self.width, self.height);
-	        	ctx.globalAlpha = 1.0;
-	        }
-	        else {
-	        	//ctx.fillRect( self.x - (self.width/2), self.y - (self.width/2), self.width, self.height);
-	        	ctx.fillStyle = this.color;
-	        	ctx.beginPath();
-				ctx.arc( self.x, self.y, self.width/2, 0, TWO_PI );
-				ctx.closePath();
+        if (!self.dropping) {
+        	ctx.beginPath();
+			ctx.arc( self.x, self.y, self.width/2 - 2, 0, TWO_PI );
+			ctx.closePath();
+			ctx.globalAlpha = 0.8 - self.dO;
+			if (self.type == "tweet") {
 				ctx.fill();
-	        }
-	        ctx.globalAlpha = 1.0;
-	    }
+			}
+			ctx.clip();
+        	ctx.drawImage(self.image, self.x - (self.width / 2), self.y - (self.height / 2), self.width, self.height);
+        	ctx.globalAlpha = 1.0;
+        }
+        else {
+        	//ctx.fillRect( self.x - (self.width/2), self.y - (self.width/2), self.width, self.height);
+        	ctx.fillStyle = this.color;
+        	ctx.beginPath();
+			ctx.arc( self.x, self.y, self.width/2, 0, TWO_PI );
+			ctx.closePath();
+			ctx.fill();
+        }
+        ctx.globalAlpha = 1.0;
     }
 };
 
@@ -200,12 +206,14 @@ var main = {
 				d = self.pool[i];
 				if (!d.dead) {
 					d.move();
-				} else {
-					// console.log(d.id + " DEAD!");
+				} else {	
 					$('#c'+d.id).remove();
 					self.pool.splice(i,1);
-					// self.dropCount--;
 				}
+			}
+
+			for (i in self.queue) {
+				self.queue[i].isReady();
 			}
 
 		}
@@ -218,30 +226,33 @@ var main = {
 
 		this.flask.draw = function() {
 			var flask = self.flask;
-
+			
+			var d;
 			for (i in self.pool) {
-				var d = self.pool[i];
+				d = self.pool[i];
 
 				// draw ripple behind drop
-				if (d.dropScale > 0 && d.dropScale < 10) {
-					flask.save();
-					flask.translate(flask.width / 2, flask.height / 2);
-					flask.strokeStyle = 'rgba(200,200,200,'+ (1.0 - (d.dropScale / 10)) + ')';
-					flask.scale(d.dropScale, d.dropScale);
+				if (d.dropScale > 0 && d.dropScale < 100) {
+					//flask.save();
+					//flask.translate(flask.width / 2, flask.height / 2);
+					flask.strokeStyle = 'rgba(200,200,200,'+ (1.0 - (d.dropScale / 100)) + ')';
+					//flask.scale(d.dropScale, d.dropScale);
 
 					//draw a circle at original scale
-					flask.lineWidth = 1;
-					flask.fillStyle = "transparent";
+					flask.lineWidth = 2;
+					//flask.fillStyle = "transparent";
 					flask.beginPath();
-					flask.arc( 0, 0, d.width / 2, 0, TWO_PI );
+					flask.arc( flask.width/2, flask.height/2, d.width + d.dropScale, 0, TWO_PI );
 					flask.closePath();
 					// flask.globalCompositeOperation = 'lighter';
+					//flask.globalCompositeOperation = 'lighter';
 					flask.stroke();
 
 					//flask.fillRect(-50, -50, 100, 100);
-
-					flask.restore();
+					
+					//flask.restore();
 				}
+				
 				flask.save();
 				flask.translate(flask.width / 2, flask.height / 2);
 				d.draw(flask);
@@ -268,11 +279,17 @@ var main = {
 		if (this.queue.length > 0) {
 			// take first drop out of queue and put into pool
 			var d = this.queue.shift();
-			this.pool.push(d);
-			if (!d.dummy) {
-				self.socket.send(JSON.stringify({topic:"content:consumed", payload: null}));
+			if (d.isReady()) {
+				this.pool.push(d);
+				if (!d.dummy) {
+					self.socket.send(JSON.stringify({topic:"content:consumed", payload: null}));
+				}
+				flog((d.type === "photo") ? "(P)" : "(T)");
 			}
-			flog((d.type === "photo") ? "(P)" : "(T)");
+			else {
+				self.queue.push(d);
+				self.releaseDrop();
+			}
 		}
 	},
 

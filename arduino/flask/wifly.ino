@@ -7,7 +7,7 @@ void setupWiFly() {
 
     // timer.setTimer(100, doAll, 3);
 
-    if (WiFly.join(ssid, passphrase)) {
+    if (WiFly.join(ssid)) {
 
         Serial.println("WiFly connected to " + String(ssid));
 

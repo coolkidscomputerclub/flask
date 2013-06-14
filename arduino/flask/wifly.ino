@@ -3,11 +3,13 @@
 
 void setupWiFly() {
 
-	WiFly.begin();
+    Serial.println("Connecting to WiFi: " + String(ssid));
+
+    WiFly.begin();
 
     // timer.setTimer(100, doAll, 3);
 
-    if (WiFly.join(ssid)) {
+    if (WiFly.join(ssid, "blahblahblah")) {
 
         Serial.println("WiFly connected to " + String(ssid));
 

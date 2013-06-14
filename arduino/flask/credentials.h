@@ -24,7 +24,7 @@
 	/* # DAT House
 	================================================== */
 
-	char ssid[] = "flask";
-	char passphrase[] = "password";
+	char ssid[] = "G604T_WIRELESS";
+	char passphrase[] = "";
 
 #endif

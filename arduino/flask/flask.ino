@@ -12,12 +12,12 @@
 
 #define delayInterval 1000
 
-byte ip[] = {192, 168, 2, 3};
+byte ip[] = {198, 211, 120, 181};
 
 Timer t;
 
 WiFlyClient wiFlyClient;
-PubSubClient client(ip, 1883, callback, wiFlyClient);
+PubSubClient client(ip, 8080, callback, wiFlyClient);
 
 int dataPin  = 2;
 int clockPin = 3;
@@ -62,15 +62,15 @@ void setup() {
 
 	Serial.begin(115200);
 
-	setupRibbon();
+	// setupRibbon();
 
-	setupAccel();
+	// setupAccel();
 
 	setupWiFly();
 
-	setupPubSub();
+	// setupPubSub();
 
-	t.every(100, checkSensors);
+	// t.every(100, checkSensors);
 
 	// fadeBetween(currentFluid, newFluid);
 

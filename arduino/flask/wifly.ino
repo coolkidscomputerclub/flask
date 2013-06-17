@@ -17,6 +17,8 @@ void setupWiFly() {
 
     } else {
 
+        setupWiFly();
+
         Serial.println("Could not connect to " + String(ssid));
 
 	}
@@ -41,6 +43,8 @@ void setupPubSub () {
     } else {
 
         Serial.println("PubSub connection failed.");
+
+        setupPubSub();
 
     }
 

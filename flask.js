@@ -94,13 +94,13 @@ var flask = {
 
                 self.cork = false;
 
-                self.drip();
+                // self.drip();
 
             } else {
 
                 self.cork = true;
 
-                clearTimeout(self.dripTimeout);
+                // clearTimeout(self.dripTimeout);
 
             }
 

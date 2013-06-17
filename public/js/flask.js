@@ -331,6 +331,7 @@ var main = {
 
 		this.socket.onopen = function() {
 			flog("CONNECTED");
+			$("#debug").hide();
 		};
 
 		this.socket.onmessage = function(message) {

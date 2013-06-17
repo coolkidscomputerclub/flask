@@ -24,13 +24,13 @@
 	/* # DAT House
 	================================================== */
 
-	// char ssid[] = "kings";
-	// char passphrase[] = "fab38fab38";
+	char ssid[] = "kings";
+	char passphrase[] = "fab38fab38";
 
 	/* # Peninsula Arts Gallery
 	================================================== */
 
-	char ssid[] = "flask";
-	char passphrase[] = "flask123";
+	// char ssid[] = "flask";
+	// char passphrase[] = "flask123";
 
 #endif

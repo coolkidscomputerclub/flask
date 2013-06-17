@@ -80,7 +80,9 @@ void loop() {
 
 	t.update();
 
-	if (pubSubRun) {
+	pubSubRun = client.connected();
+
+	if (pubSubRun == true) {
 
 		client.loop();
 
@@ -90,27 +92,7 @@ void loop() {
 
 	}
 
-	// delay(3000);
-
 	// client.disconnect();
-
-	// delay(3000);
-
-	// client.connected()
-
-	// if (!client.connected() && pubSubRun) {
-
-	// 	Serial.println("lost connection");
-
-	// 	pubSubRun = false;
-
-	// 	client.disconnect();
-
-	// 	delay(5000);
-
-	// 	setupPubSub();
-
-	// }
 
 }
 

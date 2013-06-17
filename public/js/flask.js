@@ -356,6 +356,7 @@ var main = {
 			flog("DISCONNECTED");
 			$("#debug").show();
 			console.log("BYEBYE");
+			main.connect("ws://"+location.host);
 		};
 
 	},

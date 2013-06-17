@@ -19,9 +19,9 @@ Timer t;
 WiFlyClient wiFlyClient;
 PubSubClient client(ip, 8080, callback, wiFlyClient);
 
-int dataPin  = 2;
-int clockPin = 3;
-int nLEDs = 32;
+const int dataPin  = 3;
+const int clockPin = 4;
+const int nLEDs = 32;
 LPD8806 strip = LPD8806(nLEDs, dataPin, clockPin);
 
 char* pubTopic = "message";
@@ -62,15 +62,13 @@ void setup() {
 
 	Serial.begin(115200);
 
-	// setupRibbon();
+	setupRibbon();
 
-	// setupAccel();
+	setupAccel();
 
 	setupWiFly();
 
-	// setupPubSub();
-
-	// t.every(100, checkSensors);
+	t.every(100, checkSensors);
 
 	// fadeBetween(currentFluid, newFluid);
 
@@ -86,6 +84,10 @@ void loop() {
 
 		client.loop();
 
+	} else {
+
+		setupPubSub();
+
 	}
 
 	// delay(3000);
@@ -96,19 +98,19 @@ void loop() {
 
 	// client.connected()
 
-	if (!client.connected() && pubSubRun) {
+	// if (!client.connected() && pubSubRun) {
 
-		Serial.println("lost connection");
+	// 	Serial.println("lost connection");
 
-		pubSubRun = false;
+	// 	pubSubRun = false;
 
-		client.disconnect();
+	// 	client.disconnect();
 
-		delay(5000);
+	// 	delay(5000);
 
-		setupPubSub();
+	// 	setupPubSub();
 
-	}
+	// }
 
 }
 
@@ -138,7 +140,7 @@ void fadeBetween(int cPos, int nPos){
 
 }
 
-void checkSensors(){
+void checkSensors () {
 
 	aX = GetValue(B1000);
 	aY = GetValue(B1001);
@@ -176,7 +178,7 @@ void checkSensors(){
 
 	if(aY < -200) {
 
-		newFlow[0] = '2';
+		newFlow[0] = '0';
 
 	} else if (aY < 0) {
 
@@ -184,11 +186,11 @@ void checkSensors(){
 
 	} else {
 
-		newFlow[0] = '0';
+		newFlow[0] = '2';
 
 	}
 
-	if(currentFlow[0] != newFlow[0]) {
+	if (currentFlow[0] != newFlow[0]) {
 
 		sendFlow();
 

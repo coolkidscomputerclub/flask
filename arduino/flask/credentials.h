@@ -9,7 +9,7 @@
 	// char ssid[] = "IDAT";
 	// char passphrase[] = "plym0uthsm4rt3rpl4n3t";
 
-	/* # Home
+	/* # Ben's House
 	================================================== */
 
 	//char ssid[] = "_";
@@ -24,7 +24,13 @@
 	/* # DAT House
 	================================================== */
 
-	char ssid[] = "G604T_WIRELESS";
-	char passphrase[] = "";
+	// char ssid[] = "kings";
+	// char passphrase[] = "fab38fab38";
+
+	/* # Peninsula Arts Gallery
+	================================================== */
+
+	char ssid[] = "flask";
+	char passphrase[] = "flask123";
 
 #endif

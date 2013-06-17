@@ -3,23 +3,21 @@
 
 void setupWiFly() {
 
-    Serial.println("Connecting to WiFi: " + String(ssid));
+    Serial.println("Booting WiFly...");
 
     WiFly.begin();
 
-    // timer.setTimer(100, doAll, 3);
+    Serial.println("Connecting to WiFi: " + String(ssid) + ", " + String(passphrase));
 
-    if (WiFly.join(ssid, "blahblahblah")) {
+    if (WiFly.join(ssid, passphrase)) {
 
         Serial.println("WiFly connected to " + String(ssid));
+
+        setupPubSub();
 
     } else {
 
         Serial.println("Could not connect to " + String(ssid));
-
-        // timer.setTimer(100, flashAll, 3);
-
-        // errorLights();
 
 	}
 
@@ -67,15 +65,8 @@ void callback (char* topic, byte* payload, unsigned int length) {
         newFluid = atoi(payloadChar);
 
         Serial.println("Received - " + String(topic) + ": " + newFluid);
-        
-        // Serial.println("newFluid set to " + String(newFluid));
 
         fadeBetween(currentFluid, newFluid);
-
-        // Serial.println(thisNewFluid);
-
-
-
 
     }
 

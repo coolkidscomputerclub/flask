@@ -19,8 +19,6 @@ var websocket = {
         var ws = io.attach(server),
             self = this;
 
-        _.bindAll(this);
-
         this.bindMediatorEvents();
 
         ws.on("connection", function (socket) {
@@ -143,6 +141,8 @@ var websocket = {
     }
 
 };
+
+_.bindAll(websocket);
 
 /* 'return' websocket */
 

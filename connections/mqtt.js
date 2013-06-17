@@ -17,8 +17,6 @@ var mqtt = {
 
         var self = this;
 
-        _.bindAll(this);
-
         this.mqttServer = mqttjs.createServer(this.bindEvents).listen(port);
 
         mediator.subscribe("fluid:update", function (data) {
@@ -77,19 +75,27 @@ var mqtt = {
 
         client.on("publish", function (packet) {
 
-            console.log("MQTT publish received: ", client.id, packet.topic, packet.payload);
+            console.log("MQTT publish received: ", packet.topic, packet.payload);
 
-            if (packet.topic === "cork") {
+            switch (packet.topic) {
 
-                mediator.publish("cork:update", packet.payload);
+                case "cork":
 
-            } else if (packet.topic === "flow") {
+                    mediator.publish("cork:update", packet.payload);
 
-                mediator.publish("flow:update", packet.payload);
+                    break;
 
-            } else if (packet.topic === "fluid") {
+                case "flow":
 
-                self.broadcast(packet);
+                    mediator.publish("flow:update", packet.payload);
+
+                    break;
+
+                case "fluid":
+
+                    self.broadcast(packet);
+
+                    break;
 
             }
 
@@ -160,6 +166,8 @@ var mqtt = {
     }
 
 };
+
+_.bindAll(mqtt);
 
 /* Expose init method */
 

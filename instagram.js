@@ -33,8 +33,6 @@ var instagram = {
 
 	init: function () {
 
-		// this.deleteImages();
-
 		Instagram.media.unsubscribe_all({
 			object_id: "all"
 		});
@@ -47,11 +45,11 @@ var instagram = {
 
 		Instagram.geographies.subscribe({
 
-			lat: 50.374149,
+			lat: 50.374023,
 
-			lng: -4.138959,
+			lng: -4.138668,
 
-			radius: 5000,
+			radius: 1000,
 
 			complete: function (data) {
 
@@ -70,8 +68,6 @@ var instagram = {
 		});
 
 		console.log("Subscribing...");
-
-		_.bindAll(this);
 
 		mediator.subscribe("instagram:notification", instagram.geographies);
 
@@ -201,6 +197,8 @@ var instagram = {
 	}
 
 };
+
+_.bindAll(instagram);
 
 instagram.init();
 

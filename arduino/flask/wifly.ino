@@ -3,15 +3,17 @@
 
 void setupWiFly() {
 
-    Serial.println("Booting WiFly...");
+    // Serial.println("Booting WiFly...");
 
     WiFly.begin();
 
-    Serial.println("Connecting to WiFi: " + String(ssid) + ", " + String(passphrase));
+    Serial.println("WiFly has begun.");
+
+    // Serial.println("Connecting to WiFi: " + String(ssid) + ", " + String(passphrase));
 
     if (WiFly.join(ssid, passphrase)) {
 
-        Serial.println("WiFly connected to " + String(ssid));
+        // Serial.println("WiFly connected to " + String(ssid));
 
         setupPubSub();
 
@@ -19,7 +21,7 @@ void setupWiFly() {
 
         setupWiFly();
 
-        Serial.println("Could not connect to " + String(ssid));
+        // Serial.println("Could not connect to " + String(ssid));
 
 	}
 
@@ -32,17 +34,17 @@ void setupPubSub () {
 
     pubSubRun = true;
 
-    Serial.println("PubSub connecting...");
+    // Serial.println("PubSub connecting...");
 
     if (client.connect("arduinoClient")) {
 
-        Serial.println("PubSub connected.");
+        // Serial.println("PubSub connected.");
 
         // client.subscribe(subTopic);
 
     } else {
 
-        Serial.println("PubSub connection failed.");
+        // Serial.println("PubSub connection failed.");
 
         setupPubSub();
 
@@ -68,7 +70,7 @@ void callback (char* topic, byte* payload, unsigned int length) {
 
         newFluid = atoi(payloadChar);
 
-        Serial.println("Received - " + String(topic) + ": " + newFluid);
+        // Serial.println("Received - " + String(topic) + ": " + newFluid);
 
         fadeBetween(currentFluid, newFluid);
 

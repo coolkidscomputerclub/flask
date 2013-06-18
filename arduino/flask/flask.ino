@@ -88,11 +88,11 @@ void loop() {
 
 	} else {
 
+		client.disconnect();
+
 		setupPubSub();
 
 	}
-
-	// client.disconnect();
 
 }
 
@@ -184,7 +184,7 @@ void sendCork() {
 
 	if (pubSubRun) client.publish("cork", newCork);
 
-	Serial.println("Sent - cork: " + String(newCork));
+	// Serial.println("Sent - cork: " + String(newCork));
 
 	// if(newCork[0] == '1') {
 
@@ -204,7 +204,7 @@ void sendFlow() {
 
 	if (pubSubRun) client.publish("flow", newFlow);
 
-	Serial.println("Sent - flow: " + String(newFlow));
+	// Serial.println("Sent - flow: " + String(newFlow));
 
 	currentFlow[0] = newFlow[0];
 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title> Liquid Data | Flask</title>
+    <meta name="description" content="Flask is a bottle that collects data.">
+    <meta name="author" content="DAT, Saul Hardman, Ben Ashman, James King, Florian Brueckner">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript" src="//use.typekit.net/vts7ppd.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="global-header">
+
+            <h1 class="banner" role="banner"><a href="http://localhost:4000">Flask</a></h1>
+
+            <nav class="global-nav">
+
+                <ul>
+
+                    
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                    <li><a class="currentpage" href="http://localhost:4000" title="Follow the team's journey from start to finish">Blog</a></li>
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                    
+
+                        
+
+                            <li><a href="http://localhost:4000/abstract" title="A concise explanation of what Flask is and why it was made" class="">Abstract</a></li>
+
+                        
+
+                    
+
+                        
+
+                            <li><a href="http://localhost:4000/team" title="Find out more about the team behind Flask." class="">Team</a></li>
+
+                        
+
+                    
+
+                </ul>
+
+            </nav>
+
+            <div class="deco"></div>
+
+        </header>
+
+        <section class="main wrap" role="main">
+
+            <article class="post">
+
+	<header>
+
+		<h1 class="title">Liquid Data</h1>
+
+        <ul class="details">
+
+            <li><time datetime="2013-02-23" class="date">23 February 2013</time></li>
+
+            <li>by <a href="http://twitter.com/bloomingbridges" title="Click to hear more from Florian Brueckner" class="author" rel="author">Florian Brueckner</a></li>
+
+        </ul>
+
+	</header>
+
+	<section class="words">
+
+		<p><strong>We figured, that one achievable way to add an element of magic to Flask is by incorporating something we won't ever fully fathom ourselves</strong>.</p>
+
+<p>For the tablet interface end of Flask we had to ask ourselves, what is the digital equivalent to an atom when it comes to visual building blocks? Is it the pixel? The vertex? The tetramino? In any case it was clear that what the visualisation needed was a decent amount of particles!</p>
+
+<p>From particle physics it was then only a small step towards low-level graphics programming, an area which I meant to develop skills in for a while, so I thought why not pick up <a href="http://www.openframeworks.cc/">openFrameworks</a> (the widely proclaimed <em>Processing</em> of the C++ world) for a bit of a taster. The reasoning being that if I don't get to learn how to blow glass during this project, I want to at least leave as a better programmer.</p>
+
+<h2>Of Vertex Shaders and Forgotten Behemoths</h2>
+
+<p><img src="/img/content/sep_vertices.jpg" alt="GLSL shader programming" /></p>
+
+<p>The initial attraction of using openFrameworks did not solely stem from the fact that most critically acclaimed digital artwork produced was built with it, but Memo Akten's <a href="http://www.memo.tv/msafluid/">MSAFluid solver library</a>, which promised to make 2D fluid simulations a piece of cake. If the mention of openFrameworks alone would have made the bottle look more professional by just 10%, it was worth taking the risk.</p>
+
+<p>Your average instagram photo has the dimensions of 612 pixels square. Naïvely I assumed that I could just turn every pixel into a particle without having to make sacrifices in terms of speed,  but only if you start considering every second pixel value you're starting to get smooth results. And we're just talking about a single image here.</p>
+
+<p>My next approach was to map the image to a plane mesh and just push its vertices around. This way you'd end up with a more rigid-looking fluid effect, however nobody said that liquid data was high in viscosity anyway. By week five I was knees-deep in shader programming with GLSL to squeeze some more performance out of the piece (by writing little programmes that would compute vertex positions in parallel on the GPU) and everything seemed fine in Nodeland, too.</p>
+
+<p>Problems didn't occur until we've realised that we hadn't tested the application on the intended   hardware (i.e. iOS or Android). Turns out that whenever you're trying to make a senior language play nicely with a rather young piece of technology you better know what you are doing. I couldn't manage to compile the third party library we used for the WebSocket communication (libwebsockets) for iOS and since rethinking our setup this late in the game was out of the question, I had to jump ship and go back to good young HTML5 canvas.</p>
+
+<h2>Like Oil on Water</h2>
+
+<p><img src="/img/content/sep_drips.jpg" alt="Drip drop" /></p>
+
+<p>The final iteration of the visualisation thus ended up being all interaction and less eye-candy. It has been decided that content should be represented as circles, behaving like pearls of oil dripping into a water tank and slowly floating towards the edge of the screen where they dissolve. Once poured, the content should not persist on the screen for all eternity. And that's not to do with screen real estate or to make the user feel conscious about consumerism or anything, but rather how we found that the quality of Plymouth's social media content can be a little disconcerting at times.</p>
+
+<p>The visualisation is currently written in plain JavaScript using the HTML5 canvas API and a little cross-browser help from Justin Windles's <a href="http://soulwire.github.com/sketch.js/">sketch.js</a> framework. It still needs some tweaking here and there, especially on mobile devices, but it feels already responsive enough. More so as the spawn rate of content dripping onto the interface considers the actual tilt of the bottle using the readings from the accelerometer sensor.</p>
+
+<!-- screenshots go here -->
+
+
+
+
+
+	</section>
+
+</article>
+
+
+        </section>
+
+    </div>
+
+</body>
+</html>

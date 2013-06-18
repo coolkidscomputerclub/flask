@@ -1,3 +1,7 @@
+/* Utilities */
+
+var _ = require("underscore");
+
 /* Dependencies */
 
 var io = require("websocket.io");
@@ -8,12 +12,12 @@ var websocket = {
 
     sockets: {},
 
+    socketCount: 0,
+
     init: function (server) {
 
         var ws = io.attach(server),
             self = this;
-
-        _.bindAll(this);
 
         this.bindMediatorEvents();
 
@@ -25,6 +29,10 @@ var websocket = {
 
             self.sockets[id] = socket;
 
+            self.socketCount++;
+
+            mediator.publish("websocket:joined");
+
             self.bindSocketEvents(socket);
 
             self.sayHello(socket);
@@ -33,19 +41,19 @@ var websocket = {
 
         });
 
-        ws.on("message", function (message) {
-
-            console.log("Message: ", message.data);
-
-        });
-
     },
 
     bindMediatorEvents: function () {
 
-        console.log("WebSocket mediator events bound.");
+        var self = this;
 
-        mediator.subscribe("websocket:broadcast", this.broadcast);
+        mediator.subscribe("websocket:broadcast", function (data) {
+
+            self.broadcast(data);
+
+        });
+
+        console.log("WebSocket mediator events bound.");
 
     },
 
@@ -80,7 +88,27 @@ var websocket = {
 
             delete self.sockets[socket.id];
 
+            self.socketCount--;
+
+            mediator.publish("websocket:left");
+
             console.log("Socket disconnected: ", socket.id);
+
+        });
+
+        socket.on("message", function (message) {
+
+            message = JSON.parse(message);
+
+            if (typeof message.topic !== "undefined") {
+
+                mediator.publish(message.topic, message.payload);
+
+            } else {
+
+                console.log("WebSocket [%s] message received: ", socket.id, message);
+
+            }
 
         });
 
@@ -113,6 +141,8 @@ var websocket = {
     }
 
 };
+
+_.bindAll(websocket);
 
 /* 'return' websocket */
 

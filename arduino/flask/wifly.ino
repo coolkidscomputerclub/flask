@@ -3,17 +3,25 @@
 
 void setupWiFly() {
 
-	WiFly.begin();
+    // Serial.println("Booting WiFly...");
 
-	if (WiFly.join(ssid, passphrase)) {
+    WiFly.begin();
 
-		Serial.println("WiFly connected to " + String(ssid));
+    Serial.println("WiFly has begun.");
 
-	} else {
+    // Serial.println("Connecting to WiFi: " + String(ssid) + ", " + String(passphrase));
 
-		Serial.println("Could not connect to " + String(ssid));
+    if (WiFly.join(ssid, passphrase)) {
 
-        errorLights();
+        // Serial.println("WiFly connected to " + String(ssid));
+
+        setupPubSub();
+
+    } else {
+
+        setupWiFly();
+
+        // Serial.println("Could not connect to " + String(ssid));
 
 	}
 
@@ -21,19 +29,24 @@ void setupWiFly() {
 
 /* # MQTT
 ================================================== */
+
 void setupPubSub () {
 
-    Serial.println("PubSub connecting...");
+    pubSubRun = true;
+
+    // Serial.println("PubSub connecting...");
 
     if (client.connect("arduinoClient")) {
 
-        Serial.println("PubSub connected.");
+        // Serial.println("PubSub connected.");
 
-        client.subscribe(subTopic);
+        // client.subscribe(subTopic);
 
     } else {
 
-        Serial.println("PubSub connection failed.");
+        // Serial.println("PubSub connection failed.");
+
+        setupPubSub();
 
     }
 
@@ -41,7 +54,9 @@ void setupPubSub () {
 
 void callback (char* topic, byte* payload, unsigned int length) {
 
-    if (String(topic) == subTopic) {
+    // Serial.println(topic);
+
+    if (String(topic) == fluidTopic) {
 
         char payloadChar[length+1];
 
@@ -53,7 +68,11 @@ void callback (char* topic, byte* payload, unsigned int length) {
 
         payloadChar[length] = '\0';
 
-        Serial.println("Payload received: {topic: " + String(topic) + ", payload: " + payloadChar + "}");
+        newFluid = atoi(payloadChar);
+
+        // Serial.println("Received - " + String(topic) + ": " + newFluid);
+
+        fadeBetween(currentFluid, newFluid);
 
     }
 

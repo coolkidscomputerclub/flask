@@ -1,152 +1,173 @@
-/* # Sockets
-================================================== */
+var app = {
 
-if (Modernizr.websockets === true) {
+	content: [],
 
-	console.log("WebSockets enabled!");
+	flow: 0,
 
-	var socket = new WebSocket("ws://" + location.host);
+	init: function () {
 
-	socket.onopen = function () {
+		if (Modernizr.websockets === true) {
 
-		console.log("Socket connected.");
+			console.log("WebSockets enabled!");
 
-		socket.send("Hello server!");
+			this.setupSocket();
 
-	};
+		} else {
 
-	socket.onmessage = function (message) {
-
-		// parseAccelReadings(data);
-
-		var data = JSON.parse(message.data),
-			$img;
-
-		console.log("Data: ", data);
-
-		if (data.type === "photo") {
-
-			$img = $("<img/>", {
-				"src": data["content"],
-				"alt": data.author,
-				"class": data["type"]
-			});
-
-			$("body").append($img);
+			console.log("WebSockets not enabled!");
 
 		}
 
-	};
+	},
 
-	socket.onclose = function () {
+	setupSocket: function () {
 
-		console.log("Socket closed.");
+		this.socket = new WebSocket("ws://" + location.host);
 
-	};
+		this.bindSocketEvents();
 
-} else {
+	},
 
-	console.log("WebSockets not enabled!");
+	bindSocketEvents: function () {
 
-}
+		var self = this;
 
-/* # Accelerometer shit
-================================================== */
+		this.socket.onopen = function () {
 
-var accX, accY, accZ;
+			console.log("WebSocket connected.");
 
-function parseAccelReadings (values) {
+			this.send(JSON.stringify("Hello server!"));
 
-	var splitValues = values.split(",");
+		};
 
-	accX = splitValues[0];
-	accY = splitValues[1];
-	accZ = splitValues[2];
+		this.socket.onmessage = function (message) {
 
-}
+			var data = JSON.parse(message.data);
 
+			if (data.topic === "flow:update") {
 
-/* # Three.js
-================================================== */
+				// data.payload gives values 0, 1 or 2
 
-var camera, scene, renderer, geometry, material, mesh;
+				self.changeFlow(data.payload);
 
-var cnvs = document.getElementById('cnvs') ;
+			} else if (data.topic === "content:update") {
 
-init();
+				// data.payload gives obj with type, author, content
 
-animate();
+				self.content.push(data.payload);
 
-function init() {
+			} else if (data.topic === "content:archive") {
 
-	// Scene
+				self.content = data.payload;
 
-	scene = new THREE.Scene();
+			}
 
-	// Camera
+			console.log("Data: ", data);
 
-	camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 10000 );
+		};
 
-	camera.position.z = 250;
+		this.socket.onclose = function () {
 
-	scene.add(camera);
+			console.log("WebSocket closed.");
 
-	// Geometry
+		};
 
-	geometry = new THREE.CubeGeometry(20, 60, 20);
+	},
 
-	mesh = new THREE.Mesh(geometry);
+	changeFlow: function (flow) {
 
-	scene.add(mesh);
+		this.flow = flow;
 
-	// Renderer
+		if (this.flow > 0) {
 
-	renderer = new THREE.WebGLRenderer(cnvs);
+			// start pouring
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
+			this.pouring.start();
 
-	document.body.appendChild( renderer.domElement );
+		} else {
 
-}
+			// stop pouring
 
-function animate () {
+			this.pouring.stop();
 
-	requestAnimationFrame(animate);
+		}
 
-	render();
+	},
 
-}
+	pouring: {
 
-function render () {
+		timeout: null,
 
-	//console.log(accX);
+		run: function () {
 
-	var rotX = accX / 6 * (Math.PI / 180);
-	var rotY = accY / 6 * (Math.PI / 180);
-	var rotZ = accZ / 6 * (Math.PI / 180);
+			var self = this;
 
-	//mesh.rotation.z += 1 * (Math.PI / 180);
-	//mesh.rotation.y += 1 * (Math.PI / 180);
-	//mesh.rotation.x += 1 * (Math.PI / 180);
+			if (app.content.length > 0) {
 
-	//renderer.render(scene, camera);
+				app.render(app.content.shift());
 
-}
+				this.timeout = setTimeout(function () {
 
-document.onkeydown = function (e) {
+					self.run();
 
-	switch (e.keyCode) {
+				}, 1000 / app.flow);
 
-		case 37:
-			pourBottle("left");
-			break;
+			}
 
-		case 39:
-			pourBottle("right");
-			break;
+		},
+
+		start: function () {
+
+			this.run();
+
+			console.log("Pouring started.");
+
+		},
+
+		stop: function () {
+
+			clearTimeout(this.timeout);
+
+			console.log("Pouring finished.");
+
+		}
+
+	},
+
+	render: function (content) {
+
+		var $container = $("#content"),
+			data = {
+				topic: "content:consumed",
+				payload: null
+			},
+			$photo,
+			$tweet;
+
+		this.socket.send(JSON.stringify(data));
+
+		if (content.type === "photo") {
+
+			$photo = $("<img>", {
+
+				src: "//" + location.host + content.content,
+				width: 100,
+				height: 100
+
+			});
+
+			$container.append($photo);
+
+		} else if (content.type === "tweet") {
+
+			$tweet = $("<p/>").text("@" + content.author + ": " + content.content);
+
+			$container.append($tweet);
+
+		}
 
 	}
 
 };
 
-
+app.init();

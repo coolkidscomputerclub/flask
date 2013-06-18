@@ -1,7 +1,11 @@
+/* Utilities */
+
+var _ = require("underscore");
+
 /* Dependencies */
 
-var mqttjs = require("mqttjs"),
-    port = 1883;
+var mqttjs = require("mqtt"),
+    port = 8080;
 
 /* Mqtt namespace */
 
@@ -11,17 +15,31 @@ var mqtt = {
 
     init: function () {
 
-        var self = mqtt;
+        var self = this;
 
-        self.mqttServer = mqttjs.createServer(self.bindEvents).listen(port);
+        this.mqttServer = mqttjs.createServer(this.bindEvents).listen(port);
+
+        mediator.subscribe("fluid:update", function (data) {
+
+            var packet = {
+
+                topic: "fluid",
+
+                payload: "" + data
+
+            };
+
+            self.broadcast(packet);
+
+        });
 
     },
 
     bindEvents: function (client) {
 
-        console.log("Binding mqtt server events.");
+        console.log("Binding MQTT client events.");
 
-        var self = mqtt;
+        var self = this;
 
         client.on("connect", function (packet) {
 
@@ -31,6 +49,7 @@ var mqtt = {
 
             self.clients[client.id] = client;
 
+            // say hi
             client.publish({
 
                 topic: "response",
@@ -39,7 +58,10 @@ var mqtt = {
 
             });
 
-            mediator.publish("websocket:broadcast", {
+            // tell them what state the bottle should be in
+            mediator.publish("fluid:update", flask.ledCount);
+
+            mediator.publish("mqtt:joined", {
 
                 topic: "mqtt:joined",
 
@@ -47,36 +69,33 @@ var mqtt = {
 
             });
 
-            console.log("Client joined: ", client.id);
+            console.log("MQTT client joined: ", client.id);
 
         });
 
         client.on("publish", function (packet) {
 
-            // publish message to all clients
-            for (var i in self.clients) {
+            console.log("MQTT publish received: ", packet.topic, packet.payload);
 
-                if (self.clients.hasOwnProperty(i)/* && i !== client.id*/) {
+            switch (packet.topic) {
 
-                    self.clients[i].publish({
+                case "cork":
 
-                        topic: packet.topic,
+                    mediator.publish("cork:update", packet.payload);
 
-                        payload: packet.payload
+                    break;
 
-                    });
+                case "flow":
 
-                    mediator.publish("websocket:broadcast", {
+                    mediator.publish("flow:update", packet.payload);
 
-                        topic: packet.topic,
+                    break;
 
-                        payload: packet.payload
+                case "fluid":
 
-                    });
+                    self.broadcast(packet);
 
-                    console.log("Publishing received: ", self.clients[i].id, packet);
-
-                }
+                    break;
 
             }
 
@@ -84,17 +103,19 @@ var mqtt = {
 
         client.on("subscribe", function (packet) {
 
-            var granted = [];
+            var granted = [],
+                i,
+                j;
 
-            for (var i = 0; i < packet.subscriptions.length; i++) {
+            for (i = 0, j = packet.subscriptions.length; i < j; i++) {
 
-                granted.push(packet.subscriptions[i].qos);
+                granted.push(packet.qos);
 
             }
 
             client.suback({granted: granted});
 
-            console.log("Subscribe received: ", packet);
+            console.log("Subscribe received: ", packet, granted);
 
         });
 
@@ -114,6 +135,8 @@ var mqtt = {
 
             delete self.clients[client.id];
 
+            console.log("MQTT client left: ", client.id);
+
         });
 
         client.on("error", function (error) {
@@ -124,10 +147,28 @@ var mqtt = {
 
         });
 
+    },
+
+    broadcast: function (packet) {
+
+        for (var i in this.clients) {
+
+            if (this.clients.hasOwnProperty(i)) {
+
+                this.clients[i].publish(packet);
+
+            }
+
+        }
+
+        console.log("MQTT broadcast: ", packet.topic, packet.payload);
+
     }
 
 };
 
+_.bindAll(mqtt);
+
 /* Expose init method */
 
-module.exports.init = mqtt.init;
+module.exports = mqtt;

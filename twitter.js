@@ -1,12 +1,25 @@
 /* # Dependencies
 ================================================== */
 
-var ntwitter = new require("ntwitter")({
+// ben's credentials
+
+/*var ntwitter = new require("ntwitter")({
 
 	consumer_key: "YGY6Kd2DORZTiK5qIKq4Og",
 	consumer_secret: "wP1nHxjQ5gDdM16OB0zeIB8MRvRPoZpF4TKMuei4",
 	access_token_key: "24029639-GGfEmCUJk6n5yzrunh1EP34HjT8mcNAOLpq9iu260",
 	access_token_secret: "cC5jhxyPrVT8PXv6MVVi2rIEBeKqvc1duDgUtsZOk"
+
+});*/
+
+// saul's credentials
+
+var ntwitter = new require("ntwitter")({
+
+	consumer_key: "lVZLSG3C0TLjRU0Rwt2s3A",
+	consumer_secret: "YRohjFVG46BCh5OiGL34nGsoQZ95hNJtCVlgg7uW8",
+	access_token_key: "51853963-fXdppsscL8tmtDSG7zGsBSmOaXAyBeMrfWhLioUqm",
+	access_token_secret: "81tZJhDSUrWyiDfhK1KrqHdxCbn2BRAvpJKQhyJQ"
 
 });
 
@@ -41,7 +54,7 @@ var twitter = {
 							content: tweet.text
 						};
 
-						mediator.publish("websocket:broadcast", post);
+						mediator.publish("content:update", post);
 
 					} else {
 

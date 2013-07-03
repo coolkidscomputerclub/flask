@@ -3,9 +3,9 @@
 
 void setupWiFly() {
 
-    // Serial.println("Booting WiFly...");
+    Serial.println("Booting WiFly...");
 
-    WiFly.begin();
+    WiFly.begin(true);
 
     Serial.println("WiFly has begun.");
 

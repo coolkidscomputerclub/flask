@@ -5,6 +5,8 @@
 #include <Timer.h>
 #include "credentials.h"
 
+#define DEBUG_LEVEL 1
+
 #define CS_PIN      5
 #define CLK_PIN     6
 #define DIO_PIN     7

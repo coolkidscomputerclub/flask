@@ -304,11 +304,9 @@ body, html {
 /* # Single pages
 ================================================== */
 blockquote {
+  display: none;
   padding-left: 20px;
   border-left: 5px solid #411b75; }
-
-.video-container {
-  margin-bottom: 60px; }
 
 .team h2 {
   display: inline-block;

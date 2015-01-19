@@ -2,7 +2,7 @@
 layout: post
 title: Building Things
 authors: [Saul Hardman, James King]
-twitter: [saulhardman, sorakasumi]
+twitter: [saulhardman, stereomyth]
 ---
 
 We want to build something real. Don’t get me wrong, software’s flippin’ cool man, but too much of one thing is good for nothing. And that’s all we’ve been doing lately; nothing but Unity this and WebSockets that. So we’re setting our digital tools aside, applying a liberal amount of elbow grease, and *making a real, physical thing*.

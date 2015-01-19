@@ -1,1 +1,1 @@
-[Flask](http://sorakasumi.github.com/flask/)
+[Flask](http://stereomyth.github.com/flask/)

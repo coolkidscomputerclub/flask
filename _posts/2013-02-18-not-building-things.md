@@ -2,7 +2,7 @@
 layout: post
 title: Not Building Things
 authors: [Saul Hardman, James King]
-twitter: [saulhardman, sorakasumi]
+twitter: [saulhardman, stereomyth]
 ---
 
 I suppose this is the point at which I eat my words. My suspicions were correct; building things is only easy if you know how and have the right tools for the job. That doesn’t mean we gave up on our mission, just that we had to reel in our expectations, extend our timescale and seek the help of hired professionals. Our quest for knowledge and components was to see us traverse many previously unexplored areas of the University, and beyond.

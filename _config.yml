@@ -3,5 +3,5 @@ lsi: false
 markdown: rdiscount
 pygments: true
 permalink: /:title
-url: http://sorakasumi.github.com
+url: http://stereomyth.github.com
 baseurl: /flask

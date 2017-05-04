@@ -1,6 +1,6 @@
 safe: true
 lsi: false
-pygments: true
+highlighter: rouge
 permalink: /:title
 url: http://stereomyth.github.com
 baseurl: /flask

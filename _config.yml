@@ -1,6 +1,5 @@
 safe: true
 lsi: false
-markdown: rdiscount
 pygments: true
 permalink: /:title
 url: http://stereomyth.github.com

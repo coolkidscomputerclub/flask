@@ -2,5 +2,5 @@ safe: true
 lsi: false
 highlighter: rouge
 permalink: /:title
-url: http://coolkidscomputerclub.github.com
+url: http://coolkidscomputerclub.github.io
 baseurl: /flask

@@ -1,1 +1,1 @@
-[Flask](http://stereomyth.github.com/flask/)
+[Flask](http://coolkidscomputerclub.github.com/flask/)

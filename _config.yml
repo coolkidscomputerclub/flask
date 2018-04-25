@@ -2,5 +2,5 @@ safe: true
 lsi: false
 highlighter: rouge
 permalink: /:title
-url: http://stereomyth.github.com
+url: http://coolkidscomputerclub.github.com
 baseurl: /flask
